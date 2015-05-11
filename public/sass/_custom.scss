@@ -3,8 +3,54 @@ html {
     text-rendering: optimizeLegibility;
     font-family: "Cooper Hewitt", "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 400;
+    @extend .blue-grey, .darken-3;
 }
 
 .bold {
     font-weight: 700;
+}
+
+nav .brand-logo {
+    font-weight: 500;
+}
+
+.nav-link {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    letter-spacing: 0.0625rem;
+}
+
+i.right {
+    margin-left: 0;
+}
+
+nav .nav-wrapper i {
+  font-size: 1.5rem;
+}
+
+@media #{$medium-and-down} {
+    nav .nav-wrapper i {
+      font-size: 2rem;
+    }
+}
+
+@media #{$medium-and-down} {
+    nav .brand-logo {
+        font-size: 1.75rem;
+    }
+}
+
+
+.play {
+    color: #455a64;
+    font-weight: 600;
+    letter-spacing: 1px;
+    letter-spacing: 0.0625rem;
+}
+
+footer.page-footer .footer-copyright {
+    font-weight: 400;
+    color: #455a64;
+    background-color: rgba(0,0,0,0.04);
 }
