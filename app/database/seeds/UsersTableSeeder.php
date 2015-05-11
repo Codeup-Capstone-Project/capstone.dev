@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder {
 				'last'		=> $faker->lastname,
 				'username' 	=> $faker->unique()->userName,
 				'email' 	=> $faker->unique()->email,
-				'password' 	=> $faker->password 
+				'password' 	=> $faker->password
 			));
 		}
 

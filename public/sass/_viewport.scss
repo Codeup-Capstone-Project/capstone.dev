@@ -1,0 +1,13 @@
+
+/*---------------------------------------------------------*\
+
+    Viewport Rules
+    http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
+
+\*---------------------------------------------------------*/
+
+@-webkit-viewport   { width: device-width; }
+@-moz-viewport      { width: device-width; }
+@-ms-viewport       { width: device-width; }
+@-o-viewport        { width: device-width; }
+@viewport           { width: device-width; }
