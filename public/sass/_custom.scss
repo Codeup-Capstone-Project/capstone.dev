@@ -1,10 +1,145 @@
 
+body, html {
+    height: 100%;
+    position: relative;
+}
+
 html {
     text-rendering: optimizeLegibility;
     font-family: "Cooper Hewitt", "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 400;
+    @extend .blue-grey, .darken-3;
+}
+
+.no-marg-bot {
+    margin-bottom: 0;
+}
+
+.row.hero {
+    padding: 0 30px;
+}
+
+.thin {
+    font-weight: 200;
 }
 
 .bold {
     font-weight: 700;
 }
+
+.plug {
+    margin-bottom: 3rem;
+}
+
+@media #{$large-and-up} {
+    #logo-container {
+        padding-left: 15px;
+    }
+}
+
+nav .brand-logo {
+    font-weight: 600;
+}
+
+.nav-link {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    letter-spacing: 0.0625rem;
+    color: #eceff1;
+    @include transition(color .3s);
+}
+
+.nav-link:hover {
+    color: #80cbc4;
+    @include transition(color .3s);
+}
+
+nav ul li:hover {
+    background-color: transparent;
+}
+
+li.user-welcome {
+    padding: 0 15px;
+}
+
+i.right {
+    margin-left: 0;
+}
+
+nav .nav-wrapper {
+    padding: 0 30px;
+}
+
+nav .nav-wrapper i {
+  font-size: 1.5rem;
+}
+
+@media #{$medium-and-down} {
+    nav .nav-wrapper i {
+      font-size: 2rem;
+    }
+}
+
+.btn:hover {
+    @extend .z-depth-2;
+}
+
+.play {
+    color: #455a64;
+    font-weight: 600;
+    letter-spacing: 1px;
+    letter-spacing: 0.0625rem;
+}
+    .play:hover {
+        color: #00897b;
+    }
+
+.btn-floating i {
+    color: #455a64;
+}
+    .btn-floating i:hover {
+        color: #00897b;
+    }
+
+
+footer.page-footer {
+    margin-top: 0;
+}
+
+footer.page-footer .footer-copyright {
+    font-weight: 400;
+    color: #455a64;
+    background-color: rgba(0,0,0,0.04);
+}
+
+section {
+    padding-top: 75px;
+}
+
+section.hero {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 75px;
+}
+
+#main-splash {
+    max-height: 80%;
+    // background-image: url(../img/square_bg_@2X.png);
+}
+
+.floating-absolute-right {
+    position: absolute;
+    right: 50px;
+    bottom: -27.75px;
+    z-index: 800;
+    margin: 0;
+}
+
+@media #{$medium-and-down} {
+    .floating-absolute-right {
+        right: 35px;
+    }
+}
+
