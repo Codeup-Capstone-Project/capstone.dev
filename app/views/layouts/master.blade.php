@@ -16,50 +16,67 @@
     <script src="/js/windows-viewport.js"></script>
 </head>
 <body>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!">Profile</a></li>
+        <li><a href="#!">Play</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">Log out</a></li>
+    </ul>
+    <nav class="transparent" role="navigation">
+        <div class="nav-wrapper">
+            <a id="logo-container" href="#" class="brand-logo teal-text text-lighten-2">TyleNinja</a>
+            <ul class="right hide-on-med-and-down">
+                <li class="blue-grey-text text-lighten-2 user-welcome">Welcome, guest!</li>
+                <!-- Dropdown Trigger -->
+                <li><a class="dropdown-button nav-link" href="#!" data-activates="dropdown1">Account<i class="mdi-navigation-expand-more right small"></i></a></li>
+            </ul>
 
-    <!-- <div class="navbar-fixed"> -->
-        <!-- Dropdown Structure -->
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">Profile</a></li>
-            <li><a href="#!">Play</a></li>
-            <li class="divider"></li>
-            <li><a href="#!">Log out</a></li>
-        </ul>
-        <nav class="transparent" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo teal-text text-lighten-2">TyleNinja</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#" class="blue-grey-text text-lighten-2">Welcome, guest!</a></li>
-                    <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-button nav-link blue-grey-text text-lighten-2" href="#!" data-activates="dropdown1">Account<i class="mdi-navigation-expand-more right small"></i></a></li>
-                </ul>
+            <ul id="nav-mobile" class="side-nav">
+                <li><a href="#">Welcome, guest!</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#!">Play</a></li>
+                <li><a href="#!">Log out</a></li>
+            </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse right blue-grey-text text-lighten-2"><i class="mdi-navigation-menu"></i></a>
+        </div>
+    </nav>
 
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#">Welcome, guest!</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#!">Play</a></li>
-                    <li><a href="#!">Log out</a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse right blue-grey-text text-lighten-2"><i class="mdi-navigation-menu"></i></a>
+    <section class="hero no-pad-bot" id="main-splash">
+        <div class="row hero center">
+            <div class="col s12 center-align">
+                <h2 class="white-text thin plug">Bone-crushing tile puzzles!</h2>
+                <a href="#" id="play-button" class="btn-large waves-effect waves-teal blue-grey lighten-5 play">Start Playing!</a>
             </div>
-        </nav>
-    <!-- </div> -->
-    <div class="section no-pad-bot" id="index-banner">
+        </div>
+        <a class="floating-absolute-right btn-floating btn-large waves-effect waves-teal blue-grey lighten-5" id="scroll-to-about">
+            <i class="mdi-navigation-expand-more"></i>
+        </a>
+    </section>
+
+    <section class="no-pad-bot teal lighten-1" id="about">
         <div class="container">
-            <div class="row center">
-                <a href="#" id="download-button" class="btn-large waves-effect waves-teal blue-grey lighten-5 play">Start Playing!</a>
+            <div class="row no-marg-bot blue-grey-text text-darken-4">
+                <div class="col s12">
+                    <h3 class="center">About the Game</h3>
+                </div>
+                <div class="col s12 l6">
+                    <p class="flow-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus doloribus, consequatur numquam quas nihil facilis corporis, quod voluptates possimus! Libero obcaecati possimus, ab, beatae incidunt voluptatum vel, necessitatibus praesentium, adipisci cupiditate aut nobis! Perspiciatis, sit, qui dolorem, illo ab nam vel tempora maxime ea laboriosam, nemo dignissimos dolorum fugiat. Animi.</p>
+                </div>
             </div>
-            <br><br>
         </div>
-    </div>
+    </section>
 
-
-    <div class="container">
-        <div class="section">
-
-
+    <section class="no-pad-bot teal lighten-2" id="creators">
+        <div class="container">
+            <div class="row no-marg-bot blue-grey-text text-darken-4">
+                <div class="col s12">
+                    <h3 class="center">The Creators</h3>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <footer class="page-footer blue-grey darken-4">
         <div class="container">
