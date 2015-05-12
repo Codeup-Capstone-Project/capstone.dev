@@ -46,7 +46,7 @@
     		var cellPadding = 2;
     		var puzzleSize = 3;		//will be an AJAX call to database activated on user game-level selection?
     		var puzzleDimensions = puzzleSize * puzzleSize;
-    		var initialBlockPositions = [5,4,3,2,1,8,6,7,0];	//will be randomly generated later
+    		var initialBlockPositions = [1,2,3,4,5,0,7,8,6];	//will be randomly generated later
     		var answerKey = [1,2,3,4,5,6,7,8,0]
 
     		// Create gameboard grid of cells
@@ -109,7 +109,7 @@
 						break;
 				}
 
-					console.log('movableCells indices array: ' + movableCells);
+					// console.log('movableCells indices array: ' + movableCells);
 
 					//only attach click-event listener to adjacent blocks
 					$.each(movableCells, function(index, cell) {
@@ -142,27 +142,30 @@
 						//console.log(initialBlockPositions);
 		    			
 		    			//animate the block moving to its new xy-coordinates
-		    			$(this).animate({ "top": cells[emptyCell][1], "left": cells[emptyCell][0] }, "fast" );
+		    			//3rd parameter calls removeEventListeners() upon completion of animation
+		    			$(this).animate({ "top": cells[emptyCell][1], "left": cells[emptyCell][0] }, "fast", removeEventListeners);
 		    			// Reset global emptyCell index variable to the index of the clicked block
 		    			emptyCell = clickedPositionIndex;
 		    			console.log("New Empty: "+emptyCell);
 		    			
-		    			console.log(initialBlockPositions);
+		    			// console.log(initialBlockPositions);
 		    			//console.log("Clicked Cell: "+clickedPositionIndex);
-
-		    			//after each move, check against to answer key to alert when player has won
-		    			if(initialBlockPositions.toString() == answerKey.toString()){
-		    				alert("you win!");
-		    			}
-
-		    			removeEventListeners();
 		    		});
 	    	}
 
 
 	    	function removeEventListeners(){
-	    		$('.blocks').off();
+	    		//after each move, check against answer key to alert when player has won
+    			if(initialBlockPositions.toString() == answerKey.toString()){
+    				$('.blocks').off();
+    				return endGame();
+    			}
+    			$('.blocks').off();
 	    		identifyMovableBlocks();
+	    	}
+
+	    	function endGame(){
+		    	alert("you win!");
 	    	}
 
 
