@@ -66,6 +66,7 @@
 	    		}
 	    	}
 
+
 	    	// Start game button
 	    	$("#start").on('click',positionBlocks);
 
@@ -91,8 +92,32 @@
 
 	    	function addEventListeners()
 	    	{
-					    		
+				var c = emptyCell;
+				var s = puzzleSize;
 
+				//identify the cells adjacent to the empty cell	    		
+				switch (c % s) {
+					//if emptyCell is along right-side of gameboard
+					case s - 1:
+						var movableCells = [c-1, c+s, c-s];
+						break;
+					//if emptyCell is along left-side of gameboard 
+					case 0:
+						var movableCells = [c+1, c+s, c-s];
+						break;
+					default:
+						var movableCells = [c+1, c-1, c+s, c-s];
+						break;
+				}
+
+					console.log('movableCells indices array: ' + movableCells);
+
+					//only attach click-event listener to adjacent blocks
+					$.each(movableCells, function(index, value) {
+						if(!value < 0 && !value > puzzleDimensions){
+
+						}
+					});
 
 		    		$('.blocks').on('click', function(){
 		    			console.log("Old Empty: "+emptyCell);
