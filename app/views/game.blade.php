@@ -29,9 +29,7 @@
 	<div class="container">
     	<div class="row">
     		<div class="col s6 l6 offset-s3 offset-l3">
-    			<div id='gameBoard'>
-
-    			</div>
+    			<div id='gameBoard'></div>
     			<button id="start">Start</button>
     		</div>
     	</div>    
@@ -48,7 +46,7 @@
     		var cellPadding = 2;
     		var puzzleSize = 3;		//will be an AJAX call to database activated on user game-level selection?
     		var puzzleDimensions = puzzleSize * puzzleSize;
-    		var initialBlockPositions = [5,4,3,2,1,0,6,7,8];	//will be randomly generated later
+    		var initialBlockPositions = [5,4,3,2,1,8,6,7,0];	//will be randomly generated later
     		var answerKey = [1,2,3,4,5,6,7,8,0]
 
     		// Create gameboard grid of cells
@@ -87,15 +85,16 @@
   					}
 				});
 
-				addEventListeners();
+				identifyMovableBlocks();
 	    	}
 
-	    	function addEventListeners()
+
+	    	function identifyMovableBlocks()	
 	    	{
 				var c = emptyCell;
 				var s = puzzleSize;
 
-				//identify the cells adjacent to the empty cell	    		
+				//identify the indices of cells adjacent to the empty cell	    		
 				switch (c % s) {
 					//if emptyCell is along right-side of gameboard
 					case s - 1:
@@ -113,17 +112,25 @@
 					console.log('movableCells indices array: ' + movableCells);
 
 					//only attach click-event listener to adjacent blocks
-					$.each(movableCells, function(index, value) {
-						if(!value < 0 && !value > puzzleDimensions){
+					$.each(movableCells, function(index, cell) {
+						//only use cells that are within the puzzleDimensions range: 1--9, 1--16, etc.
+						if(!(cell < 0) && !(cell > puzzleDimensions)){
+							var movableBlock = initialBlockPositions[cell];
+							console.log('movable block: ' + movableBlock);
 
+							addEventListeners(movableBlock);
 						}
 					});
 
-		    		$('.blocks').on('click', function(){
+			}
+
+
+	    	function addEventListeners(movableBlock){
+		    		$('.blocks[data-blocknum="'+ movableBlock +'"').on('click', function(){
 		    			console.log("Old Empty: "+emptyCell);
 
 		    			//fetch the block number of clicked block via its data attribute
-						blockNumber = parseInt($(this).data("blocknum"));
+						var blockNumber = parseInt($(this).data("blocknum"));
 						console.log('Block Clicked: '+blockNumber);
 
 						//fetch the index number of that block from its position array 
@@ -138,6 +145,7 @@
 		    			$(this).animate({ "top": cells[emptyCell][1], "left": cells[emptyCell][0] }, "fast" );
 		    			// Reset global emptyCell index variable to the index of the clicked block
 		    			emptyCell = clickedPositionIndex;
+		    			console.log("New Empty: "+emptyCell);
 		    			
 		    			console.log(initialBlockPositions);
 		    			//console.log("Clicked Cell: "+clickedPositionIndex);
@@ -146,7 +154,15 @@
 		    			if(initialBlockPositions.toString() == answerKey.toString()){
 		    				alert("you win!");
 		    			}
+
+		    			removeEventListeners();
 		    		});
+	    	}
+
+
+	    	function removeEventListeners(){
+	    		$('.blocks').off();
+	    		identifyMovableBlocks();
 	    	}
 
 
