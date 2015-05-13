@@ -1,5 +1,3 @@
-/vagrant/sites/capstone.dev/app/views/game.blade.php
-
 <html>
 <head>
 	<title>Puzzle Test</title>
@@ -8,6 +6,13 @@
 	<link rel="stylesheet" href="/css/TimeCircles.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<style>
+		.hidden {
+			display: none;
+		}
+		button {
+			text-align: center;
+		}
+
 		#gameBoard {
 			border: 1px solid black;
 			width: 308px;
@@ -25,6 +30,9 @@
 			margin: 1px;
 			position: absolute;
 			display: inline-block;
+			line-height: 100px;
+  			vertical-align: middle;
+  			text-align: center;
 			/*float: left;*/
 		}
 	</style>
@@ -34,29 +42,45 @@
     	<div class="row">
     		<div class="col s6 l6 offset-s3 offset-l3">
     			<div id='gameBoard'></div>
-    			<button id="start" class="btn waves-effect waves-light start" type="submit" name="start">Start</button>
-    			<button id="restart" class="btn waves-effect waves-light red lighten-2 restart" type="submit" name="restart">Restart</button>
     		</div>
-    		<div id="timer" class="col s3 l3" data-date="" ></div>
-    	</div>    
+    	</div>  
+    	<div class="row">
+    		<div class="col s6 l6 offset-s3 offset-l3 center-align">
+    			<button id="start" class="btn waves-effect waves-light start" type="submit" name="start">Start</button>
+    			<button id="reset" class="btn waves-effect waves-light yellow lighten-2 hidden" type="submit" name="reset">Reset</button>
+    			<button id="quit" class="btn waves-effect waves-light red lighten-2 restart hidden" type="submit" name="quit">Quit</button>
+    			<button id="newGame" class="btn waves-effect waves-light blue lighten-2 hidden" type="submit" name="newGame">New Game</button>
+    		</div>
+    	</div>
+    	<div class="row">
+    		<div id="timer" class="col s6 l6" data-date="" ></div>
+    		<div>
+    			<h3 id="moves">Moves: 0</h3>
+    		</div>
+    	</div>  
     </div>
 
     <script>
     	
     	$(document).ready(function(){
 
-    	//====================== Game Logic =========================
+    	//====================== Begin Game =========================
 
     		var emptyCell;		//the index number of the empty cell in the position array
     		var cellX = 0;		//initial x-coordinate of top-left corner of cell, relative to the gameBoard container div
     		var cellY = 0;		//initial y-coordinate of top-left corner of cell, relative to the gameBoard container div
     		var cells = [];		//array to hold cell coordinates
+    		var moves = 0;
     		var cellDimension = 100;	//will be a percentage for mobile-responsiveness
     		var cellPadding = 2;
     		var puzzleSize = 3;		//will be an AJAX call to database activated on user game-level selection?
     		var puzzleDimensions = puzzleSize * puzzleSize;
     		var initialBlockPositions = [1,2,3,4,5,0,7,8,6];	//will be randomly generated later
-    		var answerKey = [1,2,3,4,5,6,7,8,0]
+    		var newBlockPositions = [];		//will be a clone of initial positions that changes as user clicks blocks
+    		var gameStats = {
+    			"initialBlockPositions": initialBlockPositions
+    		};
+    		var answerKey = [1,2,3,4,5,6,7,8,0];
 
     		// Create gameboard grid of cells
     		// Loop for determining cell positions
@@ -73,18 +97,45 @@
 	    		}
 	    	}
 
-
+	    //====================== Buttons =========================
 	    	// Start game button
 	    	$("#start").on('click', function(){
-	    		positionBlocks();
-	    		identifyMovableBlocks();
-	    		$("#timer").TimeCircles().start();
+	    		startGame();
 	    	});
 
-	    	// Restart game button
-	    	$("#restart").on('click', function(){
+	    	// Reset game button
+	    	$("#reset").on('click', function(){
+	    		$(".blocks").remove();
 	    		$("#timer").TimeCircles().restart();
+	    		$("#timer").TimeCircles().stop();
+	    		startGame();
 	    	});
+
+	    	// Quit game button
+	    	$("#quit").on('click', function(){
+	    		var won = false;
+	    		endGame(won);
+	    	});
+
+	    	// New game button
+	    	$("#newGame").on('click', function(){
+	    		//reload page with different version of same game using AJAX call?
+	    	});
+
+
+	    //====================== Game Logic Functions =========================
+
+	    	function startGame(){
+	    		moves = 0;
+	    		$("#moves").text("Moves: " + moves);
+	    		positionBlocks();		//place blocks in their initial positions
+	    		newBlockPositions = initialBlockPositions.slice(0);	//create a clone of the initial positions array to track block movements
+	    		identifyMovableBlocks();
+	    		$("#timer").TimeCircles().start();
+	    		$("#start").addClass('hidden');
+	    		$("#quit").removeClass('hidden');
+	    		$("#reset").removeClass('hidden');
+	    	}
 
 	    	// Loop through cell-position array and assign its sets of coordinates to each block as they are generated
 	    	function positionBlocks()
@@ -101,8 +152,6 @@
   						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+";left:"+coordinates[0]+"'>"+blockNumber+"</div>");
   					}
 				});
-
-				//identifyMovableBlocks();
 	    	}
 
 
@@ -130,7 +179,7 @@
 					$.each(movableCells, function(index, cell) {
 						//only use cells that are within the puzzleDimensions range: 1--9, 1--16, etc.
 						if(!(cell < 0) && !(cell > puzzleDimensions)){
-							var movableBlock = initialBlockPositions[cell];
+							var movableBlock = newBlockPositions[cell];
 							addEventListeners(movableBlock);
 						}
 					});
@@ -140,17 +189,20 @@
 
 	    	function addEventListeners(movableBlock){
 	    		$('.blocks[data-blocknum="'+ movableBlock +'"').on('click', function(){
+	    			//call moves-counter
+	    			movesCounter();
 
 	    			//fetch the block number of clicked block via its data attribute
 					var blockNumber = parseInt($(this).data("blocknum"));
 
 					//fetch the index number of that block from its position array 
 					//it will become the next empty cell
-					clickedPositionIndex = $.inArray(blockNumber, initialBlockPositions);
+					clickedPositionIndex = $.inArray(blockNumber, newBlockPositions);
 					
-					//swap values between the clicked block and the old empty cell
-					initialBlockPositions[emptyCell] = blockNumber;
-					initialBlockPositions[clickedPositionIndex] = 0;
+					//swap values between the clicked block and the old empty cell and update gameStats array
+					newBlockPositions[emptyCell] = blockNumber;
+					newBlockPositions[clickedPositionIndex] = 0;
+					gameStats['newBlockPositions'] = newBlockPositions;
 	    			
 	    			//animate the block moving to its new xy-coordinates
 	    			//3rd parameter calls removeEventListeners() upon completion of animation
@@ -163,20 +215,38 @@
 
 	    	function removeEventListeners(){
 	    		//after each move, check against answer key to alert when player has won
-    			if(initialBlockPositions.toString() == answerKey.toString()){
+    			if(newBlockPositions.toString() == answerKey.toString()){
     				$('.blocks').off();
-    				return endGame();
+    				var won = true;
+    				endGame(won);
+    				return;
     			}
     			$('.blocks').off();
 	    		identifyMovableBlocks();
 	    	}
 
-	    	function endGame(){
-		    	alert("you win!");
-		    	var time = $(".example").TimeCircles().getTime();
-		    	$(".example").TimeCircles().end().fadeOut();
-		    	console.log(time);
+	    	function movesCounter()
+	    	{
+	    		moves += 1;
+	    		$("#moves").text("Moves: " + moves);
 	    	}
+
+	    	function endGame(won){
+	    		var time = $("#timer").TimeCircles().getTime();
+	    		time *= -1;
+	    		gameStats.gameFinished = won;
+	    		gameStats.time = time;
+	    		gameStats.moves = moves;
+	    		$("#timer").TimeCircles().stop();
+	    		$("#quit").addClass('hidden');
+		    	$("#newGame").removeClass('hidden');
+		    	if(won){
+		    		alert("You win");
+		    	}
+		    	console.log(gameStats);
+		    	$.post('/stats', gameStats);
+	    	}
+
 
 		//====================== Game Timer ========================= 
 		//See documentation at http://git.wimbarelds.nl/TimeCircles/readme.php
@@ -191,7 +261,7 @@
 			        "Days": {
 			            "text": "Days",
 			            "color": "#FFCC66",
-			            "show": true
+			            "show": false
 			        },
 			        "Hours": {
 			            "text": "Hours",
