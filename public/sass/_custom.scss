@@ -4,6 +4,11 @@ body, html {
     position: relative;
 }
 
+#wrap {
+    height: 100%;
+    background-image: url(../img/asfalt-dark-2.png);
+}
+
 html {
     text-rendering: optimizeLegibility;
     font-family: "Cooper Hewitt", "Helvetica Neue", Helvetica, sans-serif;
@@ -11,8 +16,22 @@ html {
     @extend .blue-grey, .darken-3;
 }
 
+.img-marg {
+    margin-top: 2.5em;
+}
+
+@media #{$medium-only} {
+    .img-marg {
+        margin-top: 2em;
+    }
+}
+
 .no-marg-bot {
     margin-bottom: 0;
+}
+
+.pad-bot {
+    padding-bottom: 125px;
 }
 
 .row.hero {
@@ -27,8 +46,12 @@ html {
     font-weight: 700;
 }
 
+.name {
+    font-weight: 500;
+}
+
 .plug {
-    margin-bottom: 3rem;
+    z-index: 1;
 }
 
 @media #{$large-and-up} {
@@ -85,15 +108,20 @@ nav .nav-wrapper i {
     @extend .z-depth-2;
 }
 
-.play {
+.call {
     color: #455a64;
     font-weight: 600;
     letter-spacing: 1px;
     letter-spacing: 0.0625rem;
+    margin-top: 2rem;
 }
-    .play:hover {
+    .call:hover {
         color: #00897b;
     }
+
+.call.main {
+    margin-top: 1rem;
+}
 
 .btn-floating i {
     color: #455a64;
@@ -124,9 +152,24 @@ section.hero {
     padding-top: 75px;
 }
 
+@media #{$medium-and-down} {
+    section, section.hero {
+        padding-top: 34px;
+    }
+}
+
 #main-splash {
     max-height: 80%;
-    // background-image: url(../img/square_bg_@2X.png);
+}
+
+#main-splash .ninja {
+    position: absolute;
+    width: 420px;
+    height: 274px;
+    left: 30px;
+    bottom: 95px;
+    background-image: url(../img/ninja.png);
+    z-index: -5;
 }
 
 .floating-absolute-right {
