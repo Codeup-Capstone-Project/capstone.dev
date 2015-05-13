@@ -1,5 +1,3 @@
-/vagrant/sites/capstone.dev/app/views/game.blade.php
-
 <html>
 <head>
 	<title>Puzzle Test</title>
@@ -8,6 +6,13 @@
 	<link rel="stylesheet" href="/css/TimeCircles.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<style>
+		.hidden {
+			display: none;
+		}
+		button {
+			text-align: center;
+		}
+
 		#gameBoard {
 			border: 1px solid black;
 			width: 308px;
@@ -31,32 +36,40 @@
 </head>
 <body>
 	<div class="container">
+		<div class="row">
+    		<div id="timer" class="col s6 l6" data-date="" ></div>
+    	</div>
     	<div class="row">
     		<div class="col s6 l6 offset-s3 offset-l3">
     			<div id='gameBoard'></div>
-    			<button id="start" class="btn waves-effect waves-light start" type="submit" name="start">Start</button>
-    			<button id="restart" class="btn waves-effect waves-light red lighten-2 restart" type="submit" name="restart">Restart</button>
     		</div>
-    		<div id="timer" class="col s3 l3" data-date="" ></div>
-    	</div>    
+    	</div>  
+    	<div class="row">
+    		<div class="col s6 l6 offset-s3 offset-l3 center-align">
+    			<button id="start" class="btn waves-effect waves-light start" type="submit" name="start">Start</button>
+    			<button id="quit" class="btn waves-effect waves-light red lighten-2 restart hidden" type="submit" name="quit">Quit</button>
+    			<button id="newGame" class="btn waves-effect waves-light blue lighten-2 hidden" type="submit" name="newGame">New Game</button>
+    		</div>
+    	</div>  
     </div>
 
     <script>
     	
     	$(document).ready(function(){
 
-    	//====================== Game Logic =========================
+    	//====================== Begin Game =========================
 
     		var emptyCell;		//the index number of the empty cell in the position array
     		var cellX = 0;		//initial x-coordinate of top-left corner of cell, relative to the gameBoard container div
     		var cellY = 0;		//initial y-coordinate of top-left corner of cell, relative to the gameBoard container div
     		var cells = [];		//array to hold cell coordinates
+    		var gameStats = [];	//array to hold game 'state', 'time', 'moves', 'blockPositions'
     		var cellDimension = 100;	//will be a percentage for mobile-responsiveness
     		var cellPadding = 2;
     		var puzzleSize = 3;		//will be an AJAX call to database activated on user game-level selection?
     		var puzzleDimensions = puzzleSize * puzzleSize;
     		var initialBlockPositions = [1,2,3,4,5,0,7,8,6];	//will be randomly generated later
-    		var answerKey = [1,2,3,4,5,6,7,8,0]
+    		var answerKey = [1,2,3,4,5,6,7,8,0];
 
     		// Create gameboard grid of cells
     		// Loop for determining cell positions
@@ -73,18 +86,29 @@
 	    		}
 	    	}
 
-
+	    //====================== Buttons =========================
 	    	// Start game button
 	    	$("#start").on('click', function(){
 	    		positionBlocks();
 	    		identifyMovableBlocks();
 	    		$("#timer").TimeCircles().start();
+	    		$(this).addClass('hidden');
+	    		$("#quit").removeClass('hidden')
 	    	});
 
-	    	// Restart game button
-	    	$("#restart").on('click', function(){
-	    		$("#timer").TimeCircles().restart();
+	    	// Quit game button
+	    	$("#quit").on('click', function(){
+	    		var won = false;
+	    		endGame(won);
 	    	});
+
+	    	// New game button
+	    	$("#newGame").on('click', function(){
+	    		//reload page with different version of same game using AJAX call?
+	    	});
+
+
+	    //====================== Game Logic Functions =========================
 
 	    	// Loop through cell-position array and assign its sets of coordinates to each block as they are generated
 	    	function positionBlocks()
@@ -101,8 +125,6 @@
   						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+";left:"+coordinates[0]+"'>"+blockNumber+"</div>");
   					}
 				});
-
-				//identifyMovableBlocks();
 	    	}
 
 
@@ -165,18 +187,26 @@
 	    		//after each move, check against answer key to alert when player has won
     			if(initialBlockPositions.toString() == answerKey.toString()){
     				$('.blocks').off();
-    				return endGame();
+    				var won = true;
+    				endGame(won);
+    				return;
     			}
     			$('.blocks').off();
 	    		identifyMovableBlocks();
 	    	}
 
-	    	function endGame(){
-		    	alert("you win!");
-		    	var time = $(".example").TimeCircles().getTime();
-		    	$(".example").TimeCircles().end().fadeOut();
-		    	console.log(time);
+	    	function endGame(won){
+	    		var time = $("#timer").TimeCircles().getTime();
+	    		time *= -1;
+	    		gameStats['time'] = time;
+	    		$("#timer").TimeCircles().stop();
+	    		$("#quit").addClass('hidden');
+		    	$("#newGame").removeClass('hidden');
+		    	if(won){
+		    		alert("You win");
+		    	}
 	    	}
+
 
 		//====================== Game Timer ========================= 
 		//See documentation at http://git.wimbarelds.nl/TimeCircles/readme.php
@@ -191,7 +221,7 @@
 			        "Days": {
 			            "text": "Days",
 			            "color": "#FFCC66",
-			            "show": true
+			            "show": false
 			        },
 			        "Hours": {
 			            "text": "Hours",
