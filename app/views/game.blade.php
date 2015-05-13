@@ -30,6 +30,9 @@
 			margin: 1px;
 			position: absolute;
 			display: inline-block;
+			line-height: 100px;
+  			vertical-align: middle;
+  			text-align: center;
 			/*float: left;*/
 		}
 	</style>
@@ -44,6 +47,7 @@
     	<div class="row">
     		<div class="col s6 l6 offset-s3 offset-l3 center-align">
     			<button id="start" class="btn waves-effect waves-light start" type="submit" name="start">Start</button>
+    			<button id="reset" class="btn waves-effect waves-light yellow lighten-2 hidden" type="submit" name="reset">Reset</button>
     			<button id="quit" class="btn waves-effect waves-light red lighten-2 restart hidden" type="submit" name="quit">Quit</button>
     			<button id="newGame" class="btn waves-effect waves-light blue lighten-2 hidden" type="submit" name="newGame">New Game</button>
     		</div>
@@ -72,10 +76,10 @@
     		var puzzleSize = 3;		//will be an AJAX call to database activated on user game-level selection?
     		var puzzleDimensions = puzzleSize * puzzleSize;
     		var initialBlockPositions = [1,2,3,4,5,0,7,8,6];	//will be randomly generated later
-    		var gameStats = [];
-    			gameStats['initialBlockPositions'] = initialBlockPositions;	//array to hold game 'initialBlockPositions', 'state', 'time', 'moves', 'blockPositions'
-    		var newBlockPositions = [];
-    			newBlockPositions = initialBlockPositions;
+    		var newBlockPositions = [];		//will be a clone of initial positions that changes as user clicks blocks
+    		var gameStats = {
+    			"initialBlockPositions": initialBlockPositions
+    		};
     		var answerKey = [1,2,3,4,5,6,7,8,0];
 
     		// Create gameboard grid of cells
@@ -96,11 +100,15 @@
 	    //====================== Buttons =========================
 	    	// Start game button
 	    	$("#start").on('click', function(){
-	    		positionBlocks();
-	    		identifyMovableBlocks();
-	    		$("#timer").TimeCircles().start();
-	    		$(this).addClass('hidden');
-	    		$("#quit").removeClass('hidden')
+	    		startGame();
+	    	});
+
+	    	// Reset game button
+	    	$("#reset").on('click', function(){
+	    		$(".blocks").remove();
+	    		$("#timer").TimeCircles().restart();
+	    		$("#timer").TimeCircles().stop();
+	    		startGame();
 	    	});
 
 	    	// Quit game button
@@ -117,12 +125,24 @@
 
 	    //====================== Game Logic Functions =========================
 
+	    	function startGame(){
+	    		moves = 0;
+	    		$("#moves").text("Moves: " + moves);
+	    		positionBlocks();		//place blocks in their initial positions
+	    		newBlockPositions = initialBlockPositions.slice(0);	//create a clone of the initial positions array to track block movements
+	    		identifyMovableBlocks();
+	    		$("#timer").TimeCircles().start();
+	    		$("#start").addClass('hidden');
+	    		$("#quit").removeClass('hidden');
+	    		$("#reset").removeClass('hidden');
+	    	}
+
 	    	// Loop through cell-position array and assign its sets of coordinates to each block as they are generated
 	    	function positionBlocks()
 	    	{
 	    		$.each(cells, function(index, coordinates) {
   					//concurrently loop through block-positions-array and store their numeric value
-  					var blockNumber = newBlockPositions[index];
+  					var blockNumber = initialBlockPositions[index];
   					//a block number of 0 indicates the initial empty cell's position
   					if(blockNumber == 0){
 						emptyCell = index;
@@ -179,16 +199,10 @@
 					//it will become the next empty cell
 					clickedPositionIndex = $.inArray(blockNumber, newBlockPositions);
 					
-					console.log('initialpositions: ' + initialBlockPositions);
-					
-					//swap values between the clicked block and the old empty cell and update position array
+					//swap values between the clicked block and the old empty cell and update gameStats array
 					newBlockPositions[emptyCell] = blockNumber;
 					newBlockPositions[clickedPositionIndex] = 0;
 					gameStats['newBlockPositions'] = newBlockPositions;
-	    
-// why is the initialBlockPositions array still changing? 			
-	    			console.log('initialpositions: ' + initialBlockPositions);
-	    			console.log('newpositions: ' + newBlockPositions);
 	    			
 	    			//animate the block moving to its new xy-coordinates
 	    			//3rd parameter calls removeEventListeners() upon completion of animation
@@ -220,9 +234,9 @@
 	    	function endGame(won){
 	    		var time = $("#timer").TimeCircles().getTime();
 	    		time *= -1;
-	    		gameStats['gameFinished'] = won;
-	    		gameStats['time'] = time;
-	    		gameStats['moves'] = moves;
+	    		gameStats.gameFinished = won;
+	    		gameStats.time = time;
+	    		gameStats.moves = moves;
 	    		$("#timer").TimeCircles().stop();
 	    		$("#quit").addClass('hidden');
 		    	$("#newGame").removeClass('hidden');
@@ -230,6 +244,7 @@
 		    		alert("You win");
 		    	}
 		    	console.log(gameStats);
+		    	$.post('/stats', gameStats);
 	    	}
 
 
