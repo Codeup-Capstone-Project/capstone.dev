@@ -15,4 +15,12 @@ Route::get('/', 'HomeController@showHome');
 
 Route::resource('users', 'UsersController');
 
-Route::get('game', 'GameController@showGame');
+Route::resource('play', 'GameController');
+
+
+
+
+
+Route::get('test-route', function(){
+	dd(Input::all());
+});
