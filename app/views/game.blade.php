@@ -4,6 +4,8 @@
 <head>
 	<title>Puzzle Test</title>
 	<script src="/js/vendor/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="/js/TimeCircles.js"></script>
+	<link rel="stylesheet" href="/css/TimeCircles.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<style>
 		#gameBoard {
@@ -11,6 +13,8 @@
 			width: 308px;
 			height: 308px;
 			position: relative;
+			margin-right: auto;
+			margin-left: auto;
 			overflow: visible;
 		}
 
@@ -30,14 +34,19 @@
     	<div class="row">
     		<div class="col s6 l6 offset-s3 offset-l3">
     			<div id='gameBoard'></div>
-    			<button id="start">Start</button>
+    			<button id="start" class="btn waves-effect waves-light start" type="submit" name="start">Start</button>
+    			<button id="restart" class="btn waves-effect waves-light red lighten-2 restart" type="submit" name="restart">Restart</button>
     		</div>
+    		<div id="timer" class="col s3 l3" data-date="" ></div>
     	</div>    
     </div>
 
     <script>
     	
     	$(document).ready(function(){
+
+    	//====================== Game Logic =========================
+
     		var emptyCell;		//the index number of the empty cell in the position array
     		var cellX = 0;		//initial x-coordinate of top-left corner of cell, relative to the gameBoard container div
     		var cellY = 0;		//initial y-coordinate of top-left corner of cell, relative to the gameBoard container div
@@ -66,8 +75,16 @@
 
 
 	    	// Start game button
-	    	$("#start").on('click',positionBlocks);
+	    	$("#start").on('click', function(){
+	    		positionBlocks();
+	    		identifyMovableBlocks();
+	    		$("#timer").TimeCircles().start();
+	    	});
 
+	    	// Restart game button
+	    	$("#restart").on('click', function(){
+	    		$("#timer").TimeCircles().restart();
+	    	});
 
 	    	// Loop through cell-position array and assign its sets of coordinates to each block as they are generated
 	    	function positionBlocks()
@@ -85,7 +102,7 @@
   					}
 				});
 
-				identifyMovableBlocks();
+				//identifyMovableBlocks();
 	    	}
 
 
@@ -109,15 +126,11 @@
 						break;
 				}
 
-					// console.log('movableCells indices array: ' + movableCells);
-
-					//only attach click-event listener to adjacent blocks
+					//attach click-event listener to adjacent blocks
 					$.each(movableCells, function(index, cell) {
 						//only use cells that are within the puzzleDimensions range: 1--9, 1--16, etc.
 						if(!(cell < 0) && !(cell > puzzleDimensions)){
 							var movableBlock = initialBlockPositions[cell];
-							console.log('movable block: ' + movableBlock);
-
 							addEventListeners(movableBlock);
 						}
 					});
@@ -126,31 +139,25 @@
 
 
 	    	function addEventListeners(movableBlock){
-		    		$('.blocks[data-blocknum="'+ movableBlock +'"').on('click', function(){
-		    			console.log("Old Empty: "+emptyCell);
+	    		$('.blocks[data-blocknum="'+ movableBlock +'"').on('click', function(){
 
-		    			//fetch the block number of clicked block via its data attribute
-						var blockNumber = parseInt($(this).data("blocknum"));
-						console.log('Block Clicked: '+blockNumber);
+	    			//fetch the block number of clicked block via its data attribute
+					var blockNumber = parseInt($(this).data("blocknum"));
 
-						//fetch the index number of that block from its position array 
-						//it will become the next empty cell
-						clickedPositionIndex = $.inArray(blockNumber, initialBlockPositions);
-						//swap values between the clicked block and the old empty cell
-						initialBlockPositions[emptyCell] = blockNumber;
-						initialBlockPositions[clickedPositionIndex] = 0;
-						//console.log(initialBlockPositions);
-		    			
-		    			//animate the block moving to its new xy-coordinates
-		    			//3rd parameter calls removeEventListeners() upon completion of animation
-		    			$(this).animate({ "top": cells[emptyCell][1], "left": cells[emptyCell][0] }, "fast", removeEventListeners);
-		    			// Reset global emptyCell index variable to the index of the clicked block
-		    			emptyCell = clickedPositionIndex;
-		    			console.log("New Empty: "+emptyCell);
-		    			
-		    			// console.log(initialBlockPositions);
-		    			//console.log("Clicked Cell: "+clickedPositionIndex);
-		    		});
+					//fetch the index number of that block from its position array 
+					//it will become the next empty cell
+					clickedPositionIndex = $.inArray(blockNumber, initialBlockPositions);
+					
+					//swap values between the clicked block and the old empty cell
+					initialBlockPositions[emptyCell] = blockNumber;
+					initialBlockPositions[clickedPositionIndex] = 0;
+	    			
+	    			//animate the block moving to its new xy-coordinates
+	    			//3rd parameter calls removeEventListeners() upon completion of animation
+	    			$(this).animate({ "top": cells[emptyCell][1], "left": cells[emptyCell][0] }, "fast", removeEventListeners);
+	    			// Reset global emptyCell index variable to the index of the clicked block
+	    			emptyCell = clickedPositionIndex;
+	    		});
 	    	}
 
 
@@ -166,11 +173,43 @@
 
 	    	function endGame(){
 		    	alert("you win!");
+		    	var time = $(".example").TimeCircles().getTime();
+		    	$(".example").TimeCircles().end().fadeOut();
+		    	console.log(time);
 	    	}
 
+		//====================== Game Timer ========================= 
+		//See documentation at http://git.wimbarelds.nl/TimeCircles/readme.php
 
-	    	
-
+	    	$("#timer").TimeCircles({
+	    		"start": false,
+			    "animation": "smooth",
+			    "bg_width": 1.2,
+			    "fg_width": 0.1,				
+			    "circle_bg_color": "#60686F",	
+			    "time": {
+			        "Days": {
+			            "text": "Days",
+			            "color": "#FFCC66",
+			            "show": true
+			        },
+			        "Hours": {
+			            "text": "Hours",
+			            "color": "#99CCFF",
+			            "show": true
+			        },
+			        "Minutes": {
+			            "text": "Minutes",
+			            "color": "#BBFFBB",
+			            "show": true
+			        },
+			        "Seconds": {
+			            "text": "Seconds",
+			            "color": "#FF9999",
+			            "show": true
+			        }
+			    }
+			});
 		});
 
     </script>
