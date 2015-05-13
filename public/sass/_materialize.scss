@@ -14,9 +14,8 @@
 // Viewport Rules
 @import "viewport"; /* Added by Justin Dietert (to address Windows 8 IE10 snap mode issue http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/) */
 
-// User Fonts (added by Justin Dietert)
-@import "cooperhewitt";
-@import url(http://fonts.googleapis.com/css?family=Source+Serif+Pro);
+// Font Awesome
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
 
 // components
 @import "components/global";

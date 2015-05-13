@@ -11,7 +11,7 @@ body, html {
 
 html {
     text-rendering: optimizeLegibility;
-    font-family: "Cooper Hewitt", "Helvetica Neue", Helvetica, sans-serif;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 400;
     @extend .blue-grey, .darken-3;
 }
@@ -61,12 +61,12 @@ html {
 }
 
 nav .brand-logo {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .nav-link {
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1px;
     letter-spacing: 0.0625rem;
     color: #eceff1;
@@ -110,7 +110,7 @@ nav .nav-wrapper i {
 
 .call {
     color: #455a64;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 1px;
     letter-spacing: 0.0625rem;
     margin-top: 2rem;
@@ -129,7 +129,10 @@ nav .nav-wrapper i {
     .btn-floating i:hover {
         color: #00897b;
     }
-
+.btn-floating i.social,
+.btn-floating i.social:hover {
+    color: #FFFFFF;
+}
 
 footer.page-footer {
     margin-top: 0;
@@ -186,3 +189,39 @@ section.hero {
     }
 }
 
+// Social Media Colors
+//-----------------------------------------------
+
+.fb-color,
+.fb-color:hover {
+    background-color: #3b5998;
+}
+
+.google-color,
+.google-color:hover {
+    background-color: #dd4b39;
+}
+
+
+// Modals
+//-----------------------------------------------
+
+.modal.login {
+    width: 85%;
+}
+
+@media #{$medium-and-up} {
+    .modal.login {
+        width: 60%;
+    }
+}
+
+@media #{$large-and-up} {
+    .modal.login {
+        width: 35%;
+    }
+}
+
+.modal-button {
+    width: 100%;
+}
