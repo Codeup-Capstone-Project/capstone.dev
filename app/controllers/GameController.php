@@ -22,19 +22,21 @@ class GameController extends BaseController {
 	{	
 		//needs to show game level choices
 
+		self::showGame();
+
 		// Get all posts that match the search (if there is one) and create pagination links based off them.
-		$query = Post::with('user');
+		// $query = Post::with('user');
 
-		if (Input::has('search')) {
-			$search = Input::get('search');
+		// if (Input::has('search')) {
+		// 	$search = Input::get('search');
 
-			$query->where('title', 'like', "%$search%")
-				  ->orWhere('body', 'like', "%$search%");
-		}
+		// 	$query->where('title', 'like', "%$search%")
+		// 		  ->orWhere('body', 'like', "%$search%");
+		// }
 
-		$posts = $query->orderBy('created_at', 'desc')->paginate(4);
+		// $posts = $query->orderBy('created_at', 'desc')->paginate(4);
 		
-		return View::make('posts.index')->with(['posts' => $posts]);
+		// return View::make('posts.index')->with(['posts' => $posts]);
 	}
 
 
