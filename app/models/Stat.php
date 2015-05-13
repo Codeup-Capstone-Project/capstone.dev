@@ -1,9 +1,9 @@
 <?php
 
 
-	class Post extends BaseModel
+	class Stat extends BaseModel
 	{
-		protected $table = 'posts';
+		protected $table = 'stats';
 
 		public static $rules = [
 			'title'      => 'required|max:100',
@@ -21,10 +21,14 @@
 
 		public function user()
 		{
-			// connects each post to its user
-			// the first parameter is the User class, the second is the foreign-key, and the third is the local key that the foreign key references on the posts table
-			// second and third parameters are only needed if not using primary key "id" in the users table
-			return $this->belongsTo('User', 'user_id', 'user_id');
+			// connects each stat to its user
+			return $this->belongsTo('User');
+		}
+
+		public function puzzle()
+		{
+			// connects each stat to its puzzle
+			return $this->belongsTo('Puzzle');
 		}
 
 	}
