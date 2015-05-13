@@ -15,6 +15,10 @@ Route::get('/', 'HomeController@showHome');
 
 Route::resource('users', 'UsersController');
 
+Route::get('login', 'HomeController@login');
+Route::post('login', 'HomeController@doLogin');
+Route::get('logout', 'HomeController@logout');
+
 Route::resource('play', 'GameController');
 
 
@@ -24,3 +28,4 @@ Route::resource('play', 'GameController');
 Route::get('test-route', function(){
 	dd(Input::all());
 });
+
