@@ -15,7 +15,9 @@ class CreatePuzzlesTable extends Migration {
 		Schema::create('puzzles', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('title');
+			$table->string('type');
+			$table->integer('size')->unsigned();
+			$table->string('initial_block_positions');
 			$table->timestamps();
 		});
 	}

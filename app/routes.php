@@ -19,4 +19,5 @@ Route::get('login', 'HomeController@login');
 Route::post('login', 'HomeController@doLogin');
 Route::get('logout', 'HomeController@logout');
 
-Route::resource('play', 'GameController');
+Route::controller('play', 'GameController');
+
