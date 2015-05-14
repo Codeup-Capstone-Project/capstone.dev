@@ -11,13 +11,19 @@
 		];
 
 
-		// Mutator that stores all post titles as a sluggified version of themselves in the 'slug' column
-		// This will create a duplicate of each post's title, connected by hyphens
-		// for use as a url appendage to direct link to each post (i.e. "This Blog Title" will also be stored as "this-blog-title")
-		public function setSlugAttribute($value)
+		// Mutator that serializes block positions array before insertion into database
+		public function setLastBlockPositionsAttribute($value)
 		{
-		    $this->attributes['slug'] = Str::slug($value);
+		    $this->attributes['last_block_positions'] = serialize($value);
 		}
+
+		//Mutator that parses strings of 'true' and 'false' to their proper integer values
+		//laravel boolean datatype needs 'false' and 'true' cast to integers before storing because it's stupid
+		public function setFinishedGameAttribute($value)
+		{
+			$this->attributes['finished_game'] = ($value === 'true') ? 1 : 0;
+		}
+
 
 		public function user()
 		{
