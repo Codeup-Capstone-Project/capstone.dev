@@ -3,7 +3,7 @@
             @if(Auth::check())
                 <li><a href="#">Profile</a></li>
             @endif
-            <li><a href="{{{ action('GameController@index') }}}">Play</a></li>
+            <li><a href="{{{ action('GameController@getIndex') }}}">Play</a></li>
             <li class="divider"></li>
             @if(Auth::check())
                 <li><a href="{{{ action('HomeController@logout') }}}">Log out</a></li>
@@ -24,7 +24,7 @@
 
                 <ul id="nav-mobile" class="side-nav">
                     <li><a href="#">Profile</a></li>
-                    <li><a href="{{{ action('GameController@index') }}}">Play</a></li>
+                    <li><a href="{{{ action('GameController@getIndex') }}}">Play</a></li>
                     <li class="divider"></li>
                     @if(Auth::check())
                         <li><a href="{{{ action('HomeController@logout') }}}">Log out</a></li>

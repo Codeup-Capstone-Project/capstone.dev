@@ -136,7 +136,7 @@
 	    		identifyMovableBlocks();
 	    		$("#timer").TimeCircles().start();
 	    		$("#start").addClass('hidden');
-	    		$("newGame").addClass('hidden');
+	    		$("#newGame").addClass('hidden');
 	    		$("#quit").removeClass('hidden');
 	    		$("#reset").removeClass('hidden');
 	    	}
