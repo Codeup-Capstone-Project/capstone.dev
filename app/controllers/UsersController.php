@@ -35,12 +35,20 @@ class UsersController extends \BaseController {
 
 		if ($validator->fails())
 		{
+			Session::flash('errorMessage', 'Account not saved. See errors.');
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		User::create($data);
+		$user = new User();
+		$user->first_name = Input::get('first_name');
+		$user->last_name  = Input::get('last_name');
+		$user->username   = Input::get('username');
+		$user->email      = Input::get('email');
+		$user->password   = Input::get('password');
+		$user->save();
 
-		return Redirect::route('users.index');
+		Session::flash('successMessage', 'Account created successfully.');
+		return Redirect::action('HomeController@showHome');
 	}
 
 	/**

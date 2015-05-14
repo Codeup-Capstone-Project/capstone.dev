@@ -19,13 +19,6 @@
     <div id="wrap">
         @include('partials.nav')
 
-        @if (Session::has('successMessage'))
-            <div class="flash" id="success"><p>&plus; {{{ Session::get('successMessage') }}}</p></div>
-        @endif
-        @if (Session::has('errorMessage'))
-            <div class="flash" id="failure"><p>&osol; {{{ Session::get('errorMessage') }}}</p></div>
-        @endif
-
         @yield('content')
 
         @include('partials.footer')
@@ -35,5 +28,16 @@
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery-2.1.1.min.js"><\/script>')</script>
     <script src="/js/materialize.min.js"></script>
     <script src="/js/init.js"></script>
+    @if (Session::has('successMessage'))
+        <script>
+            Materialize.toast("{{{ Session::get('successMessage') }}}", 4000, 'teal darken-1');
+        </script>
+    @endif
+
+    @if (Session::has('errorMessage'))
+        <script>
+            Materialize.toast("{{{ Session::get('errorMessage') }}}", 4000, 'red darken-1');
+        </script>
+    @endif
 </body>
 </html>
