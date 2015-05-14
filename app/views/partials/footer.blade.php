@@ -3,7 +3,7 @@
                 <div class="row">
                     <div class="col l6 s12">
                         <h5 class="blue-grey-text text-darken-1">Company Bio</h5>
-                        <p class="blue-grey-text text-darken-1">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                        <p class="blue-grey-text text-darken-1">We are a team of Codeup students working on this project like it's our full time job. If you would like to donate any amount so we may continue development, please contact us.</p>
                     </div>
                     <div class="col l3 s12">
                         <h5 class="blue-grey-text text-darken-1">Settings</h5>

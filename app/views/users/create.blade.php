@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    <title>Create an Account | TyleNinja</title>
+@stop
+
 @section('content')
     <div class="row pad-bot">
         <div class="col s12 m8 offset-m2 l6 offset-l3">
