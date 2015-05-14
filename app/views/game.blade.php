@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Puzzle Test</title>
+	<meta name="_token" content="{{ csrf_token() }}" />
 	<script src="/js/vendor/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="/js/TimeCircles.js"></script>
 	<link rel="stylesheet" href="/css/TimeCircles.css">
@@ -43,7 +44,7 @@
 <body>
 	<div class="container">
     	<div class="row">
-    		<div class="col s6 l6 offset-s3 offset-l3">
+    		<div class="col s12 l6 offset-l3">
     			<div id='gameBoard'></div>
     		</div>
     		<div class="col s3 l3">
@@ -68,9 +69,14 @@
     		</div>
     	</div>  
     </div>
-
+{{ Form::token() }}
     <script>
-
+		$.ajaxSetup({
+	        headers: {
+	            'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+	        }
+	    });
+	    
     	$(document).ready(function(){
 
     	//====================== Begin Game =========================
@@ -84,23 +90,14 @@
     		var cellPadding = 2;
     		var puzzleSize;		//will be an AJAX call to database activated on user game-level selection?
     		var totalBlocks;
-    		// var initialBlockPositions = [1,2,3,4,5,0,7,8,6];	//will be randomly generated later
-    		var initialBlockPositions = [];
+    		var initialBlockPositions = [];	//will be randomly generated
     		var newBlockPositions = [];		//will be a clone of initial positions that changes as user clicks blocks
     		var answerKey = [1,2,3,4,5,6,7,8,0];
     		
-    		//objects to POST necessary game data to database
-    		// var puzzleInfo = {
-    		// 	"size" : puzzleSize,
-    		// 	"type" : puzzleSize+"x"+puzzleSize,
-    		// 	"initialBlockPositions": initialBlockPositions
-    		// };
+    		//object to POST necessary game data to database
     		var gameStats = {
     			"initialBlockPositions": initialBlockPositions
     		};
-
-    		// //send puzzleInfo to puzzle table in database
-    		// $.post('/play/puzzle', puzzleInfo);
 
 
 	    //====================== Buttons =========================
