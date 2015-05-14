@@ -14,41 +14,41 @@
                       <div class="row">
                         <div class="input-field col s6">
                             {{ Form::label('first_name', 'First Name') }}
-                            {{ Form::text('first_name', Input::old('first')) }}
-                            {{ $errors->first('first_name', '<span class="red-text text-darken-1">:message</span>') }}
+                            {{ Form::text('first_name', Input::old('first_name')) }}
+                            {{ $errors->first('first_name', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
                         </div>
                         <div class="input-field col s6">
                             {{ Form::label('last_name', 'Last Name') }}
-                            {{ Form::text('last_name', Input::old('last')) }}
-                            {{ $errors->first('last_name', '<span class="red-text text-darken-1">:message</span>') }}
+                            {{ Form::text('last_name', Input::old('last_name')) }}
+                            {{ $errors->first('last_name', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
                             {{ Form::label('username', 'Username') }}
                             {{ Form::text('username', Input::old('username')) }}
-                            {{ $errors->first('username', '<span class="red-text text-darken-1">:message</span>') }}
+                            {{ $errors->first('username', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
                             {{ Form::label('email', 'Email') }}
                             {{ Form::email('email', Input::old('email')) }}
-                            {{ $errors->first('email', '<span class="red-text text-darken-1">:message</span>') }}
+                            {{ $errors->first('email', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
                             {{ Form::label('password', 'Password') }}
                             {{ Form::password('password') }}
-                            {{ $errors->first('password', '<span class="red-text text-darken-1">:message</span>') }}
+                            {{ $errors->first('password', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
                         </div>
                       </div>
                       <div class="row">
                         <div class="input-field col s12">
                             {{ Form::label('password_confirmation', 'Confirm Password') }}
                             {{ Form::password('password_confirmation') }}
-                            {{ $errors->first('password_confirmation', '<span class="red-text text-darken-1">:message</span>') }}
+                            {{ $errors->first('password_confirmation', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
                         </div>
                       </div>
                       <div class="row">
