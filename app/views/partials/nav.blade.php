@@ -16,7 +16,7 @@
                 <a id="logo-container" href="{{{ action('HomeController@showHome') }}}" class="brand-logo teal-text text-lighten-2">TyleNinja</a>
                 <ul class="right hide-on-med-and-down">
                     @if(Auth::check())
-                        <li class="blue-grey-text text-lighten-2 user-welcome">Welcome, {{{ Auth::user()->first }}}!</li>
+                        <li class="blue-grey-text text-lighten-2 user-welcome">Welcome, {{{ Auth::user()->username }}}!</li>
                     @endif
                     <!-- Dropdown Trigger -->
                     <li><a class="dropdown-button nav-link" href="#!" data-activates="dropdown1">Menu<i class="mdi-navigation-expand-more right"></i></a></li>

@@ -25,8 +25,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	// rules for creating a user or logging in
 	public static $rules = [
-		'username_or_email' => 'required',
-		'password'       	=> 'required'
+		'first_name'            => 'required|alpha',
+		'last_name'			    => 'alpha',
+        'email'                 => 'required|email|unique:users,email',
+        'username'              => 'required|alpha_num|min:3|max:15|unique:users,username',
+        'password'              => 'required|min:6|confirmed',
+        'password_confirmation' => 'required|min:6'
 	];
 
 

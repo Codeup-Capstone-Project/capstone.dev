@@ -21,14 +21,14 @@
                   </div>
                   <div class="row">
                     <div class="col s12">
-                        <button type="submit" class="btn waves-effect modal-button"><i class="mdi-navigation-arrow-forward left"></i>Log in</button>
+                        <button type="submit" class="btn waves-effect modal-button">Log in</button>
                     </div>
                   </div>
                 {{ Form::close() }}
             </div>
             <div class="row">
                 <div class="divider"></div>
-                    <p class="blue-grey-text text-darken-2 or-login">Or log in with&nbsp;&nbsp;
+                    <p class="blue-grey-text text-darken-2 or-login">Log in with&nbsp;&nbsp;
                         <a href="#" class="btn-floating waves-effect fb-color white-text"><i class="fa fa-facebook social"></i></a>
                         &nbsp;&nbsp;or&nbsp;&nbsp;
                         <a href="#" class="btn-floating waves-effect google-color white-text"><i class="fa fa-google social"></i></a>
