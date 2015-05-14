@@ -21,6 +21,9 @@
 			margin-right: auto;
 			margin-left: auto;
 			overflow: visible;
+			box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
+				-webkit-box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
+				-moz-box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
 		}
 
 		.blocks {
@@ -43,10 +46,16 @@
     		<div class="col s6 l6 offset-s3 offset-l3">
     			<div id='gameBoard'></div>
     		</div>
+    		<div class="col s3 l3">
+    			<h3 class="level">Choose Difficulty Level</h3>
+    			<button id='3x3' class="btn waves-effect waves-light level" type="submit" data-value='3'>3x3</button>
+    			<button id='4x4' class="btn waves-effect waves-light yellow lighten-2 level" type="submit" data-value='4'>4x4</button>
+    			<button id='5x5' class="btn waves-effect waves-light red lighten-2 level" type="submit" data-value='5'>5x5</button>
+    		</div>
     	</div>  
     	<div class="row">
     		<div class="col s6 l6 offset-s3 offset-l3 center-align">
-    			<button id="start" class="btn waves-effect waves-light start" type="submit" name="start">Start</button>
+    			<button id="start" class="btn waves-effect waves-light start hidden" type="submit" name="start">Start</button>
     			<button id="reset" class="btn waves-effect waves-light yellow lighten-2 hidden" type="submit" name="reset">Reset</button>
     			<button id="quit" class="btn waves-effect waves-light red lighten-2 restart hidden" type="submit" name="quit">Quit</button>
     			<button id="newGame" class="btn waves-effect waves-light blue lighten-2 hidden" type="submit" name="newGame">New Game</button>
@@ -61,7 +70,7 @@
     </div>
 
     <script>
-    	
+
     	$(document).ready(function(){
 
     	//====================== Begin Game =========================
@@ -73,35 +82,43 @@
     		var moves = 0;
     		var cellDimension = 100;	//will be a percentage for mobile-responsiveness
     		var cellPadding = 2;
-    		var puzzleSize = 3;		//will be an AJAX call to database activated on user game-level selection?
-    		var puzzleDimensions = puzzleSize * puzzleSize;
-    		var initialBlockPositions = [1,2,3,4,5,0,7,8,6];	//will be randomly generated later
+    		var puzzleSize;		//will be an AJAX call to database activated on user game-level selection?
+    		var totalBlocks;
+    		// var initialBlockPositions = [1,2,3,4,5,0,7,8,6];	//will be randomly generated later
+    		var initialBlockPositions = [];
     		var newBlockPositions = [];		//will be a clone of initial positions that changes as user clicks blocks
     		var answerKey = [1,2,3,4,5,6,7,8,0];
-    		var gameStats = {		//needs to be an object in order to POST to database
+    		
+    		//objects to POST necessary game data to database
+    		// var puzzleInfo = {
+    		// 	"size" : puzzleSize,
+    		// 	"type" : puzzleSize+"x"+puzzleSize,
+    		// 	"initialBlockPositions": initialBlockPositions
+    		// };
+    		var gameStats = {
     			"initialBlockPositions": initialBlockPositions
     		};
 
+    		// //send puzzleInfo to puzzle table in database
+    		// $.post('/play/puzzle', puzzleInfo);
 
-
-    		// Create gameboard grid of cells
-    		// Loop for determining cell positions
-	    	for(var i = 0; i < puzzleDimensions; i++) {
-	    		//store coordinates of each cell
-	    		cells[i] = [cellX, cellY];
-	    		// $('#gameBoard').append("<div class='cells' style='top:"+cellY+";left:"+cellX+"'></div>");
-	    		//increase the x-coordinate based on the size of each cell
-	    		cellX += cellDimension + cellPadding;
-	    		//reset the x-coordinate and increase the y-coordinate after the last cell of each row is positioned
-	    		if ((i+1) % puzzleSize == 0) {
-	    			cellX = 0;
-	    			cellY += cellDimension + cellPadding;
-	    		}
-	    	}
 
 	    //====================== Buttons =========================
+	    	// Level Selection Buttons
+	    	$(".level").on('click', function(){
+	    		puzzleSize = $(this).data('value');
+	    		totalBlocks = puzzleSize * puzzleSize;
+	    		randomPositionGenerator();
+	    		postInitialData();
+	    		$(".level").addClass('hidden');
+    			$("#start").removeClass('hidden');
+	    	});
+
+
 	    	// Start game button
 	    	$("#start").on('click', function(){
+	    		$(".blocks").remove();
+	    		buildGameBoard();
 	    		startGame();
 	    	});
 
@@ -122,10 +139,62 @@
 	    	// New game button
 	    	$("#newGame").on('click', function(){
 	    		//reload page with different version of same game using AJAX call?
+	    		$(".blocks").remove();
+	    		$(".btn").addClass('hidden');
+	    		$(".level").removeClass('hidden');
 	    	});
 
 
 	    //====================== Game Logic Functions =========================
+
+	    	function randomPositionGenerator()
+	    	{
+	    		//fill the array with integers
+	    		for (i = 0; i < totalBlocks; i++) {
+	    			initialBlockPositions[i] = i;
+	    		} 
+	    		//shuffle the array
+			  	var tmp, current, top = initialBlockPositions.length;
+			  	if(top) while(--top) {
+				    current = Math.floor(Math.random() * (top + 1));
+				    tmp = initialBlockPositions[current];
+				    initialBlockPositions[current] = initialBlockPositions[top];
+				    initialBlockPositions[top] = tmp;
+				}
+				console.log(initialBlockPositions);
+	    	}
+
+	    	function postInitialData()
+	    	{
+	    		//object to POST necessary game info to database
+	    		var puzzleInfo = {
+	    			"size" : puzzleSize,
+	    			"type" : puzzleSize+"x"+puzzleSize,
+	    			"initialBlockPositions": initialBlockPositions
+	    		};
+	    		//send puzzleInfo to puzzle table in database
+    			$.post('/play/puzzle', puzzleInfo);
+	    	}
+
+
+	    	// Create gameboard grid of cells
+    		function buildGameBoard()
+    		{
+	    		// Loop for determining cell positions
+		    	for(var i = 0; i < totalBlocks; i++) {
+		    		//store coordinates of each cell
+		    		cells[i] = [cellX, cellY];
+		    		// $('#gameBoard').append("<div class='cells' style='top:"+cellY+";left:"+cellX+"'></div>");
+		    		//increase the x-coordinate based on the size of each cell
+		    		cellX += cellDimension + cellPadding;
+		    		//reset the x-coordinate and increase the y-coordinate after the last cell of each row is positioned
+		    		if ((i+1) % puzzleSize == 0) {
+		    			cellX = 0;
+		    			cellY += cellDimension + cellPadding;
+		    		}
+		    	}
+		    }
+
 
 	    	function startGame(){
 	    		moves = 0;
@@ -181,8 +250,8 @@
 
 					//attach click-event listener to adjacent blocks
 					$.each(movableCells, function(index, cell) {
-						//only use cells that are within the puzzleDimensions range: 1--9, 1--16, etc.
-						if(!(cell < 0) && !(cell > puzzleDimensions)){
+						//only use cells that are within the totalBlocks range: 1--9, 1--16, etc.
+						if(!(cell < 0) && !(cell > totalBlocks)){
 							var movableBlock = newBlockPositions[cell];
 							addEventListeners(movableBlock);
 						}
@@ -285,7 +354,6 @@
 			    }
 			});
 		});
-
     </script>
 </body>
 </html>
