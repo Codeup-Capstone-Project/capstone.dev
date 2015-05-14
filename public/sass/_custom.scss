@@ -152,6 +152,15 @@ nav .nav-wrapper i {
     margin-top: 1rem;
 }
 
+.create {
+  letter-spacing: 1px;
+  letter-spacing: 0.0625rem;
+}
+
+.or-login {
+    margin-bottom: 0;
+}
+
 .btn-floating i {
     color: #455a64;
 }
@@ -264,4 +273,12 @@ section.hero {
 
 .modal-button {
     width: 100%;
+}
+
+// Forms
+//-----------------------------------------------
+
+.required:after {
+    content: ' *';
+    color: #00bfa5;
 }

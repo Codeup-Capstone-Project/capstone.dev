@@ -32,15 +32,15 @@
             </div>
             <div class="row">
                 <div class="divider"></div>
-                    <p class="blue-grey-text text-darken-2 or-login">Log in with&nbsp;&nbsp;
-                        <a href="#" class="btn-floating waves-effect fb-color white-text"><i class="fa fa-facebook social"></i></a>
-                        &nbsp;&nbsp;or&nbsp;&nbsp;
-                        <a href="#" class="btn-floating waves-effect google-color white-text"><i class="fa fa-google social"></i></a>
-                    </p>
+                <p class="blue-grey-text text-darken-2 or-login">Log in with&nbsp;&nbsp;
+                    <a href="#" class="btn-floating waves-effect fb-color white-text"><i class="fa fa-facebook social"></i></a>
+                    &nbsp;&nbsp;or&nbsp;&nbsp;
+                    <a href="#" class="btn-floating waves-effect google-color white-text"><i class="fa fa-google social"></i></a>
+                </p>
             </div>
         </div>
 
-        <a href="{{{ action('UsersController@create') }}}" class="btn-flat teal-text text-lighten-3">Create an Account</a>
+        <a href="{{{ action('UsersController@create') }}}" class="btn-flat teal-text text-lighten-3 create">Create an Account</a>
 
     </div>
 </div>
