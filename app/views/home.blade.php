@@ -5,7 +5,7 @@
             <div class="row hero center">
                 <div class="col s12 center-align">
                     <h2 class="white-text thin plug">Bone-crushing tile puzzles!</h2>
-                    <a href="{{{ action('GameController@showGame') }}}" id="play-button" class="btn-large waves-effect waves-teal blue-grey lighten-5 call main">Start Playing!</a>
+                    <a href="{{{ action('GameController@index') }}}" id="play-button" class="btn-large waves-effect waves-teal blue-grey lighten-5 call main">Start Playing!</a>
                 </div>
             </div>
             <a class="floating-absolute-right btn-floating btn-large waves-effect waves-teal blue-grey lighten-5 hide-on-med-and-down" id="scroll-to-about">
