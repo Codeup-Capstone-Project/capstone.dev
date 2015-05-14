@@ -2,6 +2,13 @@
 
 class GameController extends BaseController {
 
+	public function __construct()
+	{
+		// Call the parent constructor for CSRF token
+		parent::__construct();
+		$this->beforeFilter( 'auth' );
+	}
+
 	//called from url: capstone.dev/play
 	public function getIndex()
 	{
@@ -22,8 +29,7 @@ class GameController extends BaseController {
 		$puzzle_id = Puzzle::orderBy('id', 'DESC')->first();
 
 		$stats = new Stat;
-		// $stats->user_id = Auth::user()->id;
-		$stats->user_id = rand(1, 5);	//eventually remove and replace with line above
+		$stats->user_id = Auth::user()->id;
 		$stats->puzzle_id = $puzzle_id->id;
 		$stats->last_block_positions = Input::get('newBlockPositions');
 		$stats->moves = Input::get('moves');
