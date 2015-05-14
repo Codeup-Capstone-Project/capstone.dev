@@ -17,7 +17,7 @@ class CreatePuzzlesTable extends Migration {
 			$table->increments('id');
 			$table->string('type');
 			$table->integer('size')->unsigned();
-			$table->string('initial_block_positions');
+			$table->text('initial_block_positions');
 			$table->timestamps();
 		});
 	}
