@@ -2,13 +2,6 @@
 
 class GameController extends BaseController {
 
-	public function __construct()
-	{
-		// Call the parent constructor for CSRF token
-		parent::__construct();
-		$this->beforeFilter( 'auth', ['except' => ['postStats', 'postPuzzle']] );
-	}
-
 	//called from url: capstone.dev/play
 	public function getIndex()
 	{
