@@ -19,7 +19,11 @@ class Puzzle extends BaseModel {
 	];
 
 
-	
+	// Mutator that serializes block positions array before insertion into database
+	public function setInitialBlockPositionsAttribute($value)
+	{
+	    $this->attributes['initial_block_positions'] = serialize($value);
+	}
 
 	// Define the relationship between a puzzle and its stats
 	public function stats()
