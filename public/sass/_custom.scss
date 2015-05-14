@@ -89,6 +89,32 @@ li.user-welcome {
     padding: 0 15px;
 }
 
+span.username:hover {
+    cursor: text;
+}
+
+.dropdown-content li.user:hover {
+    background-color: transparent;
+}
+
+.dropdown-content li:hover,
+.side-nav li:hover {
+    background-color: #eceff1;
+}
+
+.side-nav a {
+    color: #00897b;
+}
+
+.side-nav span {
+    color: #455a64;
+    padding: 0 15px;
+}
+
+.side-nav li.user:hover {
+    background-color: transparent;
+}
+
 i.right {
     margin-left: 0;
 }
@@ -161,6 +187,17 @@ section.hero {
 @media #{$medium-and-down} {
     section, section.hero {
         padding-top: 34px;
+    }
+}
+
+@media only screen and (max-width: 390px) {
+
+    section.hero {
+        padding-top: 15px;
+    }
+    .plug {
+        font-size: 2.92rem;
+        line-height: 3.212rem;
     }
 }
 

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    <title>Create an Account | TyleNinja</title>
+    <title>Create an account | TyleNinja</title>
 @stop
 
 @section('content')
