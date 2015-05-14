@@ -77,10 +77,12 @@
     		var puzzleDimensions = puzzleSize * puzzleSize;
     		var initialBlockPositions = [1,2,3,4,5,0,7,8,6];	//will be randomly generated later
     		var newBlockPositions = [];		//will be a clone of initial positions that changes as user clicks blocks
-    		var gameStats = {
+    		var answerKey = [1,2,3,4,5,6,7,8,0];
+    		var gameStats = {		//needs to be an object in order to POST to database
     			"initialBlockPositions": initialBlockPositions
     		};
-    		var answerKey = [1,2,3,4,5,6,7,8,0];
+
+
 
     		// Create gameboard grid of cells
     		// Loop for determining cell positions
@@ -130,9 +132,11 @@
 	    		$("#moves").text("Moves: " + moves);
 	    		positionBlocks();		//place blocks in their initial positions
 	    		newBlockPositions = initialBlockPositions.slice(0);	//create a clone of the initial positions array to track block movements
+	    		gameStats.newBlockPositions = newBlockPositions;
 	    		identifyMovableBlocks();
 	    		$("#timer").TimeCircles().start();
 	    		$("#start").addClass('hidden');
+	    		$("newGame").addClass('hidden');
 	    		$("#quit").removeClass('hidden');
 	    		$("#reset").removeClass('hidden');
 	    	}
@@ -199,10 +203,10 @@
 					//it will become the next empty cell
 					clickedPositionIndex = $.inArray(blockNumber, newBlockPositions);
 					
-					//swap values between the clicked block and the old empty cell and update gameStats array
+					//swap values between the clicked block and the old empty cell and update gameStats object
 					newBlockPositions[emptyCell] = blockNumber;
 					newBlockPositions[clickedPositionIndex] = 0;
-					gameStats['newBlockPositions'] = newBlockPositions;
+					gameStats.newBlockPositions = newBlockPositions;
 	    			
 	    			//animate the block moving to its new xy-coordinates
 	    			//3rd parameter calls removeEventListeners() upon completion of animation
@@ -244,7 +248,7 @@
 		    		alert("You win");
 		    	}
 		    	console.log(gameStats);
-		    	$.post('/stats', gameStats);
+		    	$.post('/play/stats', gameStats);
 	    	}
 
 
