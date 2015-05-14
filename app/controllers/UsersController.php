@@ -63,6 +63,10 @@ class UsersController extends \BaseController {
 		$user->password   = Input::get('password');
 		$user->save();
 
+		$id = $user->id;
+
+		Auth::loginUsingId($id);
+
 		Session::flash('successMessage', 'Account created successfully.');
 		return Redirect::action('HomeController@showHome');
 	}
