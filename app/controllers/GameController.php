@@ -22,7 +22,7 @@ class GameController extends BaseController {
 
 		//create query to insert stats into db table
 		$stats = new Stat;
-		// $stats->user_id = Auth::user()->user_id;
+		// $stats->user_id = Auth::user()->id;
 		$stats->user_id = rand(1, 5);
 		$stats->puzzle_id = 1;
 		$stats->last_block_positions = $lastPositions;
