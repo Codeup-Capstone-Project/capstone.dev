@@ -4,9 +4,9 @@ class UsersController extends \BaseController {
 
 	public function __construct()
 	{
-		$this->beforeFilter( 'auth', ['except' => 'create'] );
 		// Call the parent constructor for CSRF token
 		parent::__construct();
+		$this->beforeFilter( 'auth', ['except' => ['create', 'store']] );
 	}
 
 	/**
