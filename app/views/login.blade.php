@@ -14,7 +14,7 @@
                   <div class="row">
                     <div class="input-field col s12">
                         {{ Form::label('email_or_username', 'Email or Username') }}
-                        {{ Form::text('email_or_username', Input::old('email_or_username')) }}
+                        {{ Form::text('email_or_username') }}
                     </div>
                   </div>
                   <div class="row">
