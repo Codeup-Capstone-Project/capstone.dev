@@ -28,7 +28,16 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('users.create');
+		if(Auth::check())
+		{
+			// If user already logged in, do not show account creation screen. Redirect back to home.
+			return Redirect::action('HomeController@showHome');
+		}
+		else
+		{
+			// Else, show the account creation screen.
+			return View::make('users.create');
+		}
 	}
 
 	/**

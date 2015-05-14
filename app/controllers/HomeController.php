@@ -23,7 +23,16 @@ class HomeController extends BaseController {
 
 	public function login()
 	{
-		return View::make('login');
+		if(Auth::check())
+		{
+			// If user already logged in, do not show login screen. Redirect back to home.
+			return Redirect::action('HomeController@showHome');
+		}
+		else
+		{
+			// Else, show the login screen.
+			return View::make('login');
+		}
 	}
 
 
