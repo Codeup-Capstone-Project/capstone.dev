@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    <title>Log in | TyleNinja</title>
+@stop
+
 @section('content')
 <div class="row pad-bot">
     <div class="col s12 m8 offset-m2 l4 offset-l4 center-align">
@@ -10,7 +14,7 @@
                   <div class="row">
                     <div class="input-field col s12">
                         {{ Form::label('email_or_username', 'Email or Username') }}
-                        {{ Form::text('email_or_username', Input::old('email_or_username')) }}
+                        {{ Form::text('email_or_username') }}
                     </div>
                   </div>
                   <div class="row">

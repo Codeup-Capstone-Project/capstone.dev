@@ -2,6 +2,13 @@
 
 class UsersController extends \BaseController {
 
+	public function __construct()
+	{
+		// Call the parent constructor for CSRF token
+		parent::__construct();
+		$this->beforeFilter( 'auth', ['except' => ['create', 'store']] );
+	}
+
 	/**
 	 * Display a listing of users
 	 *
@@ -21,7 +28,16 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('users.create');
+		if(Auth::check())
+		{
+			// If user already logged in, do not show account creation screen. Redirect back to home.
+			return Redirect::action('HomeController@showHome');
+		}
+		else
+		{
+			// Else, show the account creation screen.
+			return View::make('users.create');
+		}
 	}
 
 	/**

@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    <title>TyleNinja</title>
+@stop
+
 @section('content')
         <section class="hero no-pad-bot" id="main-splash">
             <div class="row hero center">
