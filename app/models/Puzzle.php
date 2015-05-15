@@ -10,13 +10,6 @@ class Puzzle extends BaseModel {
 	 */
 	protected $table = 'puzzles';	//not necessary because Laravel knows based on the class name, but it doesn't hurt anything
 
-	
-
-	// rules for creating a user or logging in
-	public static $rules = [
-		'username_or_email' => 'required',
-		'password'       	=> 'required'
-	];
 
 
 	// Mutator that serializes block positions array before insertion into database
