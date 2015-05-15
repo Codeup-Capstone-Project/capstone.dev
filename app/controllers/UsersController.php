@@ -6,7 +6,7 @@ class UsersController extends \BaseController {
 	{
 		// Call the parent constructor for CSRF token
 		parent::__construct();
-		$this->beforeFilter( 'auth', ['except' => ['create', 'store']] );
+		$this->beforeFilter( 'auth', ['except' => ['getCreate', 'postStore']] );
 	}
 
 	/**
@@ -14,7 +14,7 @@ class UsersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
 	{
 		$users = User::all();
 
@@ -26,7 +26,7 @@ class UsersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function getCreate()
 	{
 		if(Auth::check())
 		{
@@ -45,7 +45,7 @@ class UsersController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function postStore()
 	{
 		$validator = Validator::make($data = Input::all(), User::$rules);
 
@@ -63,6 +63,10 @@ class UsersController extends \BaseController {
 		$user->password   = Input::get('password');
 		$user->save();
 
+		$id = $user->id;
+
+		Auth::loginUsingId($id);
+
 		Session::flash('successMessage', 'Account created successfully.');
 		return Redirect::action('HomeController@showHome');
 	}
@@ -73,9 +77,17 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function getShow($username)
 	{
-		$user = User::findOrFail($id);
+		$user = User::whereUsername($username)->first();
+
+		if(empty($user)){
+			return App::abort(404);
+		}
+
+		if(Auth::user()->id != $user->id) {
+			return App::abort(404);
+		}
 
 		return View::make('users.show', compact('user'));
 	}
@@ -86,7 +98,7 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function getEdit($id)
 	{
 		$user = User::find($id);
 
@@ -99,7 +111,7 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function postUpdate($id)
 	{
 		$user = User::findOrFail($id);
 
@@ -112,7 +124,7 @@ class UsersController extends \BaseController {
 
 		$user->update($data);
 
-		return Redirect::route('users.index');
+		return Redirect::route('users.show');
 	}
 
 	/**
