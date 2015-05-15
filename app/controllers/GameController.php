@@ -19,18 +19,20 @@ class GameController extends BaseController {
 	public function getGame($id = 1)
 	{
 		return View::make('game')->with(['id'=>$id]);
+
+		$pageToPass = View::make('game')->with(['id'=>$id])->render();
+		return $pageToPass;
 	}
 
 	//called from any POST to '/play/stats'
-	public function postStats(){
+	public function postStats()
+	{
 		//Note: the positions array is being serialized by mutator before insertion
 		//Note: finished_game is being cast to a boolean by mutator before insertion
 
-		$puzzle_id = Puzzle::orderBy('id', 'DESC')->first();
-
 		$stats = new Stat;
 		$stats->user_id = Auth::user()->id;
-		$stats->puzzle_id = $puzzle_id->id;
+		$stats->puzzle_id = Input::get('puzzle_id');
 		$stats->last_block_positions = Input::get('newBlockPositions');
 		$stats->moves = Input::get('moves');
 		$stats->game_time_in_seconds = Input::get('time');
@@ -39,7 +41,8 @@ class GameController extends BaseController {
 	}
 
 	//called from any POST to '/play/puzzle'
-	public function postPuzzle(){
+	public function postPuzzle()
+	{
 		//'get' the positions array from ajax post and serialize it before insertion
 		// $initialPositions = Input::get('initialBlockPositions');
 
@@ -49,6 +52,9 @@ class GameController extends BaseController {
 		$puzzle->size = Input::get('size');
 		$puzzle->initial_block_positions = Input::get('initialBlockPositions');
 		$puzzle->save();
+
+		return $puzzle_id = $puzzle->id;
+
 	}
 }
 
