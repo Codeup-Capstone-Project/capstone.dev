@@ -52,6 +52,7 @@
     			<button id='3x3' class="btn waves-effect waves-light level" type="submit" data-value='3'>3x3</button>
     			<button id='4x4' class="btn waves-effect waves-light yellow lighten-2 level" type="submit" data-value='4'>4x4</button>
     			<button id='5x5' class="btn waves-effect waves-light red lighten-2 level" type="submit" data-value='5'>5x5</button>
+    			<button id='easy' class="btn waves-effect waves-light blue lighten-2 level" type="submit" data-value='3'>Super Easy</button>
     		</div>
     	</div>  
     	<div class="row">
@@ -81,6 +82,7 @@
 
     	//====================== Begin Game =========================
 
+    		var puzzleId;
     		var emptyCell;		//the index number of the empty cell in the position array
     		var cellX = 0;		//initial x-coordinate of top-left corner of cell, relative to the gameBoard container div
     		var cellY = 0;		//initial y-coordinate of top-left corner of cell, relative to the gameBoard container div
@@ -94,7 +96,7 @@
     		var newBlockPositions = [];		//will be a clone of initial positions that changes as user clicks blocks
     		var answerKey = [1,2,3,4,5,6,7,8,0];
     		
-    		//object to POST necessary game data to database
+    		//object to POST necessary game data to database when game ends
     		var gameStats = {
     			"initialBlockPositions": initialBlockPositions
     		};
@@ -110,6 +112,9 @@
 	    		$(".level").addClass('hidden');
     			$("#start").removeClass('hidden');
 	    	});
+
+	    	// Easy Level Button for Demo-day
+	    	$("#easy").on('click') 
 
 
 	    	// Start game button
@@ -158,7 +163,6 @@
 				    initialBlockPositions[current] = initialBlockPositions[top];
 				    initialBlockPositions[top] = tmp;
 				}
-				console.log(initialBlockPositions);
 	    	}
 
 	    	function postInitialData()
@@ -170,7 +174,10 @@
 	    			"initialBlockPositions": initialBlockPositions
 	    		};
 	    		//send puzzleInfo to puzzle table in database
-    			$.post('/play/puzzle', puzzleInfo);
+    			$.post('/play/puzzle', puzzleInfo, function(response){
+    				puzzleId = response;
+    				gameStats.puzzle_id = puzzleId;
+    			});
 	    	}
 
 
@@ -219,7 +226,7 @@
   					} else{	
   						//generate the div for each block using the coordinates from each element of the cell's array, 
   						//attach their numeric value to them visually and via the data attribute
-  						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+";left:"+coordinates[0]+"'>"+blockNumber+"</div>");
+  						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px'>"+blockNumber+"</div>");
   					}
 				});
 	    	}
@@ -313,7 +320,6 @@
 		    	if(won){
 		    		alert("You win");
 		    	}
-		    	console.log(gameStats);
 		    	$.post('/play/stats', gameStats);
 	    	}
 
