@@ -10,9 +10,6 @@
 		.hidden {
 			display: none;
 		}
-		button {
-			/*text-align: center;*/
-		}
 
 		#gameBoard {
 			box-sizing: border-box;
@@ -26,6 +23,7 @@
 		}
 
 		.blocks {
+			box-sizing: border-box;
 			background-color: #ddd;
 			margin: 1px;
 			position: absolute;
@@ -103,11 +101,15 @@
 
 
 	    //====================== Buttons =========================
+
 	    	// Level Selection Buttons
 	    	$(".level").on('click', function(){
+	    		$(".blocks").remove();
 	    		puzzleSize = $(this).data('value');
 	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
+	    		cells = [];
+	    		initialBlockPositions = [];
 	    		randomPositionGenerator();
 	    		postInitialData();
 	    		$(".level").addClass('hidden');
@@ -129,7 +131,6 @@
 
 	    	// Reset game button
 	    	$("#reset").on('click', function(){
-	    		$(".blocks").remove();
 	    		$("#timer").TimeCircles().restart();
 	    		$("#timer").TimeCircles().stop();
 	    		startGame();
@@ -156,14 +157,11 @@
 	    		//set individual block dimensions
     			var blockWidth = (boardWidth - (2 * puzzleSize)) / puzzleSize;
     			cellDimension = blockWidth;
-    			// console.log("boardWidth: " + boardWidth);
-    			// console.log("boardHeight: " + boardHeight);
-    			// console.log("blockWidth: " + blockWidth);
 	    	}
 
 	    	function randomPositionGenerator()
 	    	{
-	    		//fill the array with integers
+	    		//fill the array with an integer for every block
 	    		for (i = 0; i < totalBlocks; i++) {
 	    			initialBlockPositions[i] = i;
 	    		} 
@@ -196,6 +194,8 @@
 	    	// Create gameboard grid of cells
     		function buildGameBoard()
     		{
+    			cellX = 0;
+    			cellY = 0;
 	    		// Loop for determining cell positions
 		    	for(var i = 0; i < totalBlocks; i++) {
 		    		//store coordinates of each cell
@@ -209,9 +209,6 @@
 		    			cellY += cellDimension + cellPadding;
 		    		}
 		    	}
-		    	// console.log("cellDimension: " + cellDimension);
-		    	// console.log("cellPadding: " + cellPadding);
-		    	// console.log("cells array: " + cells);
 		    }
 
 
@@ -241,14 +238,11 @@
   					} else{	
   						//generate the div for each block using the coordinates from each element of the cell's array, 
   						//attach their numeric value to them visually and via the data attribute
-  						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;'>"+blockNumber+"</div>");
+  						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'>"+blockNumber+"</div>");
   					}
 				});
 				$(".blocks").innerWidth(cellDimension);
     			$(".blocks").innerHeight(cellDimension);
-				// console.log($(".blocks").innerWidth());
-				// console.log($(".blocks").innerHeight());
-				// console.log("cellDimension: " + cellDimension);
 	    	}
 
 
