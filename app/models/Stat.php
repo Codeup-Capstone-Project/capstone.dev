@@ -16,6 +16,23 @@
 		// 	//if it does, repeat
 		// }
 
+		// Mutator that sets game time format before insertion into database
+		public function setGameTimeAttribute($value)
+		{
+			//turn game time string into an array
+		    $gameTime = explode(":", $value);
+		    $milliseconds = array_pop($gameTime);
+		    //convert milliseconds to microseconds
+		    $microseconds = $milliseconds * 1000;
+		    $seconds = array_pop($gameTime);
+		    $fractionalSeconds = $seconds . "." . $microseconds;
+		    //push seconds.microseconds onto end of gameTime array
+		    array_push($gameTime, $fractionalSeconds);
+		    $gameTime = implode(":", $gameTime);
+
+		    $this->attributes['game_time'] = $gameTime;
+		}
+
 		// Mutator that serializes block positions array before insertion into database
 		public function setLastBlockPositionsAttribute($value)
 		{

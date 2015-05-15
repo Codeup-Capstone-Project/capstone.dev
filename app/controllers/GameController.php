@@ -35,7 +35,7 @@ class GameController extends BaseController {
 		$stats->puzzle_id = Input::get('puzzle_id');
 		$stats->last_block_positions = Input::get('newBlockPositions');
 		$stats->moves = Input::get('moves');
-		$stats->game_time_in_seconds = Input::get('time');
+		$stats->game_time = Input::get('time');
 		$stats->finished_game = Input::get('gameFinished');
 		$stats->save();
 	}

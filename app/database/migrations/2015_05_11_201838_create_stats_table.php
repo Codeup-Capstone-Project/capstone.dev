@@ -21,7 +21,7 @@ class CreateStatsTable extends Migration {
 			$table->foreign('puzzle_id')->references('id')->on('puzzles');
 			$table->text('last_block_positions');
 			$table->integer('moves');
-			$table->decimal('game_time_in_seconds', 5, 3);	
+			$table->time('game_time');	
 			$table->boolean('finished_game');
 			$table->timestamps();
 		});
