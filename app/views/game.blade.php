@@ -3,8 +3,6 @@
 	<title>Puzzle Test</title>
 	<meta name="_token" content="{{ csrf_token() }}" />
 	<script src="/js/vendor/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="/js/TimeCircles.js"></script>
-	<link rel="stylesheet" href="/css/TimeCircles.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<style>
 		.hidden {
@@ -13,7 +11,7 @@
 
 		#gameBoard {
 			box-sizing: border-box;
-			border: 1px solid black;
+			/*border: 1px solid black;*/
 			width: 100%;
 			position: relative;
 			overflow: visible;
@@ -55,7 +53,7 @@
 		    		</div>
 		    	</div>
 		    	<div class="row">
-		    		<div id="timer" class="col s12 l12" style="width: 80%;height: 300px;"></div>
+		    		<h1 id="timer"><time>00:00:00:00</time></h1>
 		    	</div>
 			</div>
     		<div class="col s12 l6">
@@ -102,7 +100,7 @@
 
 	    //====================== Buttons =========================
 
-	    	// Level Selection Buttons
+	    	// Level Selection Buttons that reset key variables
 	    	$(".level").on('click', function(){
 	    		$(".blocks").remove();
 	    		puzzleSize = $(this).data('value');
@@ -126,24 +124,30 @@
 	    	$("#start").on('click', function(){
 	    		$(".blocks").remove();
 	    		buildGameBoard();
+	    		timer();
 	    		startGame();
 	    	});
 
 	    	// Reset game button
 	    	$("#reset").on('click', function(){
-	    		$("#timer").TimeCircles().restart();
-	    		$("#timer").TimeCircles().stop();
+	    		clearTimeout(t);
+	    		milliseconds = 0; seconds = 0; minutes = 0; hours = 0;
+	    		$("#timer").text("00:00:00:00");
+	    		timer();
 	    		startGame();
 	    	});
 
 	    	// Quit game button
 	    	$("#quit").on('click', function(){
+	    		clearTimeout(t);
 	    		var won = false;
 	    		endGame(won);
 	    	});
 
 	    	// New game button
 	    	$("#newGame").on('click', function(){
+	    		milliseconds = 0, seconds = 0, minutes = 0, hours = 0;
+	    		$("#timer").text("00:00:00:00");
 	    		$(".blocks").remove();
 	    		$(".btn").addClass('hidden');
 	    		$(".level").removeClass('hidden');
@@ -219,7 +223,6 @@
 	    		newBlockPositions = initialBlockPositions.slice(0);	//create a clone of the initial positions array to track block movements
 	    		gameStats.newBlockPositions = newBlockPositions;
 	    		identifyMovableBlocks();
-	    		$("#timer").TimeCircles().start();
 	    		$("#start").addClass('hidden');
 	    		$("#newGame").addClass('hidden');
 	    		$("#quit").removeClass('hidden');
@@ -238,7 +241,7 @@
   					} else{	
   						//generate the div for each block using the coordinates from each element of the cell's array, 
   						//attach their numeric value to them visually and via the data attribute
-  						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'>"+blockNumber+"</div>");
+  						$('#gameBoard').append("<div class='blocks z-depth-3' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'>"+blockNumber+"</div>");
   					}
 				});
 				$(".blocks").innerWidth(cellDimension);
@@ -323,12 +326,10 @@
 	    	}
 
 	    	function endGame(won){
-	    		var time = $("#timer").TimeCircles().getTime();
-	    		time *= -1;
+	    		var time = $("#timer").text();
 	    		gameStats.gameFinished = won;
 	    		gameStats.time = time;
 	    		gameStats.moves = moves;
-	    		$("#timer").TimeCircles().stop();
 	    		$("#quit").addClass('hidden');
 		    	$("#newGame").removeClass('hidden');
 		    	if(won){
@@ -339,37 +340,45 @@
 
 
 		//====================== Game Timer ========================= 
-		//See documentation at http://git.wimbarelds.nl/TimeCircles/readme.php
 
-	    	$("#timer").TimeCircles({
-	    		"start": false,
-			    "animation": "smooth",
-			    "bg_width": 1.2,
-			    "fg_width": 0.1,				
-			    "circle_bg_color": "#60686F",	
-			    "time": {
-			        "Days": {
-			            "text": "Days",
-			            "color": "#FFCC66",
-			            "show": false
-			        },
-			        "Hours": {
-			            "text": "Hours",
-			            "color": "#99CCFF",
-			            "show": true
-			        },
-			        "Minutes": {
-			            "text": "Minutes",
-			            "color": "#BBFFBB",
-			            "show": true
-			        },
-			        "Seconds": {
-			            "text": "Seconds",
-			            "color": "#FF9999",
-			            "show": true
+		var milliseconds = 0, seconds = 0, minutes = 0, hours = 0,
+		    t;
+
+		function add() {
+			milliseconds++;
+			if (milliseconds >= 100) {
+			    milliseconds = 0;
+			    seconds++;
+			    if (seconds >= 60) {
+			        seconds = 0;
+			        minutes++;
+			        if (minutes >= 60) {
+			            minutes = 0;
+			            hours++;
 			        }
 			    }
-			});
+			}
+		    // var timerDisplay = 
+		    $("#timer").text((hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds ? (seconds > 9 ? seconds : "0" + seconds) : "00") + ":" + (milliseconds > 9 ? milliseconds : "0" + milliseconds));
+
+		    timer();
+		}
+		function timer() {
+		    t = setTimeout(add, 10);
+		}
+		// timer();
+
+
+		/* Start button */
+		// start.onclick = timer;
+
+		/* Stop button */
+		// stop.onclick = function() {
+		//     clearTimeout(t);
+		// }
+
+
+	    	
 		});
     </script>
 </body>
