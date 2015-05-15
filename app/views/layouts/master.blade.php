@@ -30,13 +30,13 @@
     <script src="/js/init.js"></script>
     @if (Session::has('successMessage'))
         <script>
-            Materialize.toast("{{{ Session::get('successMessage') }}}", 4000, 'teal darken-1');
+            Materialize.toast("{{{ Session::get('successMessage') }}}", 2500, 'teal darken-1');
         </script>
     @endif
 
     @if (Session::has('errorMessage'))
         <script>
-            Materialize.toast("{{{ Session::get('errorMessage') }}}", 4000, 'red darken-1');
+            Materialize.toast("{{{ Session::get('errorMessage') }}}", 2500, 'red darken-1');
         </script>
     @endif
 </body>
