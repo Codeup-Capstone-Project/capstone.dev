@@ -7,7 +7,7 @@
 @section('content')
 <div class="row pad-bot">
     <div class="col s12 m8 offset-m2 l4 offset-l4 center-align">
-        <div class="card-panel white center-align">
+        <div class="card-panel white center-align z-depth-3">
             <h5 class="blue-grey-text text-darken-2">Log in</h5>
             <div class="row">
                 {{ Form::open(array('action' => 'HomeController@doLogin', 'class' => 'col s12')) }}

@@ -8,7 +8,7 @@
         <div class="pad-bot">
             <div class="row">
                 <div class="col s12 m8 offset-m2 l6 offset-l3">
-                    <ul class="collection">
+                    <ul class="collection z-depth-3">
                         <li class="collection-item"><h4 class="blue-grey-text text-darken-2">User Profile</h4></li>
                         <li class="collection-item avatar">
                             <img src="/img/justin.jpg" alt="" class="circle">
