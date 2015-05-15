@@ -3,10 +3,10 @@
             @if(Auth::check())
                 <li class="user"><span class="username blue-grey-text text-darken-2">{{{ Auth::user()->username }}}</span></li>
                 <li class="divider"></li>
-                <li><a href="#">Profile</a></li>
+                <li><a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">Profile</a></li>
                 <li><a href="{{{ action('GameController@getIndex') }}}">Play</a></li>
             @else
-                <li><a href="{{{ action('UsersController@create') }}}">Create account</a></li>
+                <li><a href="{{{ action('UsersController@getCreate') }}}">Create account</a></li>
             @endif
 
             <li class="divider"></li>
@@ -25,17 +25,17 @@
                         <li class="blue-grey-text text-lighten-2 user-welcome">Welcome, {{{ Auth::user()->username }}}!</li>
                     @endif
                     <!-- Dropdown Trigger -->
-                    <li><a class="dropdown-button nav-link" href="#!" data-constrainwidth="false" data-activates="dropdown1">Menu<i class="mdi-navigation-expand-more right"></i></a></li>
+                    <li><a class="dropdown-button nav-link" href="#" data-constrainwidth="false" data-activates="dropdown1">Menu<i class="mdi-navigation-expand-more right"></i></a></li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
                     @if(Auth::check())
                         <li class="user"><span>{{{ Auth::user()->username }}}</span></li>
                         <li class="divider"></li>
-                        <li><a href="#">Profile</a></li>
+                        <li><a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">Profile</a></li>
                         <li><a href="{{{ action('GameController@getIndex') }}}">Play</a></li>
                     @else
-                        <li><a href="{{{ action('UsersController@create') }}}">Create account</a></li>
+                        <li><a href="{{{ action('UsersController@getCreate') }}}">Create account</a></li>
                     @endif
 
                     <li class="divider"></li>
