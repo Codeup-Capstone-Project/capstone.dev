@@ -7,7 +7,7 @@
 @section('content')
     <div class="row pad-bot">
         <div class="col s12 m8 offset-m2 l6 offset-l3">
-            <div class="card-panel white z-depth-3">
+            <div class="card-panel white z-depth-2">
                 <h5 class="blue-grey-text text-darken-2 center-align">Create an Account</h5>
                 <div class="col s12">
                     <p class="teal-text text-accent-4">* <span class="grey-text text-lighten-1">= Required</span></p>
