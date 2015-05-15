@@ -10,6 +10,15 @@
     		'body'       => 'required|max:10000'
 		];
 
+		public static function gameSessionGenerator()
+		{
+			//need a function that generates a rand(5)
+			$session = rand(5);
+			$query = Stat::where('session', '=', $session);
+			//then searches sessions column to see if that number exists
+			//if not, return that number
+			//if it does, repeat
+		}
 
 		// Mutator that serializes block positions array before insertion into database
 		public function setLastBlockPositionsAttribute($value)
