@@ -49,6 +49,12 @@ html {
     font-weight: 700;
 }
 
+.uppercase {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    letter-spacing: 0.0625rem;
+}
+
 .name {
     font-weight: 500;
 }
@@ -148,7 +154,8 @@ nav .nav-wrapper i {
         color: #00897b;
     }
 
-.call.main {
+.call.main,
+.go-home {
     margin-top: 1rem;
 }
 
