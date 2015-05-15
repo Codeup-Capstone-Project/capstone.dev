@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@showHome');
 
-Route::resource('users', 'UsersController');
+Route::controller('users', 'UsersController');
 
 Route::get('login', 'HomeController@login');
 Route::post('login', 'HomeController@doLogin');

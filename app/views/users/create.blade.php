@@ -13,7 +13,7 @@
                     <p class="teal-text text-accent-4">* <span class="grey-text text-lighten-1">= Required</span></p>
                 </div>
                 <div class="row">
-                    {{ Form::open(array('action' => 'UsersController@store', 'class' => 'col s12')) }}
+                    {{ Form::open(array('action' => 'UsersController@postStore', 'class' => 'col s12')) }}
                       <div class="row">
                         <div class="input-field col s6">
                             {{ Form::label('first_name', 'First Name', ['class' => 'required']) }}

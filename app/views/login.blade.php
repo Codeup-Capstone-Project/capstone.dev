@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <a href="{{{ action('UsersController@create') }}}" class="btn-flat teal-text text-lighten-3 create">Create an Account</a>
+        <a href="{{{ action('UsersController@getCreate') }}}" class="btn-flat teal-text text-lighten-3 create">Create an Account</a>
 
     </div>
 </div>
