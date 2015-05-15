@@ -308,5 +308,13 @@ section.hero {
 }
 
 .collection p {
-    color: #9e9e9e;
+    color: #757575;
+}
+
+.collection {
+    word-wrap: break-word;
+}
+
+.collection .collection-item.avatar .title {
+    font-weight: 500;
 }
