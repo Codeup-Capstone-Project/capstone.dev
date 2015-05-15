@@ -11,16 +11,14 @@
 			display: none;
 		}
 		button {
-			text-align: center;
+			/*text-align: center;*/
 		}
 
 		#gameBoard {
+			box-sizing: border-box;
 			border: 1px solid black;
-			width: 308px;
-			height: 308px;
+			width: 100%;
 			position: relative;
-			margin-right: auto;
-			margin-left: auto;
 			overflow: visible;
 			box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
 				-webkit-box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
@@ -29,73 +27,75 @@
 
 		.blocks {
 			background-color: #ddd;
-			width: 100px;
-			height: 100px;
 			margin: 1px;
 			position: absolute;
 			display: inline-block;
-			line-height: 100px;
+			/*line-height: 100px;*/
   			vertical-align: middle;
   			text-align: center;
-			/*float: left;*/
 		}
 	</style>
 </head>
 <body>
 	<div class="container">
     	<div class="row">
-    		<div class="col s12 l6 offset-l3">
+		    <div class="col s12 l6">	
+		    	<div class="row">
+		    		<div class="col s12 l12">
+		    			<h3 class="level">Choose Difficulty Level</h3>
+		    			<button id='3x3' class="btn waves-effect waves-light level" type="submit" data-value='3'>3x3</button>
+		    			<button id='4x4' class="btn waves-effect waves-light yellow lighten-2 level" type="submit" data-value='4'>4x4</button>
+		    			<button id='5x5' class="btn waves-effect waves-light red lighten-2 level" type="submit" data-value='5'>5x5</button>
+		    			<button id='easy' class="btn waves-effect waves-light blue lighten-2 level" type="submit" data-value='3'>Super Easy</button>
+		    			<button id="start" class="btn waves-effect waves-light start hidden" type="submit" name="start">Start</button>
+		    			<button id="reset" class="btn waves-effect waves-light yellow lighten-2 hidden" type="submit" name="reset">Reset</button>
+		    			<button id="quit" class="btn waves-effect waves-light red lighten-2 restart hidden" type="submit" name="quit">Quit</button>
+		    			<button id="newGame" class="btn waves-effect waves-light blue lighten-2 hidden" type="submit" name="newGame">New Game</button>
+			    		<div>
+			    			<h3 id="moves">Moves: 0</h3>
+			    		</div>
+		    		</div>
+		    	</div>
+		    	<div class="row">
+		    		<div id="timer" class="col s12 l12" style="width: 80%;height: 300px;"></div>
+		    	</div>
+			</div>
+    		<div class="col s12 l6">
     			<div id='gameBoard'></div>
     		</div>
-    		<div class="col s3 l3">
-    			<h3 class="level">Choose Difficulty Level</h3>
-    			<button id='3x3' class="btn waves-effect waves-light level" type="submit" data-value='3'>3x3</button>
-    			<button id='4x4' class="btn waves-effect waves-light yellow lighten-2 level" type="submit" data-value='4'>4x4</button>
-    			<button id='5x5' class="btn waves-effect waves-light red lighten-2 level" type="submit" data-value='5'>5x5</button>
-    			<button id='easy' class="btn waves-effect waves-light blue lighten-2 level" type="submit" data-value='3'>Super Easy</button>
-    		</div>
-    	</div>  
-    	<div class="row">
-    		<div class="col s6 l6 offset-s3 offset-l3 center-align">
-    			<button id="start" class="btn waves-effect waves-light start hidden" type="submit" name="start">Start</button>
-    			<button id="reset" class="btn waves-effect waves-light yellow lighten-2 hidden" type="submit" name="reset">Reset</button>
-    			<button id="quit" class="btn waves-effect waves-light red lighten-2 restart hidden" type="submit" name="quit">Quit</button>
-    			<button id="newGame" class="btn waves-effect waves-light blue lighten-2 hidden" type="submit" name="newGame">New Game</button>
-    		</div>
-    	</div>
-    	<div class="row">
-    		<div id="timer" class="col s6 l6" data-date="" ></div>
-    		<div>
-    			<h3 id="moves">Moves: 0</h3>
-    		</div>
-    	</div>  
+    	</div> 
     </div>
 {{ Form::token() }}
     <script>
 		$.ajaxSetup({
-	        headers: {
-	            'X-CSRF-Token': $('meta[name="_token"]').attr('content')
-	        }
+	        headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')}
 	    });
 	    
     	$(document).ready(function(){
 
+    	//================ Determine GameBoard Dimensions ===============
+    		//get gameBoard width on page load
+    		var boardWidth = $("#gameBoard").innerWidth();
+    		//set gameBoard height to same as width, then retrieve it
+    		var boardHeight = $("#gameBoard").innerHeight(boardWidth);
+    			boardHeight = $("#gameBoard").innerHeight();
+
     	//====================== Begin Game =========================
 
     		var puzzleId;
+    		var puzzleSize;		//determined by user game-level selection
     		var emptyCell;		//the index number of the empty cell in the position array
     		var cellX = 0;		//initial x-coordinate of top-left corner of cell, relative to the gameBoard container div
     		var cellY = 0;		//initial y-coordinate of top-left corner of cell, relative to the gameBoard container div
     		var cells = [];		//array to hold cell coordinates
     		var moves = 0;
-    		var cellDimension = 100;	//will be a percentage for mobile-responsiveness
+    		var cellDimension;	//determined by size of gameBoard and puzzleSize for mobile-responsiveness
     		var cellPadding = 2;
-    		var puzzleSize;		//will be an AJAX call to database activated on user game-level selection?
     		var totalBlocks;
     		var initialBlockPositions = [];	//will be randomly generated
     		var newBlockPositions = [];		//will be a clone of initial positions that changes as user clicks blocks
     		var answerKey = [1,2,3,4,5,6,7,8,0];
-    		
+
     		//object to POST necessary game data to database when game ends
     		var gameStats = {
     			"initialBlockPositions": initialBlockPositions
@@ -106,6 +106,7 @@
 	    	// Level Selection Buttons
 	    	$(".level").on('click', function(){
 	    		puzzleSize = $(this).data('value');
+	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		randomPositionGenerator();
 	    		postInitialData();
@@ -114,7 +115,9 @@
 	    	});
 
 	    	// Easy Level Button for Demo-day
-	    	$("#easy").on('click') 
+	    	$("#easy").on('click', function(){
+	    		$(".blocks").remove();
+	    	});
 
 
 	    	// Start game button
@@ -140,7 +143,6 @@
 
 	    	// New game button
 	    	$("#newGame").on('click', function(){
-	    		//reload page with different version of same game using AJAX call?
 	    		$(".blocks").remove();
 	    		$(".btn").addClass('hidden');
 	    		$(".level").removeClass('hidden');
@@ -148,6 +150,16 @@
 
 
 	    //====================== Game Logic Functions =========================
+
+	    	function setBlockDimensions()
+	    	{
+	    		//set individual block dimensions
+    			var blockWidth = (boardWidth - (2 * puzzleSize)) / puzzleSize;
+    			cellDimension = blockWidth;
+    			// console.log("boardWidth: " + boardWidth);
+    			// console.log("boardHeight: " + boardHeight);
+    			// console.log("blockWidth: " + blockWidth);
+	    	}
 
 	    	function randomPositionGenerator()
 	    	{
@@ -197,6 +209,9 @@
 		    			cellY += cellDimension + cellPadding;
 		    		}
 		    	}
+		    	// console.log("cellDimension: " + cellDimension);
+		    	// console.log("cellPadding: " + cellPadding);
+		    	// console.log("cells array: " + cells);
 		    }
 
 
@@ -226,9 +241,14 @@
   					} else{	
   						//generate the div for each block using the coordinates from each element of the cell's array, 
   						//attach their numeric value to them visually and via the data attribute
-  						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px'>"+blockNumber+"</div>");
+  						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;'>"+blockNumber+"</div>");
   					}
 				});
+				$(".blocks").innerWidth(cellDimension);
+    			$(".blocks").innerHeight(cellDimension);
+				// console.log($(".blocks").innerWidth());
+				// console.log($(".blocks").innerHeight());
+				// console.log("cellDimension: " + cellDimension);
 	    	}
 
 
