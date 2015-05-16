@@ -30,15 +30,15 @@
 			    			<h6 class="blue-grey-text text-darken-2" id="timer"><time>00:00:00:00</time></h6>
 		    			</div>
 						<div class="col s6 offset-s1 m7">
-			    			<button id='easy' class="btn-floating size-btn waves-effect waves-light level teal lighten-2" type="submit" data-value='3'>Easy</button>
-			    			<button id='3x3' class="btn-floating size-btn waves-effect waves-light level teal" type="submit" data-value='3'>3x3</button>
-			    			<button id='4x4' class="btn-floating size-btn waves-effect waves-light level teal darken-2" type="submit" data-value='4'>4x4</button>
-			    			<button id='5x5' class="btn-floating size-btn waves-effect waves-light level teal darken-4" type="submit" data-value='5'>5x5</button>
-			    			<button id="start" class="btn menu waves-effect waves-light start hidden" type="submit" name="start">Start</button>
-			    			<button id="cancel" class="btn menu waves-effect waves-light red lighten-2 cancel hidden" type="submit" name="start">Cancel</button>
-			    			<button id="reset" class="btn menu waves-effect waves-light yellow lighten-2 hidden" type="submit" name="reset">Reset</button>
-			    			<button id="quit" class="btn menu waves-effect waves-light red lighten-2 restart hidden" type="submit" name="quit">Quit</button>
-			    			<button id="newGame" class="btn menu waves-effect waves-light blue lighten-2 hidden" type="submit" name="newGame">New Game</button>
+			    			<button id='easy' class="btn-floating size-btn waves-effect waves-light level teal lighten-1" type="submit" data-value='3'>Easy</button>
+			    			<button id='3x3' class="btn-floating size-btn waves-effect waves-light level cyan darken-3" type="submit" data-value='3'>3x3</button>
+			    			<button id='4x4' class="btn-floating size-btn waves-effect waves-light level purple darken-3" type="submit" data-value='4'>4x4</button>
+			    			<button id='5x5' class="btn-floating size-btn waves-effect waves-light level pink darken-3" type="submit" data-value='5'>5x5</button>
+			    			<button id="start" class="btn menu waves-effect waves-light start teal darken-1 hidden" type="submit" name="start">Start</button>
+			    			<button id="cancel" class="btn menu waves-effect waves-light pink darken-3 cancel hidden" type="submit" name="start">Cancel</button>
+			    			<button id="reset" class="btn menu waves-effect waves-light deep-orange lighten-1 hidden" type="submit" name="reset">Reset</button>
+			    			<button id="quit" class="btn menu waves-effect waves-light pink darken-3 restart hidden" type="submit" name="quit">Quit</button>
+			    			<button id="newGame" class="btn menu waves-effect waves-light cyan darken-3 hidden" type="submit" name="newGame">New Game</button>
 		    			</div>
 	    			</div>
 	    		</div>

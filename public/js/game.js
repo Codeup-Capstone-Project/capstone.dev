@@ -195,7 +195,7 @@ $.ajaxSetup({
 						} else{
 							//generate the div for each block using the coordinates from each element of the cell's array,
 							//attach their numeric value to them visually and via the data attribute
-							$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'>"+blockNumber+"</div>");
+							$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'><span class='flow-text'>"+blockNumber+"</span></div>");
 						}
 				});
 				$(".blocks").innerWidth(cellDimension);

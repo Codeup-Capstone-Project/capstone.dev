@@ -1,6 +1,6 @@
 
 html {
-    background-image: url(../img/asfalt-dark-2.png);
+    // background-image: url(../img/asfalt-dark-2.png);
 }
 
 body, html {
@@ -415,20 +415,10 @@ section.hero {
     margin-right: 0.5em;
     margin-bottom: 1em;
 }
-    // @media #{$large-and-up} {
-    //     .size-btn {
-    //         margin-right: 1em;
-    //         margin-bottom: 1.25em;
-    //     }
-    // }
 
 .menu-row {
     margin-bottom: 0;
 }
-
-// .card-panel.game-menu {
-//     padding: 1.333rem .75rem;
-// }
 
 @media #{$medium-and-down} {
     .container.game-container {
