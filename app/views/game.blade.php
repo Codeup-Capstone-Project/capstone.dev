@@ -14,9 +14,14 @@
 @section('content')
 	<div class="container pad-top pad-bot">
     	<div class="row">
-		    <div class="col s12 l6">
+		    <div class="col s12 l5 offset-l1">
     			<div class="card-panel z-depth-2">
-	    			<h5 class="level">Choose Difficulty Level</h5>
+	    			<h5>
+	    				<span class="level">Choose Level</span>
+	    				<span class="ready hidden">Click Start When Ready</span>
+	    				<span class="hiya hidden">Hiya!</span>
+	    				<span class="again hidden">Reset Current Game or Choose Another</span>
+	    			</h5>
 	    			<button id='easy' class="btn waves-effect waves-light level blue lighten-2" type="submit" data-value='3'>Easy</button>
 	    			<button id='3x3' class="btn waves-effect waves-light level cyan accent-4" type="submit" data-value='3'>3x3</button>
 	    			<button id='4x4' class="btn waves-effect waves-light level purple accent-4" type="submit" data-value='4'>4x4</button>
@@ -31,7 +36,7 @@
 		    		</div>
 	    		</div>
 			</div>
-    		<div class="col s12 l5 offset-l1">
+    		<div class="col s12 l5">
     			<div class="card-panel z-depth-2">
 	    			<div id='gameBoard'></div>
     			</div>

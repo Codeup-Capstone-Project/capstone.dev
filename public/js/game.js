@@ -46,7 +46,7 @@ $.ajaxSetup({
 	    		randomPositionGenerator();
 	    		postInitialData();
 	    		$(".level").addClass('hidden');
-				$("#start").removeClass('hidden');
+				$("#start, .ready").removeClass('hidden');
 	    	});
 
 	    	// Easy Level Button for Demo-day
@@ -61,6 +61,8 @@ $.ajaxSetup({
 	    		buildGameBoard();
 	    		timer();
 	    		startGame();
+	    		$(".hiya").removeClass('hidden');
+	    		$(".ready").addClass('hidden');
 	    	});
 
 	    	// Reset game button
@@ -71,10 +73,14 @@ $.ajaxSetup({
 	    		$("#timer").text("00:00:00:00");
 	    		timer();
 	    		startGame();
+	    		$(".again").addClass('hidden');
+	    		$(".hiya").removeClass('hidden');
 	    	});
 
 	    	// Quit game button
 	    	$("#quit").on('click', function(){
+	    		$(".hiya").addClass('hidden');
+	    		$(".again").removeClass('hidden');
 	    		clearTimeout(t);
 	    		var won = false;
 	    		endGame(won);
@@ -85,8 +91,9 @@ $.ajaxSetup({
 	    		milliseconds = 0, seconds = 0, minutes = 0, hours = 0;
 	    		$("#timer").text("00:00:00:00");
 	    		$(".blocks").remove();
-	    		$(".btn").addClass('hidden');
+	    		$(".btn, .ready").addClass('hidden');
 	    		$(".level").removeClass('hidden');
+	    		$(".again").addClass('hidden');
 	    	});
 
 
