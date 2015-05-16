@@ -46,7 +46,7 @@ $.ajaxSetup({
 	    		randomPositionGenerator();
 	    		postInitialData();
 	    		$(".level").addClass('hidden');
-				$("#start").removeClass('hidden');
+				$("#start, #cancel, .ready").removeClass('hidden');
 	    	});
 
 	    	// Easy Level Button for Demo-day
@@ -61,6 +61,16 @@ $.ajaxSetup({
 	    		buildGameBoard();
 	    		timer();
 	    		startGame();
+	    		$(".hiya").removeClass('hidden');
+	    		$(".ready, #cancel").addClass('hidden');
+	    	});
+
+	    	// Cancel Selection
+	    	$("#cancel").on('click', function(){
+	    		$('#cancel').addClass('hidden');
+	    		$("#start").addClass('hidden');
+	    		$(".level").removeClass('hidden');
+				$("#start, #cancel, .ready").addClass('hidden');
 	    	});
 
 	    	// Reset game button
@@ -71,10 +81,14 @@ $.ajaxSetup({
 	    		$("#timer").text("00:00:00:00");
 	    		timer();
 	    		startGame();
+	    		$(".again").addClass('hidden');
+	    		$(".hiya").removeClass('hidden');
 	    	});
 
 	    	// Quit game button
 	    	$("#quit").on('click', function(){
+	    		$(".hiya").addClass('hidden');
+	    		$(".again").removeClass('hidden');
 	    		clearTimeout(t);
 	    		var won = false;
 	    		endGame(won);
@@ -82,11 +96,15 @@ $.ajaxSetup({
 
 	    	// New game button
 	    	$("#newGame").on('click', function(){
+	    		moves = 0;
+	    		$("#moves").text(moves);
 	    		milliseconds = 0, seconds = 0, minutes = 0, hours = 0;
 	    		$("#timer").text("00:00:00:00");
 	    		$(".blocks").remove();
-	    		$(".btn").addClass('hidden');
+	    		$(".btn, .btn-floating, .ready").addClass('hidden');
 	    		$(".level").removeClass('hidden');
+	    		$(".again").addClass('hidden');
+	    		$('.hiya').addClass('hidden');
 	    	});
 
 
@@ -154,7 +172,7 @@ $.ajaxSetup({
 
 	    	function startGame(){
 	    		moves = 0;
-	    		$("#moves").text("Moves: " + moves);
+	    		$("#moves").text(moves);
 	    		positionBlocks();		//place blocks in their initial positions
 	    		newBlockPositions = initialBlockPositions.slice(0);	//create a clone of the initial positions array to track block movements
 	    		gameStats.newBlockPositions = newBlockPositions;
@@ -177,7 +195,7 @@ $.ajaxSetup({
 						} else{
 							//generate the div for each block using the coordinates from each element of the cell's array,
 							//attach their numeric value to them visually and via the data attribute
-							$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'>"+blockNumber+"</div>");
+							$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'><span class='flow-text'>"+blockNumber+"</span></div>");
 						}
 				});
 				$(".blocks").innerWidth(cellDimension);
@@ -258,7 +276,7 @@ $.ajaxSetup({
 	    	function movesCounter()
 	    	{
 	    		moves += 1;
-	    		$("#moves").text("Moves: " + moves);
+	    		$("#moves").text(moves);
 	    	}
 
 	    	function endGame(won){
@@ -270,6 +288,7 @@ $.ajaxSetup({
 	    		$("#quit").addClass('hidden');
 		    	$("#newGame").removeClass('hidden');
 		    	if(won){
+		    		clearTimeout(t);
 		    		alert("You win");
 		    	}
 		    	$.post('/play/stats', gameStats);

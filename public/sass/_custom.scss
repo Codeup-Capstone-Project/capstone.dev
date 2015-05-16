@@ -1,6 +1,6 @@
 
 html {
-    background-image: url(../img/asfalt-dark-2.png);
+    // background-image: url(../img/asfalt-dark-2.png);
 }
 
 body, html {
@@ -51,6 +51,10 @@ html {
 
 .bold {
     font-weight: 700;
+}
+
+.medium {
+    font-weight: 500;
 }
 
 .uppercase {
@@ -365,7 +369,7 @@ section.hero {
 .blocks {
     cursor: default;
     box-sizing: border-box;
-    background-color: #00897b;
+    background-color: #00bfa5;
     color: #ffffff;
     margin: 1px;
     position: absolute;
@@ -375,4 +379,51 @@ section.hero {
     -webkit-user-select: none;  /* Chrome all / Safari all */
     -moz-user-select: none;     /* Firefox all */
     -ms-user-select: none;      /* IE 10+ */
+    background-image:
+        radial-gradient(
+            circle at bottom right,
+            #00bfa5,
+            #009688
+        );
+}
+
+.btn.menu {
+    width: 100%;
+}
+
+.menu-header {
+    margin-top: 0;
+}
+
+.btn.menu {
+    margin-bottom: 1em;
+}
+
+.divider-game-top {
+    height: 2px;
+    overflow: hidden;
+    background-color: #455a64;
+}
+
+.divider-game-middle {
+    height: 1px;
+    overflow: hidden;
+    background-color: #455a64;
+}
+
+.size-btn {
+    margin-right: 0.5em;
+    margin-bottom: 1em;
+}
+
+.menu-row {
+    margin-bottom: 0;
+}
+
+@media #{$medium-and-down} {
+    .container.game-container {
+        width: 100%;
+        padding-left: .75rem;
+        padding-right: .75rem;
+    }
 }
