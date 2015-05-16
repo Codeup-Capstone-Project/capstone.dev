@@ -24,6 +24,28 @@ class GameController extends BaseController {
 		return $pageToPass;
 	}
 
+	public function getStats($size)
+	{
+		$query = Stat::with('user')
+						->with(array('puzzle' => function($query)
+						{
+						    $query->where('size', '=', 3);
+
+						}));
+
+		if (Input::has('search')) {
+			$search = Input::get('search');
+			$query->where('username', 'like', "%$search%");
+		}
+
+		$stats = $query	->where('finished_game', '=', 1)
+						->orderBy('game_time')
+						->orderBy('created_at')->take(5)->get();
+
+
+		return View::make('leader')->with(['stats' => $stats]);
+	}
+
 	//called from any POST to '/play/stats'
 	public function postStats()
 	{
