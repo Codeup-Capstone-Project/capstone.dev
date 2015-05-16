@@ -37,6 +37,10 @@ html {
     padding-bottom: 125px;
 }
 
+.pad-top {
+    padding-top: 25px;
+}
+
 .row.hero {
     padding: 0 30px;
 }
@@ -347,28 +351,28 @@ section.hero {
 // Game Styles
 //-----------------------------------------------
 
-    .hidden {
-        display: none;
-    }
+.hidden {
+    display: none;
+}
 
-    #gameBoard {
-        box-sizing: border-box;
-        /*border: 1px solid black;*/
-        width: 100%;
-        position: relative;
-        overflow: visible;
-        box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
-            -webkit-box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
-            -moz-box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
-    }
+#gameBoard {
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+    overflow: visible;
+}
 
-    .blocks {
-        box-sizing: border-box;
-        background-color: #ddd;
-        margin: 1px;
-        position: absolute;
-        display: inline-block;
-        /*line-height: 100px;*/
-        vertical-align: middle;
-        text-align: center;
-    }
+.blocks {
+    cursor: default;
+    box-sizing: border-box;
+    background-color: #00897b;
+    color: #ffffff;
+    margin: 1px;
+    position: absolute;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+}
