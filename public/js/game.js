@@ -1,7 +1,7 @@
 $.ajaxSetup({
 	        headers: {'X-CSRF-Token': $('meta[name="_token"]').attr('content')}
 	    });
-	    
+
 	$(document).ready(function(){
 
 		//================ Determine GameBoard Dimensions ===============
@@ -104,7 +104,7 @@ $.ajaxSetup({
 	    		//fill the array with an integer for every block
 	    		for (i = 0; i < totalBlocks; i++) {
 	    			initialBlockPositions[i] = i;
-	    		} 
+	    		}
 	    		//shuffle the array
 			  	var tmp, current, top = initialBlockPositions.length;
 			  	if(top) while(--top) {
@@ -174,10 +174,10 @@ $.ajaxSetup({
 						//a block number of 0 indicates the initial empty cell's position
 						if(blockNumber == 0){
 						emptyCell = index;
-						} else{	
-							//generate the div for each block using the coordinates from each element of the cell's array, 
+						} else{
+							//generate the div for each block using the coordinates from each element of the cell's array,
 							//attach their numeric value to them visually and via the data attribute
-							$('#gameBoard').append("<div class='blocks z-depth-3' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'>"+blockNumber+"</div>");
+							$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'>"+blockNumber+"</div>");
 						}
 				});
 				$(".blocks").innerWidth(cellDimension);
@@ -185,18 +185,18 @@ $.ajaxSetup({
 	    	}
 
 
-	    	function identifyMovableBlocks()	
+	    	function identifyMovableBlocks()
 	    	{
 				var c = emptyCell;
 				var s = puzzleSize;
 
-				//identify the indices of cells adjacent to the empty cell	    		
+				//identify the indices of cells adjacent to the empty cell
 				switch (c % s) {
 					//if emptyCell is along right-side of gameboard
 					case s - 1:
 						var movableCells = [c-1, c+s, c-s];
 						break;
-					//if emptyCell is along left-side of gameboard 
+					//if emptyCell is along left-side of gameboard
 					case 0:
 						var movableCells = [c+1, c+s, c-s];
 						break;
@@ -225,15 +225,15 @@ $.ajaxSetup({
 	    			//fetch the block number of clicked block via its data attribute
 					var blockNumber = parseInt($(this).data("blocknum"));
 
-					//fetch the index number of that block from its position array 
+					//fetch the index number of that block from its position array
 					//it will become the next empty cell
 					clickedPositionIndex = $.inArray(blockNumber, newBlockPositions);
-					
+
 					//swap values between the clicked block and the old empty cell and update gameStats object
 					newBlockPositions[emptyCell] = blockNumber;
 					newBlockPositions[clickedPositionIndex] = 0;
 					gameStats.newBlockPositions = newBlockPositions;
-	    			
+
 	    			//animate the block moving to its new xy-coordinates
 	    			//3rd parameter calls removeEventListeners() upon completion of animation
 	    			$(this).animate({ "top": cells[emptyCell][1], "left": cells[emptyCell][0] }, "fast", removeEventListeners);
@@ -276,7 +276,7 @@ $.ajaxSetup({
 	    	}
 
 
-		//====================== Game Timer ========================= 
+		//====================== Game Timer =========================
 
 		var milliseconds = 0, seconds = 0, minutes = 0, hours = 0,
 		    t;
@@ -295,7 +295,7 @@ $.ajaxSetup({
 			        }
 			    }
 			}
-		    // var timerDisplay = 
+		    // var timerDisplay =
 		    $("#timer").text((hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds ? (seconds > 9 ? seconds : "0" + seconds) : "00") + ":" + (milliseconds > 9 ? milliseconds : "0" + milliseconds));
 
 		    timer();
@@ -303,5 +303,5 @@ $.ajaxSetup({
 		function timer() {
 		    t = setTimeout(add, 10);
 		}
-		
+
 	});

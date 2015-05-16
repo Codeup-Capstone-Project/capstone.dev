@@ -16,6 +16,9 @@
                 <i class="mdi-navigation-expand-more"></i>
             </a>
             <div class="ninja hide-on-small-only"></div>
+            {{-- Tiles for Animation --}}
+            <div id="one" class="hero-tile blue-grey darken-3 z-depth-2"></div>
+            <div id="two" class="hero-tile blue-grey darken-3 z-depth-3"></div>
         </section>
 
         <section class="no-pad-bot teal lighten-1" id="about">
