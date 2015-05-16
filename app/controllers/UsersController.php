@@ -80,14 +80,24 @@ class UsersController extends \BaseController {
 	public function getShow($username)
 	{
 		$user = User::whereUsername($username)->first();
+		$user_id = $user->id;
 
+		//if no username is provided in url
 		if(empty($user)){
 			return App::abort(404);
 		}
-
-		if(Auth::user()->id != $user->id) {
+		//if username provided does not belong to logged in user
+		if(Auth::user()->id != $user_id) {
 			return App::abort(404);
 		}
+
+		$userBestTime3x3 = $user->bestTime(3);
+		$userBestTime4x4 = $user->bestTime(4);
+		$userBestTime5x5 = $user->bestTime(5);
+		$userBestMoves3x3 = $user->bestMoves(3);
+		$userBestMoves4x4 = $user->bestMoves(4);
+		$userBestMoves5x5 = $user->bestMoves(5);
+		var_dump($userBestMoves3x3);
 
 		return View::make('users.show', compact('user'));
 	}
