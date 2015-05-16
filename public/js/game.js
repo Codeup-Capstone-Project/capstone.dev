@@ -46,7 +46,7 @@ $.ajaxSetup({
 	    		randomPositionGenerator();
 	    		postInitialData();
 	    		$(".level").addClass('hidden');
-				$("#start, .ready").removeClass('hidden');
+				$("#start, #cancel, .ready").removeClass('hidden');
 	    	});
 
 	    	// Easy Level Button for Demo-day
@@ -62,7 +62,15 @@ $.ajaxSetup({
 	    		timer();
 	    		startGame();
 	    		$(".hiya").removeClass('hidden');
-	    		$(".ready").addClass('hidden');
+	    		$(".ready, #cancel").addClass('hidden');
+	    	});
+
+	    	// Cancel Selection
+	    	$("#cancel").on('click', function(){
+	    		$('#cancel').addClass('hidden');
+	    		$("#start").addClass('hidden');
+	    		$(".level").removeClass('hidden');
+				$("#start, #cancel, .ready").addClass('hidden');
 	    	});
 
 	    	// Reset game button

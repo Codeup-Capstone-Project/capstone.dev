@@ -369,7 +369,7 @@ section.hero {
 .blocks {
     cursor: default;
     box-sizing: border-box;
-    background-color: #00897b;
+    background-color: #00bfa5;
     color: #ffffff;
     margin: 1px;
     position: absolute;
@@ -379,6 +379,12 @@ section.hero {
     -webkit-user-select: none;  /* Chrome all / Safari all */
     -moz-user-select: none;     /* Firefox all */
     -ms-user-select: none;      /* IE 10+ */
+    background-image:
+        radial-gradient(
+            circle at bottom right,
+            #00bfa5,
+            #009688
+        );
 }
 
 .btn.menu {
