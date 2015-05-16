@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-US" class="no-js">
+<html lang="en-US">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,8 +11,6 @@
 
     <link rel="stylesheet" href="/css/main.css">
 
-    <!-- If JavaScript disabled, .no-js classes will take effect -->
-    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
     <!-- Windows mobile viewport patch -->
     <script src="/js/windows-viewport.js"></script>
 </head>
