@@ -343,3 +343,32 @@ section.hero {
     -webkit-transform: rotate(-7deg); /* Chrome, Safari, Opera */
     transform: rotate(-7deg);
 }
+
+// Game Styles
+//-----------------------------------------------
+
+    .hidden {
+        display: none;
+    }
+
+    #gameBoard {
+        box-sizing: border-box;
+        /*border: 1px solid black;*/
+        width: 100%;
+        position: relative;
+        overflow: visible;
+        box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
+            -webkit-box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
+            -moz-box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
+    }
+
+    .blocks {
+        box-sizing: border-box;
+        background-color: #ddd;
+        margin: 1px;
+        position: absolute;
+        display: inline-block;
+        /*line-height: 100px;*/
+        vertical-align: middle;
+        text-align: center;
+    }

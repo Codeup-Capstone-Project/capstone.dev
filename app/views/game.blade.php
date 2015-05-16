@@ -1,41 +1,20 @@
-<html>
-<head>
-	<title>Puzzle Test</title>
+@extends('layouts.master')
+
+
+@section('meta-token')
 	<meta name="_token" content="{{ csrf_token() }}" />
-	<script src="/js/vendor/jquery-2.1.1.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	<style>
-		.hidden {
-			display: none;
-		}
+@stop
 
-		#gameBoard {
-			box-sizing: border-box;
-			/*border: 1px solid black;*/
-			width: 100%;
-			position: relative;
-			overflow: visible;
-			box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
-				-webkit-box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
-				-moz-box-shadow: 8px 8px 30px 3px rgba(0,0,0,0.75);
-		}
 
-		.blocks {
-			box-sizing: border-box;
-			background-color: #ddd;
-			margin: 1px;
-			position: absolute;
-			display: inline-block;
-			/*line-height: 100px;*/
-  			vertical-align: middle;
-  			text-align: center;
-		}
-	</style>
-</head>
-<body>
+@section('title')
+    <title>Play | TyleNinja</title>
+@stop
+
+
+@section('content')
 	<div class="container">
     	<div class="row">
-		    <div class="col s12 l6">	
+		    <div class="col s12 l6">
 		    	<div class="row">
 		    		<div class="col s12 l12">
 		    			<h3 class="level">Choose Difficulty Level</h3>
@@ -59,9 +38,13 @@
     		<div class="col s12 l6">
     			<div id='gameBoard'></div>
     		</div>
-    	</div> 
+    	</div>
     </div>
 	{{ Form::token() }}
+@stop
+
+
+@section('game-script')
     <script src="/js/game.js"></script>
-</body>
-</html>
+@stop
+
