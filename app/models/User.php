@@ -55,24 +55,75 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	public function bestTime($size)
 	{
-		return $userBestTime3x3 = User::join('stats', 'stats.user_id', '=', 'users.id')
-								->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
-								->where('users.id', '=', $this->id)
-								->where('size', '=', $size)
-								->orderBy('finished_game', 'desc')
-								->orderBy('game_time')
-								->first();
+		$userBestTime = User::join('stats', 'stats.user_id', '=', 'users.id')
+									->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
+									->where('users.id', '=', $this->id)
+									->where('size', '=', $size)
+									->where('finished_game', '=', 1)
+									->orderBy('game_time')
+									->lists('game_time');
+
+		if(!empty($userBestTime)){
+			return array_shift($userBestTime);
+		}
+		return false;
 	}
 
 	public function bestMoves($size)
 	{
-		return $userBestMoves3x3 = User::join('stats', 'stats.user_id', '=', 'users.id')
+		$userBestMoves = User::join('stats', 'stats.user_id', '=', 'users.id')
 								->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
 								->where('users.id', '=', $this->id)
 								->where('size', '=', $size)
-								->orderBy('finished_game', 'desc')
+								->where('finished_game', '=', 1)
 								->orderBy('moves')
-								->first();
+								->lists('moves');
+		
+		if(!empty($userBestMoves)){
+			return array_shift($userBestMoves);
+		}
+		return false;
+		
+	}
+
+	public function rankTime($size)
+	{	//query an array of objects that contains all users' rankings organized by best times
+		$rankings = User::join('stats', 'stats.user_id', '=', 'users.id')
+							->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
+							->where('size', '=', $size)
+							->where('finished_game', '=', 1)
+							->orderBy('game_time')
+							->orderBy('stats.created_at')
+							->select('users.id as _id' )
+							->lists('_id');
+
+		//loop through the array and find the first instance of the user					
+		foreach($rankings as $index => $user_id){
+			if($user_id == $this->id) {
+				return $index + 1;
+			} 
+		}
+		return false;
+	}
+
+	public function rankMoves($size)
+	{	//query an array of objects that contains all users' rankings organized by least moves
+		$rankings = User::join('stats', 'stats.user_id', '=', 'users.id')
+							->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
+							->where('size', '=', $size)
+							->where('finished_game', '=', 1)
+							->orderBy('moves')
+							->orderBy('stats.created_at')
+							->select('users.id as _id' )
+							->lists('_id');
+
+		//loop through the array and find the first instance of the user					
+		foreach($rankings as $index => $user_id){
+			if($user_id == $this->id) {
+				return $index + 1;
+			} 
+		}
+		return false;
 	}
 }
 
