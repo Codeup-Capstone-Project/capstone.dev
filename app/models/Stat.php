@@ -16,6 +16,14 @@
 		// 	//if it does, repeat
 		// }
 
+		// Accessor that automatically formats dates for all posts updated_at date
+		// displays '24 minutes ago, 2 days ago, etc.'
+		public function getCreatedAtAttribute($value)
+		{
+		    $utc = Carbon::createFromFormat($this->getDateFormat(), $value);
+		    return $utc->setTimezone('America/Chicago')->diffForHumans();
+		}
+
 		// Mutator that sets game time format before insertion into database
 		public function setGameTimeAttribute($value)
 		{
