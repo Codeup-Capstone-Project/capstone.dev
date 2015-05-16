@@ -15,10 +15,10 @@
             <a class="floating-absolute-right btn-floating btn-large waves-effect waves-teal blue-grey lighten-5 hide-on-med-and-down" id="scroll-to-about">
                 <i class="mdi-navigation-expand-more"></i>
             </a>
-            <div class="ninja hide-on-small-only"></div>
+            <div class="ninja hide-on-med-and-down"></div>
             {{-- Tiles for Animation --}}
-            <div id="one" class="hero-tile blue-grey darken-3 z-depth-2"></div>
-            <div id="two" class="hero-tile blue-grey darken-3 z-depth-3"></div>
+            <div id="one" class="hero-tile blue-grey darken-3 z-depth-2 hide-on-med-and-down"></div>
+            <div id="two" class="hero-tile blue-grey darken-3 z-depth-3 hide-on-med-and-down"></div>
         </section>
 
         <section class="no-pad-bot teal lighten-1" id="about">
