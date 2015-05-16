@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en-US" class="no-js">
+<html lang="en-US">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    @yield('meta-token')
     @yield('title')
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +11,6 @@
 
     <link rel="stylesheet" href="/css/main.css">
 
-    <!-- If JavaScript disabled, .no-js classes will take effect -->
-    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
     <!-- Windows mobile viewport patch -->
     <script src="/js/windows-viewport.js"></script>
 </head>
@@ -28,6 +27,9 @@
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery-2.1.1.min.js"><\/script>')</script>
     <script src="/js/materialize.min.js"></script>
     <script src="/js/init.js"></script>
+
+    @yield('game-script')
+
     @if (Session::has('successMessage'))
         <script>
             Materialize.toast("{{{ Session::get('successMessage') }}}", 2500, 'teal darken-1');
