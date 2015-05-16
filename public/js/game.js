@@ -88,12 +88,15 @@ $.ajaxSetup({
 
 	    	// New game button
 	    	$("#newGame").on('click', function(){
+	    		moves = 0;
+	    		$("#moves").text(moves);
 	    		milliseconds = 0, seconds = 0, minutes = 0, hours = 0;
 	    		$("#timer").text("00:00:00:00");
 	    		$(".blocks").remove();
-	    		$(".btn, .ready").addClass('hidden');
+	    		$(".btn, .btn-floating, .ready").addClass('hidden');
 	    		$(".level").removeClass('hidden');
 	    		$(".again").addClass('hidden');
+	    		$('.hiya').addClass('hidden');
 	    	});
 
 
@@ -161,7 +164,7 @@ $.ajaxSetup({
 
 	    	function startGame(){
 	    		moves = 0;
-	    		$("#moves").text("Moves: " + moves);
+	    		$("#moves").text(moves);
 	    		positionBlocks();		//place blocks in their initial positions
 	    		newBlockPositions = initialBlockPositions.slice(0);	//create a clone of the initial positions array to track block movements
 	    		gameStats.newBlockPositions = newBlockPositions;
@@ -265,7 +268,7 @@ $.ajaxSetup({
 	    	function movesCounter()
 	    	{
 	    		moves += 1;
-	    		$("#moves").text("Moves: " + moves);
+	    		$("#moves").text(moves);
 	    	}
 
 	    	function endGame(won){
@@ -277,6 +280,7 @@ $.ajaxSetup({
 	    		$("#quit").addClass('hidden');
 		    	$("#newGame").removeClass('hidden');
 		    	if(won){
+		    		clearTimeout(t);
 		    		alert("You win");
 		    	}
 		    	$.post('/play/stats', gameStats);

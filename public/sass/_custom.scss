@@ -53,6 +53,10 @@ html {
     font-weight: 700;
 }
 
+.medium {
+    font-weight: 500;
+}
+
 .uppercase {
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -375,4 +379,55 @@ section.hero {
     -webkit-user-select: none;  /* Chrome all / Safari all */
     -moz-user-select: none;     /* Firefox all */
     -ms-user-select: none;      /* IE 10+ */
+}
+
+.btn.menu {
+    width: 100%;
+}
+
+.menu-header {
+    margin-top: 0;
+}
+
+.btn.menu {
+    margin-bottom: 1em;
+}
+
+.divider-game-top {
+    height: 2px;
+    overflow: hidden;
+    background-color: #455a64;
+}
+
+.divider-game-middle {
+    height: 1px;
+    overflow: hidden;
+    background-color: #455a64;
+}
+
+.size-btn {
+    margin-right: 0.5em;
+    margin-bottom: 1em;
+}
+    // @media #{$large-and-up} {
+    //     .size-btn {
+    //         margin-right: 1em;
+    //         margin-bottom: 1.25em;
+    //     }
+    // }
+
+.menu-row {
+    margin-bottom: 0;
+}
+
+// .card-panel.game-menu {
+//     padding: 1.333rem .75rem;
+// }
+
+@media #{$medium-and-down} {
+    .container.game-container {
+        width: 100%;
+        padding-left: .75rem;
+        padding-right: .75rem;
+    }
 }
