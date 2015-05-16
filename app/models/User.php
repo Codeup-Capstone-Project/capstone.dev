@@ -52,6 +52,28 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		// connects each user to their stats
 		return $this->hasMany('Stat');
 	}
+
+	public function bestTime($size)
+	{
+		return $userBestTime3x3 = User::join('stats', 'stats.user_id', '=', 'users.id')
+								->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
+								->where('users.id', '=', $this->id)
+								->where('size', '=', $size)
+								->orderBy('finished_game', 'desc')
+								->orderBy('game_time')
+								->first();
+	}
+
+	public function bestMoves($size)
+	{
+		return $userBestMoves3x3 = User::join('stats', 'stats.user_id', '=', 'users.id')
+								->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
+								->where('users.id', '=', $this->id)
+								->where('size', '=', $size)
+								->orderBy('finished_game', 'desc')
+								->orderBy('moves')
+								->first();
+	}
 }
 
 
