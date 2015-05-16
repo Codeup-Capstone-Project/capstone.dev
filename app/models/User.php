@@ -53,6 +53,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		return $this->hasMany('Stat');
 	}
 
+	//get an array of all user's game times for particular size of puzzle
 	public function bestTime($size)
 	{
 		$userBestTime = User::join('stats', 'stats.user_id', '=', 'users.id')
@@ -63,12 +64,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 									->orderBy('game_time')
 									->lists('game_time');
 
-		if(!empty($userBestTime)){
-			return array_shift($userBestTime);
-		}
-		return false;
+		//return value of first array element, or FALSE if the array is empty.
+		return reset($userBestTime);
+		
 	}
 
+	//get an array of all user's game moves for particular size of puzzle
 	public function bestMoves($size)
 	{
 		$userBestMoves = User::join('stats', 'stats.user_id', '=', 'users.id')
@@ -79,10 +80,8 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 								->orderBy('moves')
 								->lists('moves');
 		
-		if(!empty($userBestMoves)){
-			return array_shift($userBestMoves);
-		}
-		return false;
+		//return value of first array element, or FALSE if the array is empty.
+		return reset($userBestMoves);
 		
 	}
 
