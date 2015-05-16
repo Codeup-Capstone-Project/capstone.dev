@@ -65,6 +65,7 @@ $.ajaxSetup({
 
 	    	// Reset game button
 	    	$("#reset").on('click', function(){
+	    		$(".blocks").remove();
 	    		clearTimeout(t);
 	    		milliseconds = 0; seconds = 0; minutes = 0; hours = 0;
 	    		$("#timer").text("00:00:00:00");
@@ -265,6 +266,7 @@ $.ajaxSetup({
 	    		gameStats.gameFinished = won;
 	    		gameStats.time = time;
 	    		gameStats.moves = moves;
+	    		$('.blocks').off();
 	    		$("#quit").addClass('hidden');
 		    	$("#newGame").removeClass('hidden');
 		    	if(won){
