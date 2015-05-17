@@ -16,7 +16,7 @@ html {
     text-rendering: optimizeLegibility;
     font-family: "Roboto", "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 400;
-    @extend .blue-grey, .darken-3;
+    background-color: #37474f;
 }
 
 .img-marg {
@@ -225,20 +225,6 @@ section.hero {
     }
 }
 
-#main-splash {
-    max-height: 80%;
-}
-
-#main-splash .ninja {
-    position: absolute;
-    width: 420px;
-    height: 274px;
-    left: 30px;
-    bottom: 95px;
-    background-image: url(../img/ninja.png);
-    z-index: -5;
-}
-
 .floating-absolute-right {
     position: absolute;
     right: 50px;
@@ -366,30 +352,101 @@ section.hero {
     font-weight: 500;
 }
 
-// Hero Tiles
+// Hero Graphics
 //-----------------------------------------------
 
-.hero-tile {
+#main-splash {
+    max-height: 80%;
+}
+
+#main-splash .ninja {
     position: absolute;
+    width: 420px;
+    height: 274px;
+    right: 50px;
+    bottom: 50px;
+    background-image: url(../img/ninja.png);
+    z-index: -5;
+}
+
+.hero-tile-grid {
+    width: 306px;
+    height: 306px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    z-index: -1;
+}
+
+.hero-tile {
+    opacity: .99;
+    float: left;
     width: 100px;
     height: 100px;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: #455a64;
+    color: #ffffff;
+    margin: 1px;
+    display: inline-block;
+    text-align: center;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    background-image:
+        radial-gradient(
+            circle at bottom right,
+            #546e7a,
+            #455a64
+        );
 }
 
-.hero-tile#one {
-    right: 100px;
+.hero-tile#five {
+    margin-left: 30px;
+}
+
+// .hero-tile#one {
+//     right: 100px;
+//     bottom: 100px;
+//     -ms-transform: rotate(7deg);
+//     -webkit-transform: rotate(7deg);
+//     transform: rotate(7deg);
+// }
+
+.hero-tile-large-grid {
+    width: 408px;
+    height: 408px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 305px;
     bottom: 100px;
-    -ms-transform: rotate(7deg); /* IE 9 */
-    -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
-    transform: rotate(7deg);
+    z-index: -2;
 }
 
-.hero-tile#two {
-    right: 100px;
-    bottom: 200px;
-    -ms-transform: rotate(-7deg); /* IE 9 */
-    -webkit-transform: rotate(-7deg); /* Chrome, Safari, Opera */
-    transform: rotate(-7deg);
+.hero-tile-large {
+    opacity: .3;
+    float: left;
+    width: 100px;
+    height: 100px;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: #455a64;
+    color: #ffffff;
+    margin: 1px;
+    display: inline-block;
+    text-align: center;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    background-image:
+        radial-gradient(
+            circle at bottom right,
+            #546e7a,
+            #455a64
+        );
 }
+
 
 // Game Styles
 //-----------------------------------------------
