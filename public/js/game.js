@@ -52,6 +52,15 @@ $.ajaxSetup({
 	    	// Easy Level Button for Demo-day
 	    	$("#easy").on('click', function(){
 	    		$(".blocks").remove();
+	    		$(".blocks").remove();
+	    		puzzleSize = $(this).data('value');
+	    		setBlockDimensions();
+	    		totalBlocks = puzzleSize * puzzleSize;
+	    		cells = [];
+	    		initialBlockPositions = [1, 2, 3, 4, 0, 5, 7, 8, 6];
+	    		postInitialData();
+	    		$(".level").addClass('hidden');
+				$("#start, #cancel, .ready").removeClass('hidden');
 	    	});
 
 
