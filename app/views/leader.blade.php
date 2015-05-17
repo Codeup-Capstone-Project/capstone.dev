@@ -13,6 +13,9 @@
 				<p>With: {{{ $stat->moves }}} moves</p>
 				<p>{{{ $stat->updated_at }}}</p>
 			</div>
+			<div class="col s12 m2">
+				<button class="directToPuzzle">Play Same Puzzle</button>
+			</div>
 		</div>
 	@endforeach
 
