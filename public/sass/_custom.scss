@@ -253,6 +253,11 @@ section.hero {
     }
 }
 
+.create-button,
+.login-button {
+    width: 100%;
+}
+
 // Social Media Colors
 //-----------------------------------------------
 
@@ -266,29 +271,67 @@ section.hero {
     background-color: #dd4b39;
 }
 
-
 // Modals
 //-----------------------------------------------
 
-.modal.login {
-    width: 85%;
-}
-
-@media #{$medium-and-up} {
-    .modal.login {
-        width: 60%;
-    }
-}
-
-@media #{$large-and-up} {
-    .modal.login {
-        width: 35%;
-    }
-}
-
-.modal-button {
+.modal.game-modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    padding: 0;
+    max-height: 70%;
     width: 100%;
+    margin: auto;
+    overflow-y: visible;
+    z-index: 1000;
+    border-radius: 2px;
+    -webkit-transform: translate(0);
+    -moz-transform: translate(0);
+    -ms-transform: translate(0);
+    -o-transform: translate(0);
+    transform: translate(0);
+    will-change: top, opacity;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
+
+.you-win {
+    position: relative;
+
+}
+
+.close-x {
+    padding: 1rem 0;
+}
+
+.modal-img {
+    width: 220px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+}
+
+@media only screen and (max-width: 700px) {
+    .modal-img {
+        left: 20%;
+    }
+}
+
+@media only screen and (max-width: 675px) {
+    .modal-img {
+        left: 15%;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .modal-img {
+        left: 5%;
+    }
+}
+
 
 // Forms
 //-----------------------------------------------
@@ -317,10 +360,6 @@ section.hero {
 
 .collection p {
     color: #757575;
-}
-
-.collection {
-    word-wrap: break-word;
 }
 
 .collection .collection-item.avatar .title {

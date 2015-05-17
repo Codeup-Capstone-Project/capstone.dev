@@ -51,6 +51,17 @@
     	</div>
     </div>
 	{{ Form::token() }}
+
+	<!-- Modal Structure -->
+	<div id="win-modal" class="modal game-modal">
+		<div class="modal-content game-modal-content center-align">
+			<div class="close-x">
+				<a href="#" class="modal-action modal-close white-text btn-floating waves-effect waves-light"><i class="mdi-navigation-close white-text"></i></a>
+			</div>
+			<h2 class="white-text you-win">You win!</h2>
+			{{-- <img src="/img/ninja.png" alt="TyleNinja" class="modal-img"> --}}
+		</div>
+	</div>
 @stop
 
 
