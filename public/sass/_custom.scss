@@ -366,7 +366,7 @@ section.hero {
     right: 50px;
     bottom: 50px;
     background-image: url(../img/ninja.png);
-    z-index: -5;
+    z-index: -1;
 }
 
 .hero-tile-grid {
@@ -406,14 +406,6 @@ section.hero {
     margin-left: 30px;
 }
 
-// .hero-tile#one {
-//     right: 100px;
-//     bottom: 100px;
-//     -ms-transform: rotate(7deg);
-//     -webkit-transform: rotate(7deg);
-//     transform: rotate(7deg);
-// }
-
 .hero-tile-large-grid {
     width: 408px;
     height: 408px;
@@ -426,6 +418,39 @@ section.hero {
 
 .hero-tile-large {
     opacity: .3;
+    float: left;
+    width: 100px;
+    height: 100px;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: #455a64;
+    color: #ffffff;
+    margin: 1px;
+    display: inline-block;
+    text-align: center;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    background-image:
+        radial-gradient(
+            circle at bottom right,
+            #546e7a,
+            #455a64
+        );
+}
+
+.hero-tile-largest-grid {
+    width: 510px;
+    height: 510px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 750px;
+    bottom: 75px;
+    z-index: -3;
+}
+
+.hero-tile-largest {
+    opacity: .2;
     float: left;
     width: 100px;
     height: 100px;
