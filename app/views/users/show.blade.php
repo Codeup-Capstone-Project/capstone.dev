@@ -48,15 +48,78 @@
                                                     <p class="grey-text text-darken-1">Current rank: {{{ $movesRank3x3 }}}</p>
                                                 </div>
                                                 <div class="section no-pad-bot">
+                                                    <div class="divider"></div>
+                                                    <h6 class="leader-board-link">
+                                                        <!-- Modal Trigger -->
+                                                        <a id="size3x3" class="modal-trigger cyan-text text-darken-4" href="#leaderModal"><i class="mdi-action-swap-vert-circle"></i> Leader Board</a>
+                                                    </h6>
+                                                </div>
+                                                <div class="section no-pad-bot">
                                                     <button class="btn menu waves-effect waves-light level cyan darken-3">Play</button>
-                                                    <!-- Modal Trigger -->
-                                                    <a id="size3x3" class="btn menu waves-effect waves-light modal-trigger center" href="#leaderModal">Rankings</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
+                                    <div class="col s12 l4">
+                                        <div class="game collection no-marg-top">
+                                            <div class="section outer-game-card">
+                                                <span class="btn-floating puzzle-icon purple darken-3"><i class="mdi-image-grid-on white-text"></i></span>
+                                                <h6 class="puzzle-title purple-text text-darken-3">4x4 Puzzle</h6>
+                                                <div class="section no-pad-bot">
+                                                    <div class="divider"></div>
+                                                    <h6 class="medium">Time Stats</h6>
+                                                    <p class="grey-text text-darken-1">Best time: {{{ $userBestTime4x4 }}}</p>
+                                                    <p class="grey-text text-darken-1">Current rank: {{{ $timeRank4x4 }}}</p>
+                                                </div>
+                                                <div class="section no-pad-bot">
+                                                    <div class="divider"></div>
+                                                    <h6 class="medium">Move Stats</h6>
+                                                    <p class="grey-text text-darken-1">Least moves: {{{ $userBestMoves4x4 }}}</p>
+                                                    <p class="grey-text text-darken-1">Current rank: {{{ $movesRank4x4 }}}</p>
+                                                </div>
+                                                <div class="section no-pad-bot">
+                                                    <div class="divider"></div>
+                                                    <h6 class="leader-board-link">
+                                                        <!-- Modal Trigger -->
+                                                        <a id="size4x4" class="modal-trigger purple-text text-darken-4" href="#leaderModal"><i class="mdi-action-swap-vert-circle"></i> Leader Board</a>
+                                                    </h6>
+                                                </div>
+                                                <div class="section no-pad-bot">
+                                                    <button class="btn menu waves-effect waves-light level purple darken-3">Play</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 l4">
+                                        <div class="game collection no-marg-top">
+                                            <div class="section outer-game-card">
+                                                <span class="btn-floating puzzle-icon pink darken-3"><i class="mdi-image-grid-on white-text"></i></span>
+                                                <h6 class="puzzle-title pink-text text-darken-3">5x5 Puzzle</h6>
+                                                <div class="section no-pad-bot">
+                                                    <div class="divider"></div>
+                                                    <h6 class="medium">Time Stats</h6>
+                                                    <p class="grey-text text-darken-1">Best time: {{{ $userBestTime5x5 }}}</p>
+                                                    <p class="grey-text text-darken-1">Current rank: {{{ $timeRank5x5 }}}</p>
+                                                </div>
+                                                <div class="section no-pad-bot">
+                                                    <div class="divider"></div>
+                                                    <h6 class="medium">Move Stats</h6>
+                                                    <p class="grey-text text-darken-1">Least moves: {{{ $userBestMoves5x5 }}}</p>
+                                                    <p class="grey-text text-darken-1">Current rank: {{{ $movesRank5x5 }}}</p>
+                                                </div>
+                                                <div class="section no-pad-bot">
+                                                    <div class="divider"></div>
+                                                    <h6 class="leader-board-link">
+                                                        <!-- Modal Trigger -->
+                                                        <a id="size5x5" class="modal-trigger pink-text text-darken-4" href="#leaderModal"><i class="mdi-action-swap-vert-circle"></i> Leader Board</a>
+                                                    </h6>
+                                                </div>
+                                                <div class="section no-pad-bot">
+                                                    <button class="btn menu waves-effect waves-light level pink darken-3">Play</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
