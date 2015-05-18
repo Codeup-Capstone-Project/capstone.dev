@@ -56,7 +56,7 @@
                       </div>
                       <div class="row">
                         <div class="col s12">
-                            <button type="submit" class="btn waves-effect modal-button">Create</button>
+                            <button type="submit" class="btn waves-effect create-button">Create</button>
                         </div>
                       </div>
                     {{ Form::close() }}
