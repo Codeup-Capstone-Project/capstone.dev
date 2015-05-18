@@ -27,6 +27,7 @@
     <script>window.jQuery || document.write('<script src="/js/vendor/jquery-2.1.1.min.js"><\/script>')</script>
     <script src="/js/materialize.min.js"></script>
     <script src="/js/init.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
 
     @yield('game-script')
 
