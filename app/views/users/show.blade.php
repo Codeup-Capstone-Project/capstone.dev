@@ -7,99 +7,60 @@
 @section('content')
         <div class="pad-bot">
             <div class="row">
-                <div class="col s12 m8 offset-m2 l6 offset-l3">
-                    <ul class="collection z-depth-2">
-                        <li class="collection-item"><h5 class="blue-grey-text text-darken-2">User Profile</h5></li>
-                        <li class="collection-item avatar">
-                            <img src="/img/justin.jpg" alt="" class="circle">
-                            <span class="title">{{{ Auth::user()->username }}}</span>
-                            <p>{{{ Auth::user()->email }}}</p>
-                            <p>Joined {{{ Auth::user()->created_at }}}</p>
-                            <a href="#" class="secondary-content"><i class="mdi-editor-mode-edit"></i> Edit</a>
-                        </li>
-                        <li class="collection-item"><h5 class="blue-grey-text text-darken-2">Game Stats</h5></li>
-                        <li class="collection-item avatar">
-                            <i class="mdi-image-grid-on circle cyan accent-4"></i>
-                            <div class="row">
-                                <div class="col s12 m9">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <span class="title">3x3 Puzzle</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s6">
-                                            <p>Best time: <span class="teal-text text-darken-3">{{{ $userBestTime3x3 }}}</span></p>
-                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $timeRank3x3 }}}</span></p>
-                                        </div>
-                                        <div class="col s6">
-                                            <p>Least moves: <span class="teal-text text-darken-3">{{{ $userBestMoves3x3 }}}</span></p>
-                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $movesRank3x3 }}}</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col s12 m3">
-                                    <button class="btn menu waves-effect waves-light level cyan accent-4">Play</button>
-                                    <!-- Modal Trigger -->
-                                    <a id="size3x3" class="btn menu waves-effect waves-light modal-trigger" href="#leaderModal">Rankings</a>
+                <div class="col s12 m8 offset-m2 l8 offset-l2">
+                    <div class="card z-depth-2 grey lighten-5">
+                        <div class="card-content">
+                            <div class="row no-marg-bot">
+                                <div class="col s12">
+                                    <h5 class="blue-grey-text text-darken-2">User Profile</h5>
+                                    <ul class="collection no-marg-top">
+                                        <li class="collection-item avatar">
+                                            <img src="/img/justin.jpg" alt="" class="circle">
+                                            <span class="title">{{{ Auth::user()->username }}}</span>
+                                            <p class="grey-text text-darken-1">{{{ Auth::user()->email }}}</p>
+                                            <p class="grey-text text-darken-1">Joined {{{ Auth::user()->created_at }}}</p>
+                                            <a href="#" class="secondary-content"><i class="mdi-editor-mode-edit"></i> Edit</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                        </li>
-                        <li class="collection-item avatar">
-                            <i class="mdi-image-grid-on circle purple accent-4"></i>
-                            <div class="row">
-                                <div class="col s12 m9">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <span class="title">4x4 Puzzle</span>
+
+                            <div class="section">
+                                <div class="row no-marg-bot">
+                                    <div class="col s12">
+                                        <h5 class="blue-grey-text text-darken-2">Game Stats</h5>
+                                    </div>
+                                    <div class="col s12 l4">
+                                        <div class="game collection no-marg-top">
+                                            <div class="section outer-game-card">
+                                                <span class="btn-floating puzzle-icon cyan darken-3"><i class="mdi-image-grid-on white-text"></i></span>
+                                                <h6 class="puzzle-title cyan-text text-darken-3">3x3 Puzzle</h6>
+                                                <div class="section no-pad-bot">
+                                                    <div class="divider"></div>
+                                                    <h6 class="medium">Time Stats</h6>
+                                                    <p class="grey-text text-darken-1">Best time: {{{ $userBestTime3x3 }}}</p>
+                                                    <p class="grey-text text-darken-1">Current rank: {{{ $timeRank3x3 }}}</p>
+                                                </div>
+                                                <div class="section no-pad-bot">
+                                                    <div class="divider"></div>
+                                                    <h6 class="medium">Move Stats</h6>
+                                                    <p class="grey-text text-darken-1">Least moves: {{{ $userBestMoves3x3 }}}</p>
+                                                    <p class="grey-text text-darken-1">Current rank: {{{ $movesRank3x3 }}}</p>
+                                                </div>
+                                                <div class="section no-pad-bot">
+                                                    <button class="btn menu waves-effect waves-light level cyan darken-3">Play</button>
+                                                    <!-- Modal Trigger -->
+                                                    <a id="size3x3" class="btn menu waves-effect waves-light modal-trigger center" href="#leaderModal">Rankings</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col s6">
-                                            <p>Best time: <span class="teal-text text-darken-3">{{{ $userBestTime4x4 }}}</span></p>
-                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $timeRank4x4 }}}</span></p>
-                                        </div>
-                                        <div class="col s6">
-                                            <p>Least moves: <span class="teal-text text-darken-3">{{{ $userBestMoves4x4 }}}</span></p>
-                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $movesRank4x4 }}}</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col s12 m3">
-                                    <button class="btn menu waves-effect waves-light level purple accent-4">Play</button>
-                                    <!-- Modal Trigger -->
-                                    <a id="size4x4" class="btn menu waves-effect waves-light modal-trigger" href="#leaderModal">Rankings</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="collection-item avatar">
-                            <i class="mdi-image-grid-on circle pink accent-4"></i>
-                            <div class="row">
-                                <div class="col s12 m9">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <span class="title">5x5 Puzzle</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s6">
-                                            <p>Best time: <span class="teal-text text-darken-3">{{{ $userBestTime5x5 }}}</span></p>
-                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $timeRank5x5 }}}</span></p>
-                                        </div>
-                                        <div class="col s6">
-                                            <p>Least moves: <span class="teal-text text-darken-3">{{{ $userBestMoves5x5 }}}</span></p>
-                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $movesRank5x5 }}}</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col s12 m3">
-                                    <button class="btn menu waves-effect waves-light level pink accent-4">Play</button>
-                                    <!-- Modal Trigger -->
-                                    <a id="size5x5" class="btn menu waves-effect waves-light modal-trigger" href="#leaderModal">Rankings</a>
+                                    
+                                    
                                 </div>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -29,6 +29,10 @@ body, html {
     margin-bottom: 0;
 }
 
+.no-marg-top {
+    margin-top: 0;
+}
+
 .pad-bot {
     padding-bottom: 125px;
 }
@@ -51,6 +55,10 @@ body, html {
 
 .medium {
     font-weight: 500;
+}
+
+.normal {
+    font-weight: 400;
 }
 
 .uppercase {
@@ -361,6 +369,29 @@ section.hero {
 
 .list h4 {
     margin-top: 12.3px;
+}
+
+.btn-floating.puzzle-icon {
+    box-shadow: none;
+    cursor: default;
+}
+
+.puzzle-title {
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.0625rem;
+    font-weight: 700;
+    padding-left: 0.25rem;
+}
+
+.game.collection {
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+.section.outer-game-card {
+    padding-top: 0.325rem;
+    padding-bottom: 0;
 }
 
 // Hero Graphics
