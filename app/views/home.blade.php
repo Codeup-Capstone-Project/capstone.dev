@@ -15,10 +15,158 @@
             <a class="floating-absolute-right btn-floating btn-large waves-effect waves-teal blue-grey lighten-5 hide-on-med-and-down" id="scroll-to-about">
                 <i class="mdi-navigation-expand-more"></i>
             </a>
+            {{-- Hero Graphics --}}
             <div class="ninja hide-on-med-and-down"></div>
-            {{-- Tiles for Animation --}}
-            <div id="one" class="hero-tile blue-grey darken-3 z-depth-2 hide-on-med-and-down"></div>
-            <div id="two" class="hero-tile blue-grey darken-3 z-depth-3 hide-on-med-and-down"></div>
+
+            <div class="hero-tile-grid hide-on-med-and-down" aria-hidden="true">
+                <div id="one" class="hero-tile hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">1</p>
+                </div>
+                <div id="two" class="hero-tile hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">2</p>
+                </div>
+                <div id="three" class="hero-tile hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">3</p>
+                </div>
+                <div id="four" class="hero-tile hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">4</p>
+                </div>
+                <div id="five" class="hero-tile hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">5</p>
+                </div>
+                <div id="seven" class="hero-tile hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">7</p>
+                </div>
+                <div id="eight" class="hero-tile hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">8</p>
+                </div>
+                <div id="six" class="hero-tile hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">6</p>
+                </div>
+            </div>
+
+            <div class="hero-tile-large-grid hide-on-med-and-down" aria-hidden="true">
+                <div id="one-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">1</p>
+                </div>
+                <div id="two-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">2</p>
+                </div>
+                <div id="three-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">3</p>
+                </div>
+                <div id="four-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">4</p>
+                </div>
+                <div id="five-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">5</p>
+                </div>
+                <div id="six-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">6</p>
+                </div>
+                <div id="seven-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">7</p>
+                </div>
+                <div id="eight-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">8</p>
+                </div>
+                <div id="nine-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">9</p>
+                </div>
+                <div id="ten-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">10</p>
+                </div>
+                <div id="eleven-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">11</p>
+                </div>
+                <div id="twelve-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">12</p>
+                </div>
+                <div id="thirteen-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">13</p>
+                </div>
+                <div id="fourteen-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">14</p>
+                </div>
+                <div id="fifteen-large" class="hero-tile-large hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">15</p>
+                </div>
+            </div>
+
+            <div class="hero-tile-largest-grid hide-on-med-and-down" aria-hidden="true">
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">1</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">2</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">3</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">4</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">5</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">6</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">7</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">8</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">9</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">10</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">11</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">12</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">13</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">14</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">15</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">16</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">17</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">18</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">19</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">20</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">21</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">22</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">23</p>
+                </div>
+                <div class="hero-tile-largest hide-on-med-and-down valign-wrapper">
+                    <p class="flow-text blue-grey-text text-darken-3 valign">24</p>
+                </div>
+            </div>
         </section>
 
         <section class="no-pad-bot teal lighten-1" id="about">
