@@ -81,15 +81,31 @@ class UsersController extends \BaseController {
 	{
 		$user = User::whereUsername($username)->first();
 
+		//if no username is provided in url
 		if(empty($user)){
 			return App::abort(404);
 		}
-
+		//if username provided does not belong to logged in user
 		if(Auth::user()->id != $user->id) {
 			return App::abort(404);
 		}
 
-		return View::make('users.show', compact('user'));
+		$data = [
+			"user"			   => $user,
+			"userBestTime3x3"  => $user->bestTime(3),
+			"userBestTime4x4"  => $user->bestTime(4),
+			"userBestTime5x5"  => $user->bestTime(5),
+			"userBestMoves3x3" => $user->bestMoves(3),
+			"userBestMoves4x4" => $user->bestMoves(4),
+			"userBestMoves5x5" => $user->bestMoves(5),
+			"timeRank3x3"	   => $user->rankTime(3),
+			"timeRank4x4"	   => $user->rankTime(4),
+			"timeRank5x5"	   => $user->rankTime(5),
+			"movesRank3x3"	   => $user->rankMoves(3),
+			"movesRank4x4"	   => $user->rankMoves(4),
+			"movesRank5x5"	   => $user->rankMoves(5)
+		];
+		return View::make('users.show')->with($data);
 	}
 
 	/**

@@ -52,6 +52,78 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		// connects each user to their stats
 		return $this->hasMany('Stat');
 	}
+
+	//get an array of all user's game times for particular size of puzzle
+	public function bestTime($size)
+	{
+		$userBestTime = User::join('stats', 'stats.user_id', '=', 'users.id')
+									->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
+									->where('users.id', '=', $this->id)
+									->where('size', '=', $size)
+									->where('finished_game', '=', 1)
+									->orderBy('game_time')
+									->lists('game_time');
+
+		//return value of first array element, or FALSE if the array is empty.
+		return reset($userBestTime);
+		
+	}
+
+	//get an array of all user's game moves for particular size of puzzle
+	public function bestMoves($size)
+	{
+		$userBestMoves = User::join('stats', 'stats.user_id', '=', 'users.id')
+								->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
+								->where('users.id', '=', $this->id)
+								->where('size', '=', $size)
+								->where('finished_game', '=', 1)
+								->orderBy('moves')
+								->lists('moves');
+		
+		//return value of first array element, or FALSE if the array is empty.
+		return reset($userBestMoves);
+		
+	}
+
+	public function rankTime($size)
+	{	//query an array of objects that contains all users' rankings organized by best times
+		$rankings = User::join('stats', 'stats.user_id', '=', 'users.id')
+							->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
+							->where('size', '=', $size)
+							->where('finished_game', '=', 1)
+							->orderBy('game_time')
+							->orderBy('stats.created_at')
+							->select('users.id as _id' )
+							->lists('_id');
+
+		//loop through the array and find the first instance of the user					
+		foreach($rankings as $index => $user_id){
+			if($user_id == $this->id) {
+				return $index + 1;
+			} 
+		}
+		return false;
+	}
+
+	public function rankMoves($size)
+	{	//query an array of objects that contains all users' rankings organized by least moves
+		$rankings = User::join('stats', 'stats.user_id', '=', 'users.id')
+							->join('puzzles', 'puzzles.id', '=', 'stats.puzzle_id')
+							->where('size', '=', $size)
+							->where('finished_game', '=', 1)
+							->orderBy('moves')
+							->orderBy('stats.created_at')
+							->select('users.id as _id' )
+							->lists('_id');
+
+		//loop through the array and find the first instance of the user					
+		foreach($rankings as $index => $user_id){
+			if($user_id == $this->id) {
+				return $index + 1;
+			} 
+		}
+		return false;
+	}
 }
 
 
