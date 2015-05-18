@@ -13,15 +13,21 @@
                             <div class="row no-marg-bot">
                                 <div class="col s12">
                                     <h5 class="blue-grey-text text-darken-2">User Profile</h5>
-                                    <ul class="collection no-marg-top">
-                                        <li class="collection-item avatar">
-                                            <img src="/img/justin.jpg" alt="" class="circle">
-                                            <span class="title">{{{ Auth::user()->username }}}</span>
+                                </div>
+                                <div class="col s12">
+                                    <div class="user collection no-marg-top">
+                                        <div class="col s12 l4">
+                                            <img src="/img/justin.jpg" alt="" class="circle profile-avatar">
+                                            <h6 class="user-title">{{{ Auth::user()->username }}}</h6>
+                                        </div>
+                                        <div class="col s12 l4 user-info-col">
                                             <p class="grey-text text-darken-1">{{{ Auth::user()->email }}}</p>
-                                            <p class="grey-text text-darken-1">Joined {{{ Auth::user()->created_at }}}</p>
-                                            <a href="#" class="secondary-content"><i class="mdi-editor-mode-edit"></i> Edit</a>
-                                        </li>
-                                    </ul>
+                                            <p class="grey-text">Joined {{{ Auth::user()->created_at }}}</p>
+                                        </div>
+                                        <div class="col s12 l4 user-info-col right-align">
+                                            <a href="#" class="teal-text"><i class="mdi-editor-mode-edit"></i> Edit</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
