@@ -39,9 +39,9 @@
                                     </div>
                                 </div>
                                 <div class="col s12 m3">
-                                    <button class="btn waves-effect waves-light level cyan accent-4">Play</button>
+                                    <button class="btn menu waves-effect waves-light level cyan accent-4">Play</button>
                                     <!-- Modal Trigger -->
-                                    <a id="size3x3" class="waves-effect waves-light btn modal-trigger" href="#leaderModal">Rankings</a>
+                                    <a id="size3x3" class="btn menu waves-effect waves-light modal-trigger" href="#leaderModal">Rankings</a>
                                 </div>
                             </div>
                         </li>
@@ -66,9 +66,9 @@
                                     </div>
                                 </div>
                                 <div class="col s12 m3">
-                                    <button class="btn waves-effect waves-light level purple accent-4">Play</button>
+                                    <button class="btn menu waves-effect waves-light level purple accent-4">Play</button>
                                     <!-- Modal Trigger -->
-                                    <a id="size4x4" class="waves-effect waves-light btn modal-trigger" href="#leaderModal">Rankings</a>
+                                    <a id="size4x4" class="btn menu waves-effect waves-light modal-trigger" href="#leaderModal">Rankings</a>
                                 </div>
                             </div>
                         </li>
@@ -93,9 +93,9 @@
                                     </div>
                                 </div>
                                 <div class="col s12 m3">
-                                    <button class="btn waves-effect waves-light level pink accent-4">Play</button>
+                                    <button class="btn menu waves-effect waves-light level pink accent-4">Play</button>
                                     <!-- Modal Trigger -->
-                                    <a id="size5x5" class="waves-effect waves-light btn modal-trigger" href="#leaderModal">Rankings</a>
+                                    <a id="size5x5" class="btn menu waves-effect waves-light modal-trigger" href="#leaderModal">Rankings</a>
                                 </div>
                             </div>
                         </li>
