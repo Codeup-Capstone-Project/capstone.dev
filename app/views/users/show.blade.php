@@ -20,17 +20,17 @@
                         <li class="collection-item"><h5 class="blue-grey-text text-darken-2">Game Stats</h5></li>
                         <li class="collection-item avatar">
                             <i class="mdi-image-grid-on circle cyan accent-4"></i>
-                            <div class="row">      
+                            <div class="row">
                                 <div class="col s12 m9">
-                                    <div class="row">   
+                                    <div class="row">
                                         <div class="col s12">
                                             <span class="title">3x3 Puzzle</span>
                                         </div>
                                     </div>
-                                    <div class="row"> 
-                                        <div class="col s6"> 
+                                    <div class="row">
+                                        <div class="col s6">
                                             <p>Best time: <span class="teal-text text-darken-3">{{{ $userBestTime3x3 }}}</span></p>
-                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $timeRank3x3 }}}</span></p> 
+                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $timeRank3x3 }}}</span></p>
                                         </div>
                                         <div class="col s6">
                                             <p>Least moves: <span class="teal-text text-darken-3">{{{ $userBestMoves3x3 }}}</span></p>
@@ -47,17 +47,17 @@
                         </li>
                         <li class="collection-item avatar">
                             <i class="mdi-image-grid-on circle purple accent-4"></i>
-                            <div class="row">      
+                            <div class="row">
                                 <div class="col s12 m9">
-                                    <div class="row">   
+                                    <div class="row">
                                         <div class="col s12">
                                             <span class="title">4x4 Puzzle</span>
                                         </div>
                                     </div>
-                                    <div class="row"> 
-                                        <div class="col s6"> 
+                                    <div class="row">
+                                        <div class="col s6">
                                             <p>Best time: <span class="teal-text text-darken-3">{{{ $userBestTime4x4 }}}</span></p>
-                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $timeRank4x4 }}}</span></p> 
+                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $timeRank4x4 }}}</span></p>
                                         </div>
                                         <div class="col s6">
                                             <p>Least moves: <span class="teal-text text-darken-3">{{{ $userBestMoves4x4 }}}</span></p>
@@ -74,17 +74,17 @@
                         </li>
                         <li class="collection-item avatar">
                             <i class="mdi-image-grid-on circle pink accent-4"></i>
-                            <div class="row">      
+                            <div class="row">
                                 <div class="col s12 m9">
-                                    <div class="row">   
+                                    <div class="row">
                                         <div class="col s12">
                                             <span class="title">5x5 Puzzle</span>
                                         </div>
                                     </div>
-                                    <div class="row"> 
-                                        <div class="col s6"> 
+                                    <div class="row">
+                                        <div class="col s6">
                                             <p>Best time: <span class="teal-text text-darken-3">{{{ $userBestTime5x5 }}}</span></p>
-                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $timeRank5x5 }}}</span></p> 
+                                            <p>Current rank: <span class="teal-text text-darken-3">{{{ $timeRank5x5 }}}</span></p>
                                         </div>
                                         <div class="col s6">
                                             <p>Least moves: <span class="teal-text text-darken-3">{{{ $userBestMoves5x5 }}}</span></p>
