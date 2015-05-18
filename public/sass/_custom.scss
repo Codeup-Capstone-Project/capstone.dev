@@ -372,11 +372,23 @@ section.hero {
     z-index: -1;
 }
 
+@media #{$medium-and-down} {
+    #main-splash .ninja {
+        right: 30px;
+    }
+}
+
 #main-splash .ninja-star {
     position: absolute;
     left: 225px;
     bottom: 130px;
     z-index: 0;
+}
+
+@media #{$medium-and-down} {
+    #main-splash .ninja-star {
+        left: 30px;
+    }
 }
 
 .splash-tile-num {
@@ -432,6 +444,18 @@ section.hero {
     z-index: -2;
 }
 
+@media #{$medium-and-down} {
+    .hero-tile-large-grid {
+        left: 55px;
+    }
+}
+
+@media #{$small-and-down} {
+    .hero-tile-large-grid {
+        left: -200px;
+    }
+}
+
 .hero-tile-large {
     opacity: .3;
     float: left;
@@ -463,6 +487,18 @@ section.hero {
     left: 750px;
     bottom: 75px;
     z-index: -3;
+}
+
+@media #{$medium-and-down} {
+    .hero-tile-largest-grid {
+        left: 500px;
+    }
+}
+
+@media #{$small-and-down} {
+    .hero-tile-largest-grid {
+        left: 245px;
+    }
 }
 
 .hero-tile-largest {
