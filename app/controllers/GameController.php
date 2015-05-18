@@ -19,32 +19,47 @@ class GameController extends BaseController {
 	public function getGame($id = 1)
 	{
 		return View::make('game')->with(['id'=>$id]);
-
-		$pageToPass = View::make('game')->with(['id'=>$id])->render();
-		return $pageToPass;
 	}
 
-	public function getStats($size)
+	public function getLeaders($size)
 	{
-		$query = Stat::with('user')
-						->with(array('puzzle' => function($query)
-						{
-						    $query->where('size', '=', 3);
+		$query = Stat::with('user', 'puzzle');
 
-						}));
-
-		if (Input::has('search')) {
-			$search = Input::get('search');
-			$query->where('username', 'like', "%$search%");
-		}
+		// if (Input::has('search')) {
+		// 	$search = Input::get('search');
+		// 	$query->where('username', 'like', "%$search%");
+		// }
 
 		$stats = $query	->where('finished_game', '=', 1)
 						->orderBy('game_time')
-						->orderBy('created_at')->take(5)->get();
+						->orderBy('created_at')
+						->get();
 
-
-		return View::make('leader')->with(['stats' => $stats]);
+		return $pageToPass = View::make('leader')->with(['stats' => $stats, 'size' => $size])->render();
+			
 	}
+
+	// public function getStats($size)
+	// {
+	// 	$query = Stat::with('user', 'puzzle');
+	// 					// ->with(array('puzzle' => function($query) use($size)
+	// 					// {
+	// 					//     // $query->where('size', '=', $size);
+
+	// 					// }));
+
+	// 	// if (Input::has('search')) {
+	// 	// 	$search = Input::get('search');
+	// 	// 	$query->where('username', 'like', "%$search%");
+	// 	// }
+
+	// 	$stats = $query	->where('finished_game', '=', 1)
+	// 					->orderBy('game_time')
+	// 					->orderBy('created_at')
+	// 					->get();
+
+	// 	return View::make('leader')->with(['stats' => $stats, 'size' => $size]);
+	// }
 
 	//called from any POST to '/play/stats'
 	public function postStats()
