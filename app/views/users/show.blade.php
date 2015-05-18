@@ -48,7 +48,6 @@
                                                     <p class="grey-text text-darken-1">Current rank: {{{ $movesRank3x3 }}}</p>
                                                 </div>
                                                 <div class="section no-pad-bot">
-                                                    <div class="divider"></div>
                                                     <h6 class="leader-board-link">
                                                         <!-- Modal Trigger -->
                                                         <a id="size3x3" class="modal-trigger cyan-text text-darken-4" href="#leaderModal"><i class="mdi-action-swap-vert-circle"></i> Leader Board</a>
@@ -78,7 +77,6 @@
                                                     <p class="grey-text text-darken-1">Current rank: {{{ $movesRank4x4 }}}</p>
                                                 </div>
                                                 <div class="section no-pad-bot">
-                                                    <div class="divider"></div>
                                                     <h6 class="leader-board-link">
                                                         <!-- Modal Trigger -->
                                                         <a id="size4x4" class="modal-trigger purple-text text-darken-4" href="#leaderModal"><i class="mdi-action-swap-vert-circle"></i> Leader Board</a>
@@ -108,7 +106,6 @@
                                                     <p class="grey-text text-darken-1">Current rank: {{{ $movesRank5x5 }}}</p>
                                                 </div>
                                                 <div class="section no-pad-bot">
-                                                    <div class="divider"></div>
                                                     <h6 class="leader-board-link">
                                                         <!-- Modal Trigger -->
                                                         <a id="size5x5" class="modal-trigger pink-text text-darken-4" href="#leaderModal"><i class="mdi-action-swap-vert-circle"></i> Leader Board</a>
