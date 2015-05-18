@@ -10,14 +10,14 @@
 </script>
 
 <div id="statsList">
-	<h4>{{{ $size }}}x{{{ $size }}} Leader Board</h4>
+	
 	
 	<div class="row"> {{-- start main row --}}
-	<div class="col s12 l8 offset-l2 "> {{-- start main column --}}
-	
-	<input class="search" style="height:36px;" placeholder="Search Rankings" />
-	<button class="btn sort" data-sort="listGameTime">Sort by Time</button>
-	<button class="btn sort" data-sort="listMoves">Sort by Moves</button>
+	<div class="col s12 m8 offset-m2 l6 offset-l3"> {{-- start main column --}}
+	<h4>{{{ $size }}}x{{{ $size }}} Leader Board</h4>
+	<input class="search" placeholder="Search Rankings" />
+	<button class="btn-flat sort" data-sort="listGameTime">Sort by Time</button>
+	<button class="btn-flat sort" data-sort="listMoves">Sort by Moves</button>
 
 	{{-- Pagination Links --}}
 	<div>
@@ -29,7 +29,7 @@
 				@if($stat->puzzle->size == $size)
 					<li class='row collection-item avatar'>
 						<div class="col s1 m1 left-align">
-							<h4 style="margin-top: 12.3px;">{{{ ++$count }}}</h4>
+							<h4>{{{ ++$count }}}</h4>
 						</div>
 						<div class="col s1 m1">
 							{{-- <h5 class="right-align"> --}}
