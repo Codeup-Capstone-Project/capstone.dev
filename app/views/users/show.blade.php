@@ -40,6 +40,8 @@
                                 </div>
                                 <div class="col s12 m3">
                                     <button class="btn waves-effect waves-light level cyan accent-4">Play</button>
+                                    <!-- Modal Trigger -->
+                                    <a id="size3x3" class="waves-effect waves-light btn modal-trigger" href="#leaderModal">Rankings</a>
                                 </div>
                             </div>
                         </li>
@@ -65,6 +67,8 @@
                                 </div>
                                 <div class="col s12 m3">
                                     <button class="btn waves-effect waves-light level purple accent-4">Play</button>
+                                    <!-- Modal Trigger -->
+                                    <a id="size4x4" class="waves-effect waves-light btn modal-trigger" href="#leaderModal">Rankings</a>
                                 </div>
                             </div>
                         </li>
@@ -90,6 +94,8 @@
                                 </div>
                                 <div class="col s12 m3">
                                     <button class="btn waves-effect waves-light level pink accent-4">Play</button>
+                                    <!-- Modal Trigger -->
+                                    <a id="size5x5" class="waves-effect waves-light btn modal-trigger" href="#leaderModal">Rankings</a>
                                 </div>
                             </div>
                         </li>
@@ -97,4 +103,67 @@
                 </div>
             </div>
         </div>
+
+    <!-- Modal Structure -->
+        <div id="leaderModal" class="modal bottom-sheet modal-fixed-footer">
+            <div id="leaderModalContent" class="modal-content">
+                <h4>0x0 Leader Board</h4>
+                <div class="row">
+                    <div class="col s12s">
+                        <div class="preloader-wrapper active">
+                            <div class="spinner-layer spinner-blue">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-red">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-yellow">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+
+                            <div class="spinner-layer spinner-green">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close<i class="small mdi-navigation-cancel"></i></a>
+            </div>
+      </div>
 @stop
