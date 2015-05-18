@@ -185,7 +185,8 @@
                         <h3 class="center">About the Game</h3>
                     </div>
                     <div class="col s12 l6">
-                        <p class="flow-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus doloribus, consequatur numquam quas nihil facilis corporis, quod voluptates possimus! Libero obcaecati possimus, ab, beatae incidunt voluptatum vel, necessitatibus praesentium, adipisci cupiditate aut nobis! Perspiciatis, sit, qui dolorem, illo ab nam vel tempora maxime ea laboriosam, nemo dignissimos dolorum fugiat. Animi.</p>
+                        <p class="flow-text"><span class="name">TyleNinja</span> is sliding tile puzzle game with 3 difficulty levels designed to test your inner focus. Challenge yourself and your friends to achieve the fastest time or fewest moves for each puzzle &mdash; 3x3, 4x4, and 5x5.</p>
+                        <p class="flow-text">Each puzzle is randomly generated. A puzzle is successfully solved when the tiles are arranged in numerical order from left to right starting at the top left corner. Your stats for each puzzle are visible from your profile page, where you may also view leaderboards for each puzzle level.</p>
                     </div>
                     <div class="col s12 center">
                         <a href="#" class="btn-large waves-effect waves-teal blue-grey lighten-5 call">Watch Tutorial</a>
