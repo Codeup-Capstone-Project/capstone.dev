@@ -367,12 +367,22 @@ section.hero {
 
 #main-splash .ninja {
     position: absolute;
-    width: 420px;
-    height: 274px;
     right: 50px;
     bottom: 50px;
-    background-image: url(../img/ninja.png);
     z-index: -1;
+}
+
+#main-splash .ninja-star {
+    position: absolute;
+    left: 225px;
+    bottom: 130px;
+    z-index: 0;
+}
+
+.splash-tile-num {
+    font-size: 1.68rem;
+    line-height: 3.25rem;
+    font-weight: 300;
 }
 
 .hero-tile-grid {
