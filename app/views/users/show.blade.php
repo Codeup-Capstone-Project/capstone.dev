@@ -21,64 +21,12 @@
                                             <h6 class="user-title">{{{ Auth::user()->username }}}</h6>
                                         </div>
                                         <div class="col s12 l4 user-info-col">
+                                            <p>{{{ Auth::user()->first_name }}} {{{ Auth::user()->last_name }}}</p>
                                             <p class="grey-text text-darken-1">{{{ Auth::user()->email }}}</p>
                                             <p class="grey-text">Joined {{{ Auth::user()->created_at }}}</p>
                                         </div>
                                         <div class="col s12 l4 user-info-col edit-profile-link">
-                                            <a href="#!" class="teal-text" id="edit-profile"><i class="mdi-editor-mode-edit"></i> Edit Info</a>
-                                        </div>
-                                        <div class="col s12 l8 offset-l4 hidden" id="edit-view">
-                                            <div class="section no-pad-bot no-marg-top">
-                                                <div class="divider"></div>
-                                                <h6 class="medium">Your Information</h6>
-                                                {{ Form::model(Auth::user(), array('action' => array('UsersController@putUpdate', Auth::user()->id), 'method' => 'PUT')) }}
-                                                  <div class="row">
-                                                    <div class="input-field col s6">
-                                                        {{ Form::label('first_name', 'First Name', ['class' => 'required']) }}
-                                                        {{ Form::text('first_name', Input::old('first_name')) }}
-                                                        {{ $errors->first('first_name', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
-                                                    </div>
-                                                    <div class="input-field col s6">
-                                                        {{ Form::label('last_name', 'Last Name') }}
-                                                        {{ Form::text('last_name', Input::old('last_name')) }}
-                                                        {{ $errors->first('last_name', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
-                                                    </div>
-                                                  </div>
-                                                  <div class="row">
-                                                    <div class="input-field col s12">
-                                                        {{ Form::label('username', 'Username', ['class' => 'required']) }}
-                                                        {{ Form::text('username', Input::old('username')) }}
-                                                        {{ $errors->first('username', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
-                                                    </div>
-                                                  </div>
-                                                  <div class="row">
-                                                    <div class="input-field col s12">
-                                                        {{ Form::label('email', 'Email', ['class' => 'required']) }}
-                                                        {{ Form::email('email', Input::old('email')) }}
-                                                        {{ $errors->first('email', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
-                                                    </div>
-                                                  </div>
-                                                  <div class="row">
-                                                    <div class="input-field col s12">
-                                                        {{ Form::label('password', 'Password', ['class' => 'required']) }}
-                                                        {{ Form::password('password') }}
-                                                        {{ $errors->first('password', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
-                                                    </div>
-                                                  </div>
-                                                  <div class="row">
-                                                    <div class="input-field col s12">
-                                                        {{ Form::label('password_confirmation', 'Confirm Password', ['class' => 'required']) }}
-                                                        {{ Form::password('password_confirmation') }}
-                                                        {{ $errors->first('password_confirmation', '<span class="red-text text-darken-1"><i class="mdi-navigation-expand-less"></i> :message</span>') }}
-                                                    </div>
-                                                  </div>
-                                                  <div class="row">
-                                                    <div class="col s12">
-                                                        <button type="submit" class="btn waves-effect create-button">Update</button>
-                                                    </div>
-                                                  </div>
-                                                {{ Form::close() }}
-                                            </div>
+                                            <a href="{{{ action('UsersController@getEdit', Auth::user()->username) }}}" class="teal-text" id="edit-profile"><i class="mdi-editor-mode-edit"></i> Edit Account</a>
                                         </div>
                                     </div>
                                 </div>

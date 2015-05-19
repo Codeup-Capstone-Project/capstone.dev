@@ -114,9 +114,19 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function getEdit($id)
+	public function getEdit($username)
 	{
-		$user = User::find($id);
+		$user = User::whereUsername($username)->first();
+
+		//if no username is provided in url
+		if(empty($user)){
+			return App::abort(404);
+		}
+
+		//if username provided does not belong to logged in user
+		if(Auth::user()->id != $user->id) {
+			return App::abort(404);
+		}
 
 		return View::make('users.edit', compact('user'));
 	}

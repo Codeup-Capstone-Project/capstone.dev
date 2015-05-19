@@ -35,9 +35,5 @@
             }
         });
 
-        $( "#edit-profile" ).click(function() {
-            $( "#edit-view" ).slideToggle( "fast" );
-        });
-
     }); // end of document ready
 })(jQuery); // end of jQuery name space
