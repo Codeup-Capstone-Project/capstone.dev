@@ -340,6 +340,15 @@ section.hero {
     }
 }
 
+.edit-profile-link {
+    text-align: right;
+}
+
+@media #{$medium-and-down} {
+    .edit-profile-link {
+        text-align: left;
+    }
+}
 
 .profile-avatar {
     width: 42px;
