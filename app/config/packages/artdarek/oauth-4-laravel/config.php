@@ -22,11 +22,18 @@ return array(
 		 * Facebook
 		 */
         'Facebook' => array(
-            'client_id'     => $_ENV['CLIENT_ID'],
-            'client_secret' => $_ENV['CLIENT_SECRET'],
+            'client_id'     => $_ENV['FACEBOOK_ID'],
+            'client_secret' => $_ENV['FACEBOOK_SECRET'],
             'scope'         => array('email'),
         ),		
 
+        /**
+		 * Linkedin
+		 */
+        'Linkedin' => array(
+            'client_id'     => $_ENV['LINKEDIN_ID'],
+            'client_secret' => $_ENV['LINKEDIN_SECRET'],
+        ),
 	)
 
 );
