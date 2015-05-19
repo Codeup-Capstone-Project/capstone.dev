@@ -21,7 +21,7 @@
                                             <h6 class="user-title">{{{ Auth::user()->username }}}</h6>
                                         </div>
                                         <div class="col s12 l4 user-info-col">
-                                            <p>{{{ Auth::user()->first_name }}} {{{ Auth::user()->last_name }}}</p>
+                                            <p>{{{ $first_name }}} {{{ $last_name }}}</p>
                                             <p class="grey-text text-darken-1">{{{ Auth::user()->email }}}</p>
                                             <p class="grey-text">Joined {{{ Auth::user()->created_at }}}</p>
                                         </div>
