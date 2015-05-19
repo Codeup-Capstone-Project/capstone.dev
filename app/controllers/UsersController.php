@@ -159,6 +159,7 @@ class UsersController extends \BaseController {
 
 		if ($validator->fails())
 		{
+			Session::flash('errorMessage', 'Update failed. See errors.');
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
@@ -168,6 +169,7 @@ class UsersController extends \BaseController {
 		$user->email = Input::get('email');
 		$user->save();
 
+		Session::flash('successMessage', 'Account updated successfully.');
 		return Redirect::action('UsersController@getShow', $user->username);
 	}
 
