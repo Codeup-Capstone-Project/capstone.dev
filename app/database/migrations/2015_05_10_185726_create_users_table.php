@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration {
 			$table->string('email')->unique();
 			$table->string('password');
 			$table->string('facebook_id')->nullable();
-			$table->text('profile_photo_url')->nullable();
+			$table->text('profile_photo_url')->default("/img/ninja_avatar.jpg");
 			$table->rememberToken();
 			$table->timestamps();
 		});
