@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Zizaco\Confide\ServiceProvider',
 		'Bbatsche\Entrust\EntrustServiceProvider',
+		'Artdarek\OAuth\OAuthServiceProvider',
 
 	),
 
@@ -192,6 +193,7 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Confide'    		=> 'Zizaco\Confide\Facade',
 		'Entrust' 			=> 'Bbatsche\Entrust\EntrustFacade',
+		'OAuth' 			=> 'Artdarek\OAuth\Facade\OAuth',
 
 	),
 
