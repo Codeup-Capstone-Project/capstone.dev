@@ -49,8 +49,8 @@ Route::get('fb', function() {
 
 	        //Var_dump
 	        //display whole array().
-	        var_dump($result);
-	        var_dump($picture);
+	        // var_dump($result);
+	        // var_dump($picture);
 
 	        // get data from input
 	        $user = [
@@ -71,7 +71,7 @@ Route::get('fb', function() {
 	        // try to login
             // get user from db by facebook_id
             $userExists = User::where( [ 'facebook_id' => $user['facebook_id'] ] )->first();
-            var_dump($userExists);
+            // var_dump($userExists);
 
             // check if user exists
             if ( $userExists ) {
@@ -80,10 +80,10 @@ Route::get('fb', function() {
 
                     // build message with some of the resultant data
                     $message = 'Your unique facebook user id is: ' . $user['facebook_id'] . ' and your name is ' . $user['first_name'];
-
+// dd(Auth::user());
                     // redirect to user profile
-                    return Redirect::route( 'play' )
-                            ->with( 'flash_success', $message );
+                    return Redirect::action( 'GameController@getIndex' );
+                            // ->with( 'flash_success', $message );
 
             } else {
                     // FIRST TIME FB LOGIN
@@ -109,13 +109,13 @@ Route::get('fb', function() {
 
                     // create new user and save it into db
                     $newUser = new User;
-                    $newUser->first_name = strtolower($user['first_name']);
-                    		'last_name' 		=> strtolower($user['last_name']),
-                    		'username' 			=> strtolower($username),
-                    		'email' 			=> $user['email'],
-                            'facebook_id' 		=> $user['facebook_id'],
-                            'profile_photo_url' => $user['profile_photo_url']
-                    ]);
+                    $newUser->first_name  = strtolower($user['first_name']);
+                    $newUser->last_name   = strtolower($user['last_name']);
+                    $newUser->username 	  = strtolower($username);
+                    $newUser->password    = $_ENV['USER_PASS'];
+                    $newUser->email 	  = $user['email'];
+                    $newUser->facebook_id = $user['facebook_id'];
+                    $newUser->profile_photo_url = $user['profile_photo_url'];
                     $newUser->save();
 
                     // login user
@@ -126,9 +126,9 @@ Route::get('fb', function() {
                     $message_notice = 'Account Created.';
 
                     // redirect to home page
-                    return Redirect::route( 'home.index' )
-                            ->with( 'flash_success', $message_success )
-                            ->with( 'flash_notice', $message_notice );
+                    return Redirect::route( "users/show/$username" );
+                            // ->with( 'flash_success', $message_success )
+                            // ->with( 'flash_notice', $message_notice );
 
             }
 
