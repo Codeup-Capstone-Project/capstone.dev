@@ -127,7 +127,7 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function postUpdate($id)
+	public function putUpdate($id)
 	{
 		$user = User::findOrFail($id);
 
@@ -138,9 +138,10 @@ class UsersController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		$data = Input::all();
 		$user->update($data);
 
-		return Redirect::route('users.show');
+		return View::make('users.show')->with($user->username);
 	}
 
 	/**
