@@ -17,7 +17,7 @@
                                 <div class="col s12">
                                     <div class="user collection no-marg-top">
                                         <div class="col s12 l4">
-                                            <img src="/img/justin.jpg" alt="" class="circle profile-avatar">
+                                            <img src="/img/ninja_avatar.jpg" alt="" class="circle profile-avatar">
                                             <h6 class="user-title">{{{ Auth::user()->username }}}</h6>
                                         </div>
                                         <div class="col s12 l4 user-info-col">
