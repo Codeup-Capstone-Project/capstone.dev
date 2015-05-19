@@ -59,7 +59,6 @@
 				<button class="modal-action modal-close white-text btn-floating waves-effect waves-light"><i class="mdi-navigation-close white-text"></i></button>
 			</div>
 			<h2 class="white-text you-win">You win!</h2>
-			{{-- <img src="/img/ninja.png" alt="TyleNinja" class="modal-img"> --}}
 		</div>
 	</div>
 @stop
