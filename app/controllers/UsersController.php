@@ -61,6 +61,7 @@ class UsersController extends \BaseController {
 		$user->username   = Input::get('username');
 		$user->email      = Input::get('email');
 		$user->password   = Input::get('password');
+		$user->profile_photo_url = "/img/ninja_avatar.jpg";
 		$user->save();
 
 		$id = $user->id;

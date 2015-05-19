@@ -21,7 +21,10 @@ class CreateUsersTable extends Migration {
 			$table->string('email')->unique();
 			$table->string('password');
 			$table->string('facebook_id')->nullable();
+			$table->string('linkedin_id')->nullable();
 			$table->text('profile_photo_url')->nullable();
+			$table->string('facebook_profile_url')->nullable();
+			$table->string('linkedin_profile_url')->nullable();
 			$table->rememberToken();
 			$table->timestamps();
 		});
