@@ -675,3 +675,11 @@ section.hero {
         padding-right: .75rem;
     }
 }
+
+.btn-floating.level {
+    @extend .z-depth-2;
+}
+
+.btn-floating.level:hover {
+    @extend .z-depth-1;
+}
