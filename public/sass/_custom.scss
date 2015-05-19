@@ -272,7 +272,7 @@ section.hero {
     background-color: transparent;
     padding: 0;
     max-height: 70%;
-    width: 100%;
+    width: 50%;
     margin: auto;
     overflow-y: visible;
     z-index: 1000;
@@ -286,6 +286,12 @@ section.hero {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+}
+
+@media #{$small-and-down} {
+    .modal.game-modal {
+        width: 100%;
+    }
 }
 
 .you-win {
