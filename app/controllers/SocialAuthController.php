@@ -3,6 +3,34 @@
 class SocialAuthController extends BaseController {
 
 
+    private static function createUsername($user)
+    {
+        // only allow first 12 letters of last name
+        $lastnameArray = str_split($user['last_name']);
+        $lastnameArray = array_slice($lastnameArray, 0, 12);
+        $lastname = implode($lastnameArray);
+        // get the first letter of first name
+        $firstnameArray = str_split($user['first_name']);
+        $firstLetter = array_shift($firstnameArray);
+        // concatinate first letter of first name to their last name
+        $username = $firstLetter . $lastname;
+
+        // check if it already exists in database
+        $usernameExists = User::where([ 'username' => $username ])->first();
+
+        // if it does, append an incrementing number to the back and keep checking 
+        if ($usernameExists) {
+            $suffix = 2;
+            do {
+                $username = $username . $suffix;
+                $usernameExists = User::where([ 'username' => $username ])->first();
+                $suffix++;
+            } while($usernameExists);
+        }
+        return $username;
+    }
+
+
 	public function loginWithLinkedin() 
 	{
 
@@ -49,39 +77,18 @@ class SocialAuthController extends BaseController {
 
             // check if user exists
             if ( $userExists ) {
-                    // login user
-                    Auth::login( $userExists );
+                // login user
+                Auth::login( $userExists );
 
-                    // redirect to user profile
-                    Session::flash('successMessage', 'Account created successfully.');
-                    return Redirect::action( 'GameController@getIndex' );
+                // redirect to game page
+                Session::flash('successMessage', 'Account created successfully.');
+                return Redirect::action( 'GameController@getIndex' );
 
             } else {
                     // FIRST TIME LinkedIn LOGIN
 
                     // create a unique username for them
-                    // only allow first 12 letters of last name
-                    $lastnameArray = str_split($user['last_name']);
-                    $lastnameArray = array_slice($lastnameArray, 0, 12);
-                    $lastname = implode($lastnameArray);
-                    // get the first letter of first name
-                    $firstnameArray = str_split($user['first_name']);
-                    $firstLetter = array_shift($firstnameArray);
-                    // concatinate first letter of first name to their last name
-                    $username = $firstLetter . $lastname;
-
-                    // check if it already exists in database
-                    $usernameExists = User::where([ 'username' => $username ])->first();
-
-                    // if it does, append an incrementing number to the back and keep checking 
-                    if ($usernameExists) {
-                        $suffix = 2;
-                        do {
-                            $username = $username . $suffix;
-                            $usernameExists = User::where([ 'username' => $username ])->first();
-                            $suffix++;
-                        } while($usernameExists);
-                    }
+                    $username = self::createUsername($user);
 
                     // create new user and save it into db
                     $newUser = new User;
@@ -99,6 +106,7 @@ class SocialAuthController extends BaseController {
                     Auth::login( $newUser );
 
                     // redirect to game page
+                    Session::flash('successMessage', 'Account created successfully.');
                     return Redirect::action( 'GameController@getIndex' );
             }
 
@@ -169,38 +177,19 @@ class SocialAuthController extends BaseController {
 
             // check if user exists
             if ( $userExists ) {
-                    // login user
-                    Auth::login( $userExists );
+                // login user
+                // login user
+                Auth::login( $userExists );
 
-                    // redirect to user profile
-                    return Redirect::action( 'GameController@getIndex' );
+                // redirect to game page
+                Session::flash('successMessage', 'Account created successfully.');
+                return Redirect::action( 'GameController@getIndex' );
 
             } else {
                     // FIRST TIME FB LOGIN
 
             		// create a unique username for them
-                    // only allow first 12 letters of last name
-                    $lastnameArray = str_split($user['last_name']);
-                    $lastnameArray = array_slice($lastnameArray, 0, 12);
-                    $lastname = implode($lastnameArray);
-                    // get the first letter of first name
-                    $firstnameArray = str_split($user['first_name']);
-                    $firstLetter = array_shift($firstnameArray);
-                    // concatinate first letter of first name to their last name
-                    $username = $firstLetter . $lastname;
-
-            		// check if it already exists in database
-            		$usernameExists = User::where([ 'username' => $username ])->first();
-
-            		// if it does, append an incrementing number to the back and keep checking 
-            		if ($usernameExists) {
-            			$suffix = 2;
-            			do {
-            				$username = $username . $suffix;
-            				$usernameExists = User::where([ 'username' => $username ])->first();
-            				$suffix++;
-            			} while($usernameExists);
-            		}
+                    $username = self::createUsername($user);
 
                     // create new user and save it into db
                     $newUser = new User;
