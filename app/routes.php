@@ -21,6 +21,43 @@ Route::get('logout', 'HomeController@logout');
 
 Route::controller('play', 'GameController');
 
+Route::get('in', function() {
+        // public function loginWithLinkedin() {
+
+        // get data from input
+        $code = Input::get( 'code' );
+
+        $linkedinService = OAuth::consumer( 'Linkedin' );
+
+
+        if ( !empty( $code ) ) {
+
+            // This was a callback request from linkedin, get the token
+            $token = $linkedinService->requestAccessToken( $code );
+            // Send a request with it. Please note that XML is the default format.
+            $result = json_decode($linkedinService->request('/people/~?format=json'), true);
+
+            // Show some of the resultant data
+            echo 'Your linkedin first name is ' . $result['firstName'] . ' and your last name is ' . $result['lastName'] . "<br/>";
+
+
+            //Var_dump
+            //display whole array().
+            dd($result);
+
+        }// if not ask for permission first
+        else {
+            // get linkedinService authorization
+            $url = $linkedinService->getAuthorizationUri(array('state'=>'DCEEFWF45453sdffef424'));
+
+            // return to linkedin login url
+            return Redirect::to( (string)$url );
+        }
+
+
+    // }
+});
+
 Route::get('fb', function() {
 	// public function loginWithFacebook()
 	// {
@@ -80,7 +117,7 @@ Route::get('fb', function() {
 
                     // build message with some of the resultant data
                     $message = 'Your unique facebook user id is: ' . $user['facebook_id'] . ' and your name is ' . $user['first_name'];
-// dd(Auth::user());
+
                     // redirect to user profile
                     return Redirect::action( 'GameController@getIndex' );
                             // ->with( 'flash_success', $message );
@@ -142,4 +179,5 @@ Route::get('fb', function() {
 	    }
 	// }
 });
+
 
