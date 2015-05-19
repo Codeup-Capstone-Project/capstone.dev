@@ -126,7 +126,7 @@ Route::get('fb', function() {
                     $message_notice = 'Account Created.';
 
                     // redirect to home page
-                    return Redirect::route( "users/show/$username" );
+                    return Redirect::action( 'GameController@getIndex' );
                             // ->with( 'flash_success', $message_success )
                             // ->with( 'flash_notice', $message_notice );
 
