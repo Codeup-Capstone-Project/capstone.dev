@@ -22,8 +22,8 @@ return array(
 		 * Facebook
 		 */
         'Facebook' => array(
-            'client_id'     => '390030371181698',
-            'client_secret' => 'dad52550467aa9cdab75d0e31d902d49',
+            'client_id'     => $_ENV['CLIENT_ID'],
+            'client_secret' => $_ENV['CLIENT_SECRET'],
             'scope'         => array('email'),
         ),		
 
