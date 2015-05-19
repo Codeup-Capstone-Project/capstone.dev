@@ -19,7 +19,7 @@ class SocialAuthController extends BaseController {
             // Send a request with it. Please note that XML is the default format.
             $result = json_decode($linkedinService->request('/people/~:(id,first-name,last-name,headline,member-url-resources,picture-urls::(original),location,public-profile-url,email-address)?format=json'), true);
 
-            // Show some of the resultant data
+            // For testing: show some of the resultant data
             // echo 'Your linkedin first name is ' . $result['firstName'] . 
             //     ' and your last name is ' . $result['lastName'] . 
             //     ' and your email is ' . $result['emailAddress'] .
@@ -41,13 +41,7 @@ class SocialAuthController extends BaseController {
                     'profile_url'        => $result['publicProfileUrl']
             ];
 
-            // for testing:
-            // $message = 'Your unique facebook user id is: ' . $user['facebook_id'] . PHP_EOL . 
-            //          ' your email is ' . $user['email'] . PHP_EOL .
-            //          ' your name is ' . $user['first_name'] . ' ' . $user['last_name'] . 
-            //          ' and the url to your profile photo is ' . $user['profile_photo_url'];
-            // echo $message. "<br/>";
-
+            
             // try to login
             // get user from db by facebook_id
             $userExists = User::where( [ 'linkedin_id' => $user['linkedin_id'] ] )->first();
@@ -58,12 +52,9 @@ class SocialAuthController extends BaseController {
                     // login user
                     Auth::login( $userExists );
 
-                    // build message with some of the resultant data
-                    // $message = 'Your unique facebook user id is: ' . $user['facebook_id'] . ' and your name is ' . $user['first_name'];
-
                     // redirect to user profile
+                    Session::flash('successMessage', 'Account created successfully.');
                     return Redirect::action( 'GameController@getIndex' );
-                            // ->with( 'flash_success', $message );
 
             } else {
                     // FIRST TIME LinkedIn LOGIN
@@ -107,22 +98,12 @@ class SocialAuthController extends BaseController {
                     // login user
                     Auth::login( $newUser );
 
-                    // build message with some of the resultant data
-                    // $message_success = 'Your unique facebook user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-                    // $message_notice = 'Account Created.';
-
                     // redirect to game page
                     return Redirect::action( 'GameController@getIndex' );
-                            // ->with( 'flash_success', $message_success )
-                            // ->with( 'flash_notice', $message_notice );
-
             }
 
-
-
-
-        }// if not ask for permission first
-        else {
+        } else {
+        	// if not ask for permission first
             // get linkedinService authorization
             $url = $linkedinService->getAuthorizationUri(array('state'=>'DCEEFWF45453sdffef424'));
 
@@ -173,12 +154,13 @@ class SocialAuthController extends BaseController {
                     'profile_url'       => $result['link']
 	        ];
 
-	        // for testing:
+	        // For testing: show some resultant data
 	        // $message = 'Your unique facebook user id is: ' . $user['facebook_id'] . PHP_EOL . 
 	        // 			' your email is ' . $user['email'] . PHP_EOL .
 	        // 			' your name is ' . $user['first_name'] . ' ' . $user['last_name'] . 
 	        // 			' and the url to your profile photo is ' . $user['profile_photo_url'];
 	        // echo $message. "<br/>";
+
 
 	        // try to login
             // get user from db by facebook_id
@@ -190,12 +172,8 @@ class SocialAuthController extends BaseController {
                     // login user
                     Auth::login( $userExists );
 
-                    // build message with some of the resultant data
-                    // $message = 'Your unique facebook user id is: ' . $user['facebook_id'] . ' and your name is ' . $user['first_name'];
-
                     // redirect to user profile
                     return Redirect::action( 'GameController@getIndex' );
-                            // ->with( 'flash_success', $message );
 
             } else {
                     // FIRST TIME FB LOGIN
@@ -239,15 +217,9 @@ class SocialAuthController extends BaseController {
                     // login user
                     Auth::login( $newUser );
 
-                    // build message with some of the resultant data
-                    // $message_success = 'Your unique facebook user id is: ' . $result['id'] . ' and your name is ' . $result['name'];
-                    // $message_notice = 'Account Created.';
-
                     // redirect to game page
+                    Session::flash('successMessage', 'Account created successfully.');
                     return Redirect::action( 'GameController@getIndex' );
-                            // ->with( 'flash_success', $message_success )
-                            // ->with( 'flash_notice', $message_notice );
-
             }
 
 	    } else {
