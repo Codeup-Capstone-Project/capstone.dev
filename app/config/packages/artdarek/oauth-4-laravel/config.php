@@ -33,6 +33,7 @@ return array(
         'Linkedin' => array(
             'client_id'     => $_ENV['LINKEDIN_ID'],
             'client_secret' => $_ENV['LINKEDIN_SECRET'],
+            'scope'         => array('r_emailaddress', 'r_basicprofile'),
         ),
 	)
 
