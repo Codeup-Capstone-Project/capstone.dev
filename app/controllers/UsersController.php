@@ -56,8 +56,8 @@ class UsersController extends \BaseController {
 		}
 
 		$user = new User();
-		$user->first_name = Input::get('first_name');
-		$user->last_name  = Input::get('last_name');
+		$user->first_name = strtolower(Input::get('first_name'));
+		$user->last_name  = strtolower(Input::get('last_name'));
 		$user->username   = Input::get('username');
 		$user->email      = Input::get('email');
 		$user->password   = Input::get('password');
@@ -90,8 +90,13 @@ class UsersController extends \BaseController {
 			return App::abort(404);
 		}
 
+		$first_name = ucfirst($user->first_name);
+		$last_name = ucfirst($user->last_name);
+
 		$data = [
 			"user"			   => $user,
+			"first_name"       => $first_name,
+			"last_name"        => $last_name,
 			"userBestTime3x3"  => $user->bestTime(3),
 			"userBestTime4x4"  => $user->bestTime(4),
 			"userBestTime5x5"  => $user->bestTime(5),
@@ -128,7 +133,16 @@ class UsersController extends \BaseController {
 			return App::abort(404);
 		}
 
-		return View::make('users.edit', compact('user'));
+		$first_name = ucfirst($user->first_name);
+		$last_name = ucfirst($user->last_name);
+
+		$data = [
+			"user" 		 => $user,
+			"first_name" => $first_name,
+			"last_name"  => $last_name
+		];
+
+		return View::make('users.edit')->with($data);
 	}
 
 	/**
@@ -141,17 +155,22 @@ class UsersController extends \BaseController {
 	{
 		$user = User::findOrFail($id);
 
-		$validator = Validator::make($data = Input::all(), User::$rules);
+		$validator = Validator::make($data = Input::all(), User::updateRules($user->id));
 
 		if ($validator->fails())
 		{
+			Session::flash('errorMessage', 'Update failed. See errors.');
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-		$data = Input::all();
-		$user->update($data);
+		$user->first_name = Input::get('first_name');
+		$user->last_name = Input::get('last_name');
+		$user->username = Input::get('username');
+		$user->email = Input::get('email');
+		$user->save();
 
-		return View::make('users.show')->with($user->username);
+		Session::flash('successMessage', 'Account updated successfully.');
+		return Redirect::action('UsersController@getShow', $user->username);
 	}
 
 	/**

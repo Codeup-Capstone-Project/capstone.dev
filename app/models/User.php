@@ -24,6 +24,18 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
 
 	// rules for creating a user or logging in
+	public static function updateRules ($id = 0, $merge = [])
+	{
+		return array_merge(
+			[
+				'first_name'            => 'required|alpha',
+				'last_name'			    => 'alpha',
+		        'email'                 => 'required|email|unique:users,email' . ($id ? ",$id" : ''),
+		        'username'              => 'required|alpha_num|min:3|max:15|unique:users,username' . ($id ? ",$id" : '')
+			],
+			$merge);
+	}
+
 	public static $rules = [
 		'first_name'            => 'required|alpha',
 		'last_name'			    => 'alpha',
@@ -66,7 +78,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 		//return value of first array element, or FALSE if the array is empty.
 		return reset($userBestTime);
-		
+
 	}
 
 	//get an array of all user's game moves for particular size of puzzle
@@ -79,10 +91,10 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 								->where('finished_game', '=', 1)
 								->orderBy('moves')
 								->lists('moves');
-		
+
 		//return value of first array element, or FALSE if the array is empty.
 		return reset($userBestMoves);
-		
+
 	}
 
 	public function rankTime($size)
@@ -96,11 +108,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 							->select('users.id as _id' )
 							->lists('_id');
 
-		//loop through the array and find the first instance of the user					
+		//loop through the array and find the first instance of the user
 		foreach($rankings as $index => $user_id){
 			if($user_id == $this->id) {
 				return $index + 1;
-			} 
+			}
 		}
 		return false;
 	}
@@ -116,11 +128,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 							->select('users.id as _id' )
 							->lists('_id');
 
-		//loop through the array and find the first instance of the user					
+		//loop through the array and find the first instance of the user
 		foreach($rankings as $index => $user_id){
 			if($user_id == $this->id) {
 				return $index + 1;
-			} 
+			}
 		}
 		return false;
 	}
