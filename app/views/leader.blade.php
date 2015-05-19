@@ -9,57 +9,44 @@
 	});
 </script>
 
-<div id="statsList">
-	
-	
-	<div class="row"> {{-- start main row --}}
+<div id="statsList" class="row"> {{-- start main row --}}
 	<div class="col s12 m8 offset-m2 l6 offset-l3"> {{-- start main column --}}
-	<h4>{{{ $size }}}x{{{ $size }}} Leader Board</h4>
-	<input class="search" placeholder="Search Rankings" />
-	<button class="btn-flat sort" data-sort="listGameTime">Sort by Time</button>
-	<button class="btn-flat sort" data-sort="listMoves">Sort by Moves</button>
+		<h4>{{{ $size }}}x{{{ $size }}} Leader Board</h4>
+		<input class="search" placeholder="Search Rankings" />
+		<button class="btn-flat sort" data-sort="listGameTime">Sort by Time</button>
+		<button class="btn-flat sort" data-sort="listMoves">Sort by Moves</button>
 
-	{{-- Pagination Links --}}
-	<div>
-		{{-- {{ $stats->links() }} --}}
-	</div>
-	<?php $count = 0; ?>
-	<ul class="list collection">
-		@foreach($stats as $stat) 
-				@if($stat->puzzle->size == $size)
-					<li class='row collection-item avatar'>
-						<div class="col s1 m1 left-align">
-							<h4>{{{ ++$count }}}</h4>
-						</div>
-						<div class="col s1 m1">
-							{{-- <h5 class="right-align"> --}}
-								<img class="userAvatar" src="/img/jamie.jpg">
-							{{-- </h5> --}}
-						</div>
-						<div class="col s10 m10">
-							<div class="row valign-wrapper">
-								<div class='col s12 m4'>
-									<h5 class="listUsername">{{{ $stat->user->username }}}</h5>
-									<p>Puzzle# <span class="puzzleNumber">{{{ $stat->puzzle->id }}}<span></p>
-									<p>Finished in: <span class="listGameTime">{{{ $stat->game_time }}}</span></p>
-									<p>With: <span class="listMoves">{{{ $stat->moves }}} moves</span></p>
-									<p>{{{ $stat->updated_at }}}</p>
-								</div>
-								<div class="col s12 m6 center">
-									<button type="button" class="btn directToPuzzle" data-value="{{{ $stat->puzzle->id }}}">Play Same Puzzle</button>
-								</div>
+		<?php $count = 0; ?>
+
+		<ul class="list card-panel white">  {{-- style="border:1px solid #ddd;" --}}
+			@foreach($stats as $stat) 
+					@if($stat->puzzle->size == $size)
+						<li class='row' style="margin-bottom:0px;">
+							<div class="col s2 m1 left-align">
+								<h4>{{{ ++$count }}}</h4>
 							</div>
-						</div>
-					</li>
-				@endif
-		@endforeach
-	</ul>
+							<div class="col s3 m2 right-align">
+									<img class="userAvatar" src="/img/jamie.jpg">
+							</div>
+							<div class="col s7 m9">
+								<h5 class="listUsername medium">{{{ $stat->user->username }}}</h5>
+								<p class="no-margin-bot" style="margin: 0px;" class="grey-text text-darken-1">Puzzle# <span class="puzzleNumber">{{{ $stat->puzzle->id }}}<span></p>
+								<p class="no-margin-bot" style="margin: 0px;" class="grey-text text-darken-1">Finished in: <span class="listGameTime">{{{ $stat->game_time }}}</span></p>
+								<p class="no-margin-bot" style="margin: 0px;" class="grey-text text-darken-1">With: <span class="listMoves">{{{ $stat->moves }}} moves</span></p>
+								<p class="grey-text text-lighten-1">{{{ $stat->updated_at }}}</p>
+							</div>
+							<div class="col s12 m12 l6 offset-l6 center">
+								<button type="button" class="btn directToPuzzle" data-value="{{{ $stat->puzzle->id }}}">Play Same Puzzle</button>
+							</div>
+						</li>
+						<div class="divider" style="margin-top:10px;"></div>
+					@endif
+			@endforeach
+		</ul>
 	</div> {{-- end main column --}}
-	</div> {{-- end main row --}}
+</div> {{-- end main row --}}
 
-	{{-- Pagination Links --}}
-	<div>
-		{{-- {{ $stats->links() }} --}}
-	</div>
-</div>
+{{-- grey lighten-5 for background color of modal--}}
+
+
 
