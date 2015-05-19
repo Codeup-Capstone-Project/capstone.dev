@@ -135,7 +135,6 @@
     <!-- Modal Structure -->
         <div id="leaderModal" class="modal bottom-sheet modal-fixed-footer">
             <div id="leaderModalContent" class="modal-content">
-                <h4>0x0 Leader Board</h4>
                 <div class="row">
                     <div class="col s12s">
                         <div class="preloader-wrapper active">
@@ -191,7 +190,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close<i class="small mdi-navigation-cancel"></i></a>
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close&nbsp;<i class="small mdi-navigation-cancel right"></i></a>
             </div>
       </div>
 @stop
