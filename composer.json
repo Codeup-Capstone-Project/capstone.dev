@@ -10,7 +10,8 @@
 		"zizaco/confide": "~4.3@dev",
 		"bbatsche/entrust": "~2.0",
 		"esensi/model": "0.3.*",
-		"artdarek/oauth-4-laravel": "dev-master"
+		"artdarek/oauth-4-laravel": "dev-master",
+		"mandrill/mandrill": "1.0.*"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "1.8.*",

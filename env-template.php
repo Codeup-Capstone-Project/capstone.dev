@@ -9,5 +9,6 @@
   		'FACEBOOK_ID' => '',
   		'FACEBOOK_SECRET' => '',
   		'LINKEDIN_ID' => '',
-  		'LINKEDIN_SECRET' => ''
+  		'LINKEDIN_SECRET' => '',
+      'MANDRILL_KEY' => ''
   	);
