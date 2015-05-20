@@ -26,7 +26,7 @@
 								<h4>{{{ ++$count }}}</h4>
 							</div>
 							<div class="col s3 m2 right-align">
-									<img class="userAvatar" src="/img/jamie.jpg">
+									<img class="userAvatar" src="{{{ $stat->user->profile_photo_url }}}">
 							</div>
 							<div class="col s7 m9">
 								<h5 class="listUsername medium">{{{ $stat->user->username }}}</h5>

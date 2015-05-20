@@ -10,9 +10,9 @@ class GameController extends BaseController {
 	}
 
 	//called from url: capstone.dev/play/{$size}
-	public function getIndex($size = 0)
+	public function getIndex($size = NULL)
 	{
-		$initialPositions = "false";
+		$initialPositions = false;
 		return View::make('game')->with(['size' => $size, 'initialPositions' => $initialPositions]);
 	}
 
@@ -45,28 +45,6 @@ class GameController extends BaseController {
 		return $pageToPass = View::make('leader')->with(['stats' => $stats, 'size' => $size])->render();
 			
 	}
-
-	// public function getStats($size)
-	// {
-	// 	$query = Stat::with('user', 'puzzle');
-	// 					// ->with(array('puzzle' => function($query) use($size)
-	// 					// {
-	// 					//     // $query->where('size', '=', $size);
-
-	// 					// }));
-
-	// 	// if (Input::has('search')) {
-	// 	// 	$search = Input::get('search');
-	// 	// 	$query->where('username', 'like', "%$search%");
-	// 	// }
-
-	// 	$stats = $query	->where('finished_game', '=', 1)
-	// 					->orderBy('game_time')
-	// 					->orderBy('created_at')
-	// 					->get();
-
-	// 	return View::make('leader')->with(['stats' => $stats, 'size' => $size]);
-	// }
 
 	//called from any POST to '/play/stats'
 	public function postStats()
