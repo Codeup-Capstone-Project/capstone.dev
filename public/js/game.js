@@ -33,10 +33,25 @@ $.ajaxSetup({
 				"initialBlockPositions": initialBlockPositions
 			};
 
-			//if the user got to game from profile "play" buttons, get the size they chose
+			//if the user got to game from leaderboard or profile "play" buttons, 
+			//see if they chose a specific puzzle or just a size, then render game accordingly
 			var sizeChoiceFromProfile = $("#gameBoard").data('size');
-			
-			if(sizeChoiceFromProfile == 3 || sizeChoiceFromProfile == 4 || sizeChoiceFromProfile == 5) {
+			var arrayString = $("#playSameGame").data('positions');
+
+			if(arrayString !== "false") {
+				$(".blocks").remove();
+	    		puzzleSize = parseInt(sizeChoiceFromProfile);
+	    		setBlockDimensions();
+	    		totalBlocks = puzzleSize * puzzleSize;
+	    		cells = [];
+	    		positionArray = arrayString.split(',');
+	    		initialBlockPositions = positionArray;
+	    		randomPositionGenerator();
+	    		postInitialData();
+	    		$(".level").addClass('hidden');
+				$("#start, #cancel, .ready").removeClass('hidden');
+
+			} else if(sizeChoiceFromProfile == 3 || sizeChoiceFromProfile == 4 || sizeChoiceFromProfile == 5) {
 				$(".blocks").remove();
 	    		puzzleSize = parseInt(sizeChoiceFromProfile);
 	    		setBlockDimensions();
