@@ -12,23 +12,30 @@ class GameController extends BaseController {
 	//called from url: capstone.dev/play/{$size}
 	public function getIndex($size = 0)
 	{
-		return View::make('game')->with(['size' => $size]);
+		$initialPositions = "false";
+		return View::make('game')->with(['size' => $size, 'initialPositions' => $initialPositions]);
 	}
 
 	//called from url: capstone.dev/play/game/{$id?}
-	public function getGame($id = 1)
+	public function getGame($id = NULL)
 	{
-		return View::make('game')->with(['id'=>$id]);
+		$puzzle = Puzzle::find($id);
+
+		if (!$puzzle){
+			return App::abort(404);
+		}
+
+		$initialPositions = $puzzle->initial_block_positions;
+		$unserializedPositions = unserialize($initialPositions);
+		$arrayString = implode(',', $unserializedPositions);
+		$size = $puzzle->size;
+
+		return View::make('game')->with(['initialPositions' => $arrayString, 'size' => $size]);
 	}
 
 	public function getLeaders($size)
 	{
 		$query = Stat::with('user', 'puzzle');
-
-		// if (Input::has('search')) {
-		// 	$search = Input::get('search');
-		// 	$query->where('username', 'like', "%$search%");
-		// }
 
 		$stats = $query	->where('finished_game', '=', 1)
 						->orderBy('game_time')
