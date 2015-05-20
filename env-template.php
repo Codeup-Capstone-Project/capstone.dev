@@ -10,5 +10,6 @@
   		'FACEBOOK_SECRET' => '',
   		'LINKEDIN_ID' => '',
   		'LINKEDIN_SECRET' => '',
-      'MANDRILL_KEY' => ''
+      'MANDRILL_USER' => '',
+      'MANDRILL_PASS' => ''
   	);

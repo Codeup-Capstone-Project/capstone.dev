@@ -67,8 +67,18 @@ class UsersController extends \BaseController {
 		$id = $user->id;
 
 		Auth::loginUsingId($id);
-
 		Session::flash('successMessage', 'Account created successfully.');
+
+		$first_name = $user->first_name;
+		$email = $user->email;
+		Mail::send('emails.welcome', array('first_name' => $first_name),
+			function($message) use($email, $first_name)
+			{
+				$message->from('us@example.com', 'TyleNinja');
+			    $message->to($email, $first_name)->subject('Welcome to TyleNinja!');
+			}
+		);
+
 		return Redirect::action('HomeController@showHome');
 	}
 
