@@ -45,7 +45,10 @@
 			</div>
     		<div class="col s12 m7 l5">
     			<div class="card-panel blue-grey lighten-5 z-depth-2">
-	    			<div id='gameBoard' data-size="{{{ $size }}}"></div>
+	    			<div id='gameBoard' data-size="{{{ $size }}}">
+	    				<img id='chooseLevel' class="hidden" src="/img/ninja_placeholder.jpg">
+    					<img id='whenReady' class="hidden" src="/img/ninja_placeholder_start.jpg">
+	    			</div>
 	    			<div id='playSameGame' data-positions="{{{ $initialPositions }}}"></div>
     			</div>
     		</div>
