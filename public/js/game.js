@@ -11,6 +11,12 @@ $.ajaxSetup({
 			//set gameBoard height to same as width, then retrieve it
 			var boardHeight = $("#gameBoard").innerHeight(boardWidth);
 				boardHeight = $("#gameBoard").innerHeight();
+			//set placeholder images' dimensions
+			$("#chooseLevel").height(boardHeight);
+			$("#chooseLevel").width(boardWidth);
+			$("#chooseLevel").removeClass('hidden');
+			$("#whenReady").height(boardHeight);
+			$("#whenReady").width(boardWidth);
 
 		//====================== Begin Game =========================
 
@@ -38,6 +44,8 @@ $.ajaxSetup({
 			var sizeChoiceFromProfile = $("#gameBoard").data('size');
 			var arrayString = $("#playSameGame").data('positions');
 
+			//if the user came from leaderboard, load the specific position array
+			//of the game they clicked
 			if(arrayString) {
 				$(".blocks").remove();
 	    		puzzleSize = parseInt(sizeChoiceFromProfile);
@@ -48,9 +56,11 @@ $.ajaxSetup({
 	    		initialBlockPositions = positionArray;
 	    		randomPositionGenerator();
 	    		postInitialData();
-	    		$(".level").addClass('hidden');
-				$("#start, #cancel, .ready").removeClass('hidden');
+	    		$(".level, #chooseLevel").addClass('hidden');
+				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
 
+
+				//if the user came from profile, load the size they chose
 			} else if(sizeChoiceFromProfile == 3 || sizeChoiceFromProfile == 4 || sizeChoiceFromProfile == 5) {
 				$(".blocks").remove();
 	    		puzzleSize = parseInt(sizeChoiceFromProfile);
@@ -60,8 +70,8 @@ $.ajaxSetup({
 	    		initialBlockPositions = [];
 	    		randomPositionGenerator();
 	    		postInitialData();
-	    		$(".level").addClass('hidden');
-				$("#start, #cancel, .ready").removeClass('hidden');
+	    		$(".level, #chooseLevel").addClass('hidden');
+				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
 			}
 
 	    //====================== Buttons =========================
@@ -76,8 +86,8 @@ $.ajaxSetup({
 	    		initialBlockPositions = [];
 	    		randomPositionGenerator();
 	    		postInitialData();
-	    		$(".level").addClass('hidden');
-				$("#start, #cancel, .ready").removeClass('hidden');
+	    		$(".level, #chooseLevel").addClass('hidden');
+				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
 	    	});
 
 	    	// Easy Level Button for Demo-day
@@ -89,8 +99,8 @@ $.ajaxSetup({
 	    		cells = [];
 	    		initialBlockPositions = [1, 2, 3, 4, 0, 5, 7, 8, 6];
 	    		postInitialData();
-	    		$(".level").addClass('hidden');
-				$("#start, #cancel, .ready").removeClass('hidden');
+	    		$(".level, #chooseLevel").addClass('hidden');
+				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
 	    	});
 
 
@@ -101,15 +111,13 @@ $.ajaxSetup({
 	    		timer();
 	    		startGame();
 	    		$(".hiya").removeClass('hidden');
-	    		$(".ready, #cancel").addClass('hidden');
+	    		$(".ready, #cancel, #whenReady").addClass('hidden');
 	    	});
 
 	    	// Cancel Selection
 	    	$("#cancel").on('click', function(){
-	    		$('#cancel').addClass('hidden');
-	    		$("#start").addClass('hidden');
-	    		$(".level").removeClass('hidden');
-				$("#start, #cancel, .ready").addClass('hidden');
+	    		$(".level, #chooseLevel").removeClass('hidden');
+				$("#start, #cancel, .ready, #whenReady").addClass('hidden');
 	    	});
 
 	    	// Reset game button
@@ -140,10 +148,8 @@ $.ajaxSetup({
 	    		milliseconds = 0, seconds = 0, minutes = 0, hours = 0;
 	    		$("#timer").text("00:00:00:00");
 	    		$(".blocks").remove();
-	    		$(".btn, .btn-floating, .ready").addClass('hidden');
-	    		$(".level").removeClass('hidden');
-	    		$(".again").addClass('hidden');
-	    		$('.hiya').addClass('hidden');
+	    		$(".btn, .btn-floating, .ready, .again, .hiya").addClass('hidden');
+	    		$(".level, #chooseLevel").removeClass('hidden');
 	    	});
 
 
