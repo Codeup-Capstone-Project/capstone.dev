@@ -5,7 +5,8 @@ $.ajaxSetup({
 	$(document).ready(function(){
 
 		//================ Determine GameBoard Dimensions ===============
-			//get gameBoard width on page load
+			
+			//get gameBoard width on page load, which will be 100% of its column width
 			var boardWidth = $("#gameBoard").innerWidth();
 			//set gameBoard height to same as width, then retrieve it
 			var boardHeight = $("#gameBoard").innerHeight(boardWidth);
@@ -32,6 +33,21 @@ $.ajaxSetup({
 				"initialBlockPositions": initialBlockPositions
 			};
 
+			//if the user got to game from profile "play" buttons, get the size they chose
+			var sizeChoiceFromProfile = $("#gameBoard").data('size');
+			
+			if(sizeChoiceFromProfile == 3 || sizeChoiceFromProfile == 4 || sizeChoiceFromProfile == 5) {
+				$(".blocks").remove();
+	    		puzzleSize = parseInt(sizeChoiceFromProfile);
+	    		setBlockDimensions();
+	    		totalBlocks = puzzleSize * puzzleSize;
+	    		cells = [];
+	    		initialBlockPositions = [];
+	    		randomPositionGenerator();
+	    		postInitialData();
+	    		$(".level").addClass('hidden');
+				$("#start, #cancel, .ready").removeClass('hidden');
+			}
 
 	    //====================== Buttons =========================
 
