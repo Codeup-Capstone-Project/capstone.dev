@@ -245,7 +245,7 @@ $.ajaxSetup({
 
 
 	    	function addEventListeners(movableBlock){
-	    		$('.blocks[data-blocknum="'+ movableBlock +'"').on('click', function(){
+	    		$('.blocks[data-blocknum="'+ movableBlock +'"]').on('click', function(){
 	    			//call moves-counter
 	    			movesCounter();
 
