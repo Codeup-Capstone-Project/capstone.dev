@@ -5,7 +5,8 @@ $.ajaxSetup({
 	$(document).ready(function(){
 
 		//================ Determine GameBoard Dimensions ===============
-			//get gameBoard width on page load
+			
+			//get gameBoard width on page load, which will be 100% of its column width
 			var boardWidth = $("#gameBoard").innerWidth();
 			//set gameBoard height to same as width, then retrieve it
 			var boardHeight = $("#gameBoard").innerHeight(boardWidth);
@@ -32,6 +33,36 @@ $.ajaxSetup({
 				"initialBlockPositions": initialBlockPositions
 			};
 
+			//if the user got to game from leaderboard or profile "play" buttons, 
+			//see if they chose a specific puzzle or just a size, then render game accordingly
+			var sizeChoiceFromProfile = $("#gameBoard").data('size');
+			var arrayString = $("#playSameGame").data('positions');
+
+			if(arrayString !== "false") {
+				$(".blocks").remove();
+	    		puzzleSize = parseInt(sizeChoiceFromProfile);
+	    		setBlockDimensions();
+	    		totalBlocks = puzzleSize * puzzleSize;
+	    		cells = [];
+	    		positionArray = arrayString.split(',');
+	    		initialBlockPositions = positionArray;
+	    		randomPositionGenerator();
+	    		postInitialData();
+	    		$(".level").addClass('hidden');
+				$("#start, #cancel, .ready").removeClass('hidden');
+
+			} else if(sizeChoiceFromProfile == 3 || sizeChoiceFromProfile == 4 || sizeChoiceFromProfile == 5) {
+				$(".blocks").remove();
+	    		puzzleSize = parseInt(sizeChoiceFromProfile);
+	    		setBlockDimensions();
+	    		totalBlocks = puzzleSize * puzzleSize;
+	    		cells = [];
+	    		initialBlockPositions = [];
+	    		randomPositionGenerator();
+	    		postInitialData();
+	    		$(".level").addClass('hidden');
+				$("#start, #cancel, .ready").removeClass('hidden');
+			}
 
 	    //====================== Buttons =========================
 
@@ -51,7 +82,6 @@ $.ajaxSetup({
 
 	    	// Easy Level Button for Demo-day
 	    	$("#easy").on('click', function(){
-	    		$(".blocks").remove();
 	    		$(".blocks").remove();
 	    		puzzleSize = $(this).data('value');
 	    		setBlockDimensions();
@@ -245,7 +275,7 @@ $.ajaxSetup({
 
 
 	    	function addEventListeners(movableBlock){
-	    		$('.blocks[data-blocknum="'+ movableBlock +'"').on('click', function(){
+	    		$('.blocks[data-blocknum="'+ movableBlock +'"]').on('click', function(){
 	    			//call moves-counter
 	    			movesCounter();
 

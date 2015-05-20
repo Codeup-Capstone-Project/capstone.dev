@@ -11,6 +11,8 @@
             },"slow")
         });
 
+    //==================== Leader Board Triggers on Profile Page ======================= 
+
         $('.modal-trigger#size3x3').leanModal({ // Callback for Modal open
             ready: function() {
                 $.get('/play/leaders/3', null, function(data){

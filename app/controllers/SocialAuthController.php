@@ -71,7 +71,7 @@ class SocialAuthController extends BaseController {
 
             
             // try to login
-            // get user from db by facebook_id
+            // get user from db by linkedin_id
             $userExists = User::where( [ 'linkedin_id' => $user['linkedin_id'] ] )->first();
             // var_dump($userExists);
 
@@ -81,7 +81,7 @@ class SocialAuthController extends BaseController {
                 Auth::login( $userExists );
 
                 // redirect to game page
-                Session::flash('successMessage', 'Account created successfully.');
+                Session::flash('successMessage', 'Logged in successfully.');
                 return Redirect::action( 'GameController@getIndex' );
 
             } else {
@@ -178,11 +178,10 @@ class SocialAuthController extends BaseController {
             // check if user exists
             if ( $userExists ) {
                 // login user
-                // login user
                 Auth::login( $userExists );
 
                 // redirect to game page
-                Session::flash('successMessage', 'Account created successfully.');
+                Session::flash('successMessage', 'Logged in successfully.');
                 return Redirect::action( 'GameController@getIndex' );
 
             } else {

@@ -36,7 +36,7 @@
 								<p class="grey-text text-lighten-1">{{{ $stat->updated_at }}}</p>
 							</div>
 							<div class="col s12 m12 l6 offset-l6 center">
-								<button type="button" class="btn directToPuzzle" data-value="{{{ $stat->puzzle->id }}}">Play Same Puzzle</button>
+								<a class="btn" href="{{{ action('GameController@getGame', $stat->puzzle->id) }}}">Play Same Puzzle</a>
 							</div>
 						</li>
 						<div class="divider" style="margin-top:10px;"></div>
