@@ -72,7 +72,8 @@ class SocialAuthController extends BaseController {
             
             // try to login
             // get user from db by linkedin_id
-            $userExists = User::where( [ 'linkedin_id' => $user['linkedin_id'] ] )->first();
+            $userExists = User::where( [ 'linkedin_id' => $user['linkedin_id'] ] )
+                                ->orWhere('email', '=', $user['email'])->first();
             // var_dump($userExists);
 
             // check if user exists
@@ -185,7 +186,9 @@ class SocialAuthController extends BaseController {
 
 	        // try to login
             // get user from db by facebook_id
-            $userExists = User::where( [ 'facebook_id' => $user['facebook_id'] ] )->first();
+            $userExists = User::where( [ 'facebook_id' => $user['facebook_id'] ] )
+                                ->orWhere('email', '=', $user['email'])
+                                ->first();
             // var_dump($userExists);
 
             // check if user exists
