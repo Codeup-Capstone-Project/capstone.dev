@@ -38,7 +38,7 @@ $.ajaxSetup({
 			var sizeChoiceFromProfile = $("#gameBoard").data('size');
 			var arrayString = $("#playSameGame").data('positions');
 
-			if(arrayString !== "false") {
+			if(arrayString) {
 				$(".blocks").remove();
 	    		puzzleSize = parseInt(sizeChoiceFromProfile);
 	    		setBlockDimensions();
