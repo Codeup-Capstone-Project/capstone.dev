@@ -10,9 +10,9 @@ class GameController extends BaseController {
 	}
 
 	//called from url: capstone.dev/play
-	public function getIndex()
+	public function getIndex($size = NULL)
 	{
-		return View::make('game');
+		return View::make('game')->with(['size', $size]);
 	}
 
 	//called from url: capstone.dev/play/game/{$id?}
