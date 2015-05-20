@@ -61,7 +61,7 @@
                                                     </h6>
                                                 </div>
                                                 <div class="section no-pad-bot">
-                                                    <button class="btn menu waves-effect waves-light level cyan darken-3">Play</button>
+                                                    <a class="btn menu waves-effect waves-light level cyan darken-3" href="{{{ action('GameController@getIndex', 3) }}}">Play</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
                                                     </h6>
                                                 </div>
                                                 <div class="section no-pad-bot">
-                                                    <button class="btn menu waves-effect waves-light level purple darken-3">Play</button>
+                                                    <a class="btn menu waves-effect waves-light level purple darken-3" href="{{{ action('GameController@getIndex', 4) }}}">Play</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -119,7 +119,7 @@
                                                     </h6>
                                                 </div>
                                                 <div class="section no-pad-bot">
-                                                    <button class="btn menu waves-effect waves-light level pink darken-3">Play</button>
+                                                    <a class="btn menu waves-effect waves-light level pink darken-3" href="{{{ action('GameController@getIndex', 5) }}}">Play</a>
                                                 </div>
                                             </div>
                                         </div>
