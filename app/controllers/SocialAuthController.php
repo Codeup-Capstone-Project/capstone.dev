@@ -107,6 +107,19 @@ class SocialAuthController extends BaseController {
 
                     // redirect to game page
                     Session::flash('successMessage', 'Account created successfully.');
+                    
+                    // send a welcome email
+                    $first_name = $newUser->first_name;
+                    $email = $newUser->email;
+                    Mail::send('emails.welcome', array('first_name' => $first_name),
+                        function($message) use($email, $first_name)
+                        {
+                            $message->from('us@example.com', 'TyleNinja');
+                            $message->to($email, $first_name)->subject('Welcome to TyleNinja!');
+                        }
+                    );
+
+
                     return Redirect::action( 'GameController@getIndex' );
             }
 
@@ -207,6 +220,19 @@ class SocialAuthController extends BaseController {
 
                     // redirect to game page
                     Session::flash('successMessage', 'Account created successfully.');
+                    
+                    // send a welcome email
+                    $first_name = $newUser->first_name;
+                    $email = $newUser->email;
+                    Mail::send('emails.welcome', array('first_name' => $first_name),
+                        function($message) use($email, $first_name)
+                        {
+                            $message->from('us@example.com', 'TyleNinja');
+                            $message->to($email, $first_name)->subject('Welcome to TyleNinja!');
+                        }
+                    );
+
+
                     return Redirect::action( 'GameController@getIndex' );
             }
 
