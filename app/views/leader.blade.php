@@ -19,9 +19,9 @@
 		<?php $count = 0; ?>
 
 		<ul class="list card-panel white">  {{-- style="border:1px solid #ddd;" --}}
-			@foreach($stats as $stat) 
+			@foreach($stats as $stat)
 					@if($stat->puzzle->size == $size)
-						<li class='row' style="margin-bottom:0px;">
+						<li class='row no-marg-bot'>
 							<div class="col s2 m1 left-align">
 								<h4>{{{ ++$count }}}</h4>
 							</div>
@@ -30,9 +30,9 @@
 							</div>
 							<div class="col s7 m9">
 								<h5 class="listUsername medium">{{{ $stat->user->username }}}</h5>
-								<p class="no-margin-bot" style="margin: 0px;" class="grey-text text-darken-1">Puzzle# <span class="puzzleNumber">{{{ $stat->puzzle->id }}}<span></p>
-								<p class="no-margin-bot" style="margin: 0px;" class="grey-text text-darken-1">Finished in: <span class="listGameTime">{{{ $stat->game_time }}}</span></p>
-								<p class="no-margin-bot" style="margin: 0px;" class="grey-text text-darken-1">With: <span class="listMoves">{{{ $stat->moves }}} moves</span></p>
+								<p class="grey-text text-darken-1 no-marg">Puzzle# <span class="puzzleNumber">{{{ $stat->puzzle->id }}}<span></p>
+								<p class="grey-text text-darken-1 no-marg">Finished in: <span class="listGameTime">{{{ $stat->game_time }}}</span></p>
+								<p class="grey-text text-darken-1 no-marg">With: <span class="listMoves">{{{ $stat->moves }}} moves</span></p>
 								<p class="grey-text text-lighten-1">{{{ $stat->updated_at }}}</p>
 							</div>
 							<div class="col s12 m12 l6 offset-l6 center">

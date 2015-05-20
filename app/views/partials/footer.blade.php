@@ -8,8 +8,8 @@
                     <div class="col l3 offset-l1 s12">
                         <h5 class="blue-grey-text text-darken-1">About</h5>
                         <ul>
-                            <li><a class="blue-grey-text text-darken-1" href="/#about">About the Game</a></li>
-                            <li><a class="blue-grey-text text-darken-1" href="/#creators">The Creators</a></li>
+                            <li><a class="blue-grey-text text-darken-1" href="{{{ action('HomeController@showHome') }}}#about">About the Game</a></li>
+                            <li><a class="blue-grey-text text-darken-1" href="{{{ action('HomeController@showHome') }}}#creators">The Creators</a></li>
                         </ul>
                     </div>
                     <div class="col l3 s12">

@@ -25,6 +25,10 @@ body, html {
     }
 }
 
+.no-marg {
+    margin: 0;
+}
+
 .no-marg-bot {
     margin-bottom: 0;
 }
@@ -436,6 +440,14 @@ section.hero {
 
 .leader-board-link {
     text-transform: uppercase;
+}
+
+.sort:hover {
+    color: teal;
+}
+
+.sort:focus {
+    background: none;
 }
 
 
