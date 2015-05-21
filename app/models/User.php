@@ -50,6 +50,17 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
         'password_confirmation' => 'required|min:8|max:50'
 	];
 
+	public static function boot()
+	{
+		parent::boot();
+
+		static::deleting(function($user){
+            foreach($user->stats as $stat)
+            {
+                $stat->delete();
+            }
+		});
+	}
 
 	// Mutator that stores all usernames as lower-case
 	public function setUsernameAttribute($value)
