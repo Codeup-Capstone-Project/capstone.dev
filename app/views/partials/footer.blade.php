@@ -15,7 +15,7 @@
                     <div class="col l3 s12">
                         <h5 class="blue-grey-text text-darken-1">Connect</h5>
                         <ul>
-                            <li><a class="blue-grey-text text-darken-1" href="#">GitHub</a></li>
+                            <li><a class="blue-grey-text text-darken-1" href="https://github.com/Codeup-Capstone-Project">GitHub</a></li>
                             <li><a class="blue-grey-text text-darken-1" href="#">Email us</a></li>
                         </ul>
                     </div>

@@ -74,7 +74,7 @@ class UsersController extends \BaseController {
 		Mail::send('emails.welcome', array('first_name' => $first_name),
 			function($message) use($email, $first_name)
 			{
-				$message->from('us@example.com', 'TyleNinja');
+				$message->from('hiya@tyle.ninja', 'TyleNinja');
 			    $message->to($email, $first_name)->subject('Welcome to TyleNinja!');
 			}
 		);

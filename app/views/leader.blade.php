@@ -36,7 +36,7 @@
 								<li class='collection-item leader-item'>
 									<div class="row no-marg-bot">
 										<div class="col s12 l4">
-											<img class="profile-avatar circle" src="{{{ $stat->user->profile_photo_url }}}">
+											<img class="profile-avatar" src="{{{ $stat->user->profile_photo_url }}}">
 											<h6 class="listUsername medium user-title">{{{ $stat->user->username }}}</h6>
 										</div>
 										<div class="col s12 l4 user-info-col">
