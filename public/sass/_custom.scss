@@ -268,6 +268,10 @@ section.hero {
 // Modals
 //-----------------------------------------------
 
+.modal.bottom-sheet {
+    max-height: 80%;
+}
+
 .modal.game-modal {
     display: none;
     position: fixed;
@@ -344,10 +348,43 @@ section.hero {
 // User Profile Page
 //-----------------------------------------------
 
+#leaderModal {
+    border-top: 10px solid #cfd8dc;
+}
+
+.collection-item.leader-item {
+    padding: 1rem 1rem 1rem 3rem;
+}
+
+@media #{$small-and-down} {
+    #leaderModalContent.modal-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+input.search {
+    padding-left: .75rem;
+}
+
+input.search {
+    width: 100%;
+}
+
+@media #{$small-and-down} {
+    .leader-header {
+        font-size: $h5-fontsize; line-height: 1.1*$h5-fontsize; margin: ($h5-fontsize / 2) 0 ($h5-fontsize / 2.5) 0;
+    }
+}
+
 @media #{$medium-and-down} {
     .user-info-col {
         margin-top: 1rem;
     }
+}
+
+.user-info-col p {
+    margin: 0;
 }
 
 .edit-profile-link {
@@ -365,6 +402,20 @@ section.hero {
     height: auto;
     display: inline;
     vertical-align: middle;
+}
+
+.updated-at {
+    margin: 0;
+}
+
+@media #{$medium-and-down} {
+    .updated-at {
+        margin: 1rem 0 0 0;
+    }
+}
+
+.collection {
+    border: 1px solid #e0e0e0;
 }
 
 .collection .collection-item.avatar .secondary-content {
@@ -398,10 +449,6 @@ section.hero {
 
 #statsList input {
     height: 36px;
-}
-
-.list h4 {
-    margin-top: 12.3px;
 }
 
 .btn-floating.puzzle-icon {
@@ -442,6 +489,12 @@ section.hero {
     text-transform: uppercase;
 }
 
+.sort {
+    cursor: pointer;
+    display: inline;
+    color: #90a4ae;
+}
+
 .sort:hover {
     color: teal;
 }
@@ -450,6 +503,43 @@ section.hero {
     background: none;
 }
 
+.sort-buttons {
+    float: right;
+}
+
+.sort-buttons li:last-child {
+    padding-left: 1rem;
+}
+
+@media #{$small-and-down} {
+    .sort-buttons {
+        float: left;
+    }
+}
+
+ol.custom {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+ol.custom > li {
+  counter-increment: customlistcounter;
+  position: relative;
+}
+
+ol.custom > li:before {
+  content: counter(customlistcounter) " ";
+  font-size: 1.5rem;
+  color: #90a4ae;
+  position: absolute;
+  left: 1rem;
+  top: 1.5rem;
+}
+
+ol.custom:first-child {
+  counter-reset: customlistcounter;
+}
 
 // Hero Graphics
 //-----------------------------------------------
@@ -694,10 +784,12 @@ section.hero {
     }
 }
 
-.btn-floating.level {
+.btn-floating.level,
+.btn-floating#easy {
     @extend .z-depth-2;
 }
 
-.btn-floating.level:hover {
+.btn-floating.level:hover,
+.btn-floating#easy:hover {
     @extend .z-depth-1;
 }

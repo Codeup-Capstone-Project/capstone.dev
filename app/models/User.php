@@ -4,10 +4,15 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
 class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
+
+	// Soft Delete
+    use SoftDeletingTrait;
+    protected $dates = ['deleted_at'];
 
 	/**
 	 * The database table used by the model.
@@ -41,8 +46,8 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 		'last_name'			    => 'alpha',
         'email'                 => 'required|email|unique:users,email',
         'username'              => 'required|alpha_num|min:3|max:15|unique:users,username',
-        'password'              => 'required|min:6|confirmed',
-        'password_confirmation' => 'required|min:6'
+        'password'              => 'required|min:8|max:50|confirmed',
+        'password_confirmation' => 'required|min:8|max:50'
 	];
 
 

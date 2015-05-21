@@ -190,11 +190,12 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function getDestroy($id)
 	{
-		User::destroy($id);
-
-		return Redirect::route('users.index');
+		$user = User::find($id);
+		$user->delete();
+		Session::flash('successMessage', 'Account deleted.');
+		return Redirect::action('HomeController@showHome');
 	}
 
 }
