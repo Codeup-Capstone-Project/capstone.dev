@@ -20,6 +20,7 @@ $.ajaxSetup({
 
 		//====================== Begin Game =========================
 
+			var gameSession;
 			var puzzleId;
 			var puzzleSize;		//determined by user game-level selection
 			var emptyCell;		//the index number of the empty cell in the position array
@@ -223,6 +224,11 @@ $.ajaxSetup({
 
 
 	    	function startGame(){
+	    		//create a new game session number and store in gameStats array
+	    		$.get('/play/game-session', function(response){
+	    			gameSession = response;
+	    			gameStats.gameSession = gameSession;
+	    		});
 	    		moves = 0;
 	    		$("#moves").text(moves);
 	    		//place blocks in their initial positions
@@ -331,13 +337,15 @@ $.ajaxSetup({
 	    	{
 	    		moves += 1;
 	    		$("#moves").text(moves);
+	    		gameStats.moves = moves;
+	    		//post to stats table to record each move
+	    		$.post('/play/stats', gameStats);
 	    	}
 
 	    	function endGame(won){
 	    		var time = $("#timer").text();
 	    		gameStats.gameFinished = won;
 	    		gameStats.time = time;
-	    		gameStats.moves = moves;
 	    		$('.blocks').off();
 	    		$("#quit").addClass('hidden');
 		    	$("#newGame").removeClass('hidden');
