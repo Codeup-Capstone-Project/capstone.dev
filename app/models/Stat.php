@@ -5,17 +5,6 @@
 	{
 		protected $table = 'stats';
 
-		// WIP - "work in progress"
-		// public static function gameSessionGenerator()
-		// {
-		// 	//need a function that generates a rand(5)
-		// 	$session = rand(5);
-		// 	//then searches sessions column to see if that number exists
-		// 	$query = Stat::where('session', '=', $session);
-		// 	//if not, return that number
-		// 	//if it does, repeat
-		// }
-
 		// Accessor that automatically formats dates for all posts updated_at date
 		// displays '24 minutes ago, 2 days ago, etc.'
 		public function getCreatedAtAttribute($value)

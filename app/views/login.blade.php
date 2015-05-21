@@ -33,9 +33,9 @@
             <div class="row">
                 <div class="divider"></div>
                 <p class="blue-grey-text text-darken-2 or-login">Log in with&nbsp;&nbsp;
-                    <a href="#" class="btn-floating waves-effect fb-color white-text"><i class="fa fa-facebook social"></i></a>
+                    <a href="/loginfb" class="btn-floating waves-effect fb-color white-text"><i class="fa fa-facebook social"></i></a>
                     &nbsp;&nbsp;or&nbsp;&nbsp;
-                    <a href="#" class="btn-floating waves-effect linkedin-color white-text"><i class="fa fa-linkedin social"></i></a>
+                    <a href="loginli" class="btn-floating waves-effect linkedin-color white-text"><i class="fa fa-linkedin social"></i></a>
                 </p>
             </div>
         </div>
