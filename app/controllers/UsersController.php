@@ -190,7 +190,7 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function postDestroy($id)
+	public function getDestroy($id)
 	{
 		$user = User::find($id);
 		$user->delete();
