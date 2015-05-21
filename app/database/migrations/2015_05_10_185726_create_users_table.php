@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration {
 			$table->string('linkedin_profile_url')->nullable();
 			$table->rememberToken();
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
