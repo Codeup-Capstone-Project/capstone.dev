@@ -47,7 +47,7 @@ $.ajaxSetup({
 			//see if they chose a specific puzzle or just a size, then render game accordingly
 			var sizeChoiceFromProfile = $("#gameBoard").data('size');
 			var arrayString = $("#playSameGame").data('positions');
-			var puzzleId = $("#puzzle_id").data('id');
+			puzzleId = $("#puzzle_id").data('id');
 
 
 			//if the user came from leaderboard, load the specific position array
@@ -198,6 +198,7 @@ $.ajaxSetup({
 	    		//send puzzleInfo to puzzle table in database
 				$.post('/play/puzzle', puzzleInfo, function(response){
 					gameStats.puzzle_id = response;
+					puzzleId = response;
 				});
 	    	}
 
@@ -224,10 +225,13 @@ $.ajaxSetup({
 
 
 	    	function startGame(){
-	    		//create a new game session number and store in gameStats array
+	    		//reset the gameFinished and time indices of the gameStats object
+	    		//create a new game session number and store in gameStats object
 	    		$.get('/play/game-session', function(response){
 	    			gameSession = response;
 	    			gameStats.gameSession = gameSession;
+	    			gameStats.gameFinished = false;
+	    			gameStats.time = '';
 	    		});
 	    		moves = 0;
 	    		$("#moves").text(moves);

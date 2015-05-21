@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    <title>Edit Profile | TyleNinja</title>
+    <title>Change Password | TyleNinja</title>
 @stop
 
 @section('content')
@@ -12,13 +12,13 @@
                         <div class="card-content">
                             <div class="row no-marg-bot">
                                 <div class="col s12">
-                                    <h5 class="blue-grey-text text-darken-2">Edit Profile</h5>
+                                    <h5 class="blue-grey-text text-darken-2">Change Password</h5>
                                 </div>
                                 <div class="col s12">
                                     <div class="user collection no-marg-top">
                                         <div class="row">
                                             <div class="col s12 l4">
-                                                <img src="/img/ninja_avatar.jpg" alt="" class="circle profile-avatar">
+                                                <img src="{{{ $user->profile_photo_url }}}" alt="/img/ninja_avatar.jpg" class="circle profile-avatar">
                                                 <h6 class="user-title">{{{ Auth::user()->username }}}</h6>
                                             </div>
                                             <div class="col s12 l4 user-info-col">
