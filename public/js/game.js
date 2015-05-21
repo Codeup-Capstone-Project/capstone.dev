@@ -39,10 +39,15 @@ $.ajaxSetup({
 				"initialBlockPositions": initialBlockPositions
 			};
 
+
+		//====================== If User Came from Profile Page =========================
+
 			//if the user got to game from leaderboard or profile "play" buttons, 
 			//see if they chose a specific puzzle or just a size, then render game accordingly
 			var sizeChoiceFromProfile = $("#gameBoard").data('size');
 			var arrayString = $("#playSameGame").data('positions');
+			var puzzleId = $("#puzzle_id").data('id');
+
 
 			//if the user came from leaderboard, load the specific position array
 			//of the game they clicked
@@ -53,10 +58,13 @@ $.ajaxSetup({
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		cells = [];
 	    		positionArray = arrayString.split(',');
+	    		//loop through array and make sure all elements are numbers
+	    		$.each(positionArray, function(index, value){
+	    			positionArray[index] = parseInt(value);
+	    		});
 	    		initialBlockPositions = positionArray;
-	    		randomPositionGenerator();
-	    		postInitialData();
-	    		$(".level, #chooseLevel").addClass('hidden');
+	    		gameStats.puzzle_id = parseInt(puzzleId);
+	    		$(".level, #chooseLevel, #easy").addClass('hidden');
 				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
 
 
@@ -70,7 +78,7 @@ $.ajaxSetup({
 	    		initialBlockPositions = [];
 	    		randomPositionGenerator();
 	    		postInitialData();
-	    		$(".level, #chooseLevel").addClass('hidden');
+	    		$(".level, #chooseLevel, #easy").addClass('hidden');
 				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
 			}
 
@@ -86,7 +94,7 @@ $.ajaxSetup({
 	    		initialBlockPositions = [];
 	    		randomPositionGenerator();
 	    		postInitialData();
-	    		$(".level, #chooseLevel").addClass('hidden');
+	    		$(".level, #chooseLevel, #easy").addClass('hidden');
 				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
 	    	});
 
@@ -98,8 +106,8 @@ $.ajaxSetup({
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		cells = [];
 	    		initialBlockPositions = [1, 2, 3, 4, 0, 5, 7, 8, 6];
-	    		postInitialData();
-	    		$(".level, #chooseLevel").addClass('hidden');
+	    		gameStats.puzzle_id = 1;
+	    		$(".level, #chooseLevel, #easy").addClass('hidden');
 				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
 	    	});
 
@@ -116,7 +124,7 @@ $.ajaxSetup({
 
 	    	// Cancel Selection
 	    	$("#cancel").on('click', function(){
-	    		$(".level, #chooseLevel").removeClass('hidden');
+	    		$(".level, #chooseLevel, #easy").removeClass('hidden');
 				$("#start, #cancel, .ready, #whenReady").addClass('hidden');
 	    	});
 
@@ -149,7 +157,7 @@ $.ajaxSetup({
 	    		$("#timer").text("00:00:00:00");
 	    		$(".blocks").remove();
 	    		$(".btn, .btn-floating, .ready, .again, .hiya").addClass('hidden');
-	    		$(".level, #chooseLevel").removeClass('hidden');
+	    		$(".level, #chooseLevel, #easy").removeClass('hidden');
 	    	});
 
 
@@ -188,8 +196,7 @@ $.ajaxSetup({
 	    		};
 	    		//send puzzleInfo to puzzle table in database
 				$.post('/play/puzzle', puzzleInfo, function(response){
-					puzzleId = response;
-					gameStats.puzzle_id = puzzleId;
+					gameStats.puzzle_id = response;
 				});
 	    	}
 
@@ -218,8 +225,10 @@ $.ajaxSetup({
 	    	function startGame(){
 	    		moves = 0;
 	    		$("#moves").text(moves);
-	    		positionBlocks();		//place blocks in their initial positions
-	    		newBlockPositions = initialBlockPositions.slice(0);	//create a clone of the initial positions array to track block movements
+	    		//place blocks in their initial positions
+	    		positionBlocks();
+	    		//create a clone of the initial positions array to track block movements
+	    		newBlockPositions = initialBlockPositions.slice(0);
 	    		gameStats.newBlockPositions = newBlockPositions;
 	    		identifyMovableBlocks();
 	    		$("#start").addClass('hidden');
