@@ -26,8 +26,7 @@
                                             <p class="grey-text">Joined {{{ Auth::user()->created_at }}}</p>
                                         </div>
                                         <div class="col s12 l4 user-info-col edit-profile-link">
-                                            <a href="{{{ action('UsersController@getEdit', Auth::user()->username) }}}" class="teal-text text-lighten-1" id="edit-profile"><i class="mdi-editor-mode-edit"></i> Edit Account</a>
-                                            <br>
+                                            <a href="{{{ action('UsersController@getEdit', Auth::user()->username) }}}" class="teal-text text-lighten-1" id="edit-profile"><i class="mdi-editor-mode-edit"></i> Edit Account</a><br>
                                             <a href="#delete-account" class="modal-trigger blue-grey-text text-lighten-2"><i class="mdi-action-delete"></i> Delete Account</a>
                                         </div>
                                     </div>
@@ -47,14 +46,14 @@
                                                 <div class="section no-pad-bot">
                                                     <div class="divider"></div>
                                                     <h6 class="medium">Time Stats</h6>
-                                                    <p class="grey-text text-darken-1">Best time: {{{ $userBestTime3x3 }}}</p>
-                                                    <p class="grey-text text-darken-1">Current rank: {{{ $timeRank3x3 }}}</p>
+                                                    <p class="grey-text text-darken-1">Best time: <span class="blue-grey-text">{{{ $userBestTime3x3 }}}</span></p>
+                                                    <p class="grey-text text-darken-1">Current rank: <span class="blue-grey-text">{{{ $timeRank3x3 }}}</span></p>
                                                 </div>
                                                 <div class="section no-pad-bot">
                                                     <div class="divider"></div>
                                                     <h6 class="medium">Move Stats</h6>
-                                                    <p class="grey-text text-darken-1">Least moves: {{{ $userBestMoves3x3 }}}</p>
-                                                    <p class="grey-text text-darken-1">Current rank: {{{ $movesRank3x3 }}}</p>
+                                                    <p class="grey-text text-darken-1">Least moves: <span class="blue-grey-text">{{{ $userBestMoves3x3 }}}</span></p>
+                                                    <p class="grey-text text-darken-1">Current rank: <span class="blue-grey-text">{{{ $movesRank3x3 }}}</span></p>
                                                 </div>
                                                 <div class="section no-pad-bot">
                                                     <h6 class="leader-board-link">
@@ -141,7 +140,7 @@
             <p class="flow-text blue-grey-text">Are you sure?</p>
         </div>
         <div class="modal-footer">
-            <a href="{{{ action('UsersController@postDestroy', Auth::user()->id) }}}" class="modal-action modal-close waves-effect waves-red btn-flat pink-text text-darken-3">Delete my account</a>
+            <a href="{{{ action('UsersController@getDestroy', Auth::user()->id) }}}" class="modal-action modal-close waves-effect waves-red btn-flat pink-text text-darken-3">Delete my account</a>
             <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat teal-text">Go Back</a>
         </div>
     </div>
@@ -204,7 +203,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="blue-grey-text text-darken-2 modal-action modal-close waves-effect waves-green btn-flat">Close&nbsp;<i class="small mdi-navigation-cancel right"></i></a>
+                <a href="#!" class="blue-grey-text text-darken-2 modal-action modal-close btn-flat">Close&nbsp;<i class="small mdi-navigation-cancel right"></i></a>
             </div>
       </div>
 @stop
