@@ -72,7 +72,8 @@ class SocialAuthController extends BaseController {
             
             // try to login
             // get user from db by linkedin_id
-            $userExists = User::where( [ 'linkedin_id' => $user['linkedin_id'] ] )->first();
+            $userExists = User::where( [ 'linkedin_id' => $user['linkedin_id'] ] )
+                                ->orWhere('email', '=', $user['email'])->first();
             // var_dump($userExists);
 
             // check if user exists
@@ -107,6 +108,19 @@ class SocialAuthController extends BaseController {
 
                     // redirect to game page
                     Session::flash('successMessage', 'Account created successfully.');
+                    
+                    // send a welcome email
+                    $first_name = $newUser->first_name;
+                    $email = $newUser->email;
+                    Mail::send('emails.welcome', array('first_name' => $first_name),
+                        function($message) use($email, $first_name)
+                        {
+                            $message->from('us@example.com', 'TyleNinja');
+                            $message->to($email, $first_name)->subject('Welcome to TyleNinja!');
+                        }
+                    );
+
+
                     return Redirect::action( 'GameController@getIndex' );
             }
 
@@ -172,7 +186,9 @@ class SocialAuthController extends BaseController {
 
 	        // try to login
             // get user from db by facebook_id
-            $userExists = User::where( [ 'facebook_id' => $user['facebook_id'] ] )->first();
+            $userExists = User::where( [ 'facebook_id' => $user['facebook_id'] ] )
+                                ->orWhere('email', '=', $user['email'])
+                                ->first();
             // var_dump($userExists);
 
             // check if user exists
@@ -207,6 +223,19 @@ class SocialAuthController extends BaseController {
 
                     // redirect to game page
                     Session::flash('successMessage', 'Account created successfully.');
+                    
+                    // send a welcome email
+                    $first_name = $newUser->first_name;
+                    $email = $newUser->email;
+                    Mail::send('emails.welcome', array('first_name' => $first_name),
+                        function($message) use($email, $first_name)
+                        {
+                            $message->from('us@example.com', 'TyleNinja');
+                            $message->to($email, $first_name)->subject('Welcome to TyleNinja!');
+                        }
+                    );
+
+
                     return Redirect::action( 'GameController@getIndex' );
             }
 
