@@ -12,8 +12,13 @@ class GameController extends BaseController {
 	//called from url: capstone.dev/play/{$size}
 	public function getIndex($size = NULL)
 	{
-		$initialPositions = false;
-		return View::make('game')->with(['size' => $size, 'initialPositions' => $initialPositions]);
+		$data = [
+			'id'			   => false,
+			'size' 			   => $size,
+			'initialPositions' => false
+		];
+
+		return View::make('game')->with($data);
 	}
 
 	//called from url: capstone.dev/play/game/{$id?}
@@ -28,9 +33,14 @@ class GameController extends BaseController {
 		$initialPositions = $puzzle->initial_block_positions;
 		$unserializedPositions = unserialize($initialPositions);
 		$arrayString = implode(',', $unserializedPositions);
-		$size = $puzzle->size;
+		
+		$data = [
+			'id' 			   => $id,
+			'size' 			   => $puzzle->size,
+			'initialPositions' => $arrayString
+		];
 
-		return View::make('game')->with(['initialPositions' => $arrayString, 'size' => $size]);
+		return View::make('game')->with($data);
 	}
 
 	public function getLeaders($size)
@@ -65,8 +75,7 @@ class GameController extends BaseController {
 	//called from any POST to '/play/puzzle'
 	public function postPuzzle()
 	{
-		//'get' the positions array from ajax post and serialize it before insertion
-		// $initialPositions = Input::get('initialBlockPositions');
+		//Note: there is a mutator for the Puzzle model that serializes arrays before insertion
 
 		//create query to insert puzzle into db table
 		$puzzle = new Puzzle;
