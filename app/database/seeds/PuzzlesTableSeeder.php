@@ -25,7 +25,7 @@ class PuzzlesTableSeeder extends Seeder {
 		//standard puzzle options
 		$puzzle3 = new Puzzle;
 		$puzzle3->type = '4x4';
-		$puzzle3->size = 4;
+		$puzzle3->size = 5;
 		$puzzle3->initial_block_positions = $array3;
 		$puzzle3->save();
 	}
