@@ -65,6 +65,7 @@ class GameController extends BaseController {
 		$stats = new Stat;
 		$stats->user_id = Auth::user()->id;
 		$stats->puzzle_id = Input::get('puzzle_id');
+		$stats->game_session = Input::get('gameSession');
 		$stats->last_block_positions = Input::get('newBlockPositions');
 		$stats->moves = Input::get('moves');
 		$stats->game_time = Input::get('time');
@@ -87,6 +88,23 @@ class GameController extends BaseController {
 		return $puzzle_id = $puzzle->id;
 
 	}
+
+	//called from any GET to '/play/game-session'
+	public static function getGameSession()
+		{
+			//generate a randon 6 digit number
+			$session = rand(100000, 999999);
+			//then searches sessions column to see if that number exists
+			$query = Stat::where('game_session', '=', $session)->first();
+			//if not, return that number
+			if(!$query){
+				return $session;
+			//if it does, repeat
+			} else {
+				return self::getGameSession();
+			}
+			
+		}
 }
 
 
