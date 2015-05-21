@@ -61,7 +61,7 @@
 	<div id="win-modal" class="modal game-modal">
 		<div class="modal-content game-modal-content center-align">
 			<div class="close-x">
-				<button class="modal-action modal-close white-text btn-floating waves-effect waves-light"><i class="mdi-navigation-close white-text"></i></button>
+				<button class="modal-action modal-close blue-grey-text text-lighten-2 btn-flat waves-effect waves-light"><i class="mdi-navigation-close"></i></button>
 			</div>
 			<h2 class="white-text you-win">You win!</h2>
 		</div>
