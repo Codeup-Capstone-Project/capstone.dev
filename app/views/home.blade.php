@@ -187,7 +187,12 @@
                     <div class="col s12 l6">
                         <p class="flow-text"><span class="name">TyleNinja</span> is a sliding-tile puzzle game with 3 difficulty levels designed to test your inner focus and improve mental problem-solving skills. Challenge yourself and your friends to achieve the fastest time or fewest moves for each puzzle &mdash; 3x3, 4x4, and 5x5.</p>
                         <p class="flow-text">Puzzles are randomly generated and successfully solved when the tiles are arranged in numerical order, from left to right, ending with the empty space in the bottom-right corner.</p>
-                        <p class="flow-text">Your best stats for each level can be viewed from your profile page. Once there, you may also view the Leaderboard for each level to see how you rank compared to other players.</p>
+                        <p class="flow-text">Your best stats for each level can be viewed from your profile page. Once there, you may also view the leader board for each level to see how you rank compared to other players.</p>
+                    </div>
+                    <div class="col s12 l5 offset-l1">
+                        <div class="card-panel blue-grey lighten-5 z-depth-2 img-marg-game-board">
+                            <img src="/img/tile-board.png" alt="TyleNinja game board example" class="responsive-img">
+                        </div>
                     </div>
                     <div class="col s12 center">
                         <a href="#" class="btn-large waves-effect waves-teal blue-grey lighten-5 call">Watch Tutorial</a>
@@ -200,44 +205,43 @@
             <div class="container">
                 <div class="row no-marg-bot pad-bot blue-grey-text text-darken-4">
                     <div class="col s12">
-                        <h3 class="center">The Creators:</h3>
-                        <h5 class="center"> ( <em>team J <sup>2</sup></em> )</h5>
+                        <h3 class="center">The Creators</h3>
                     </div>
                     <div class="col s6 offset-s3 m4 offset-m4 l2">
-                        <img src="img/justin.jpg" alt="" class="circle responsive-img img-marg">
+                        <img src="img/justin.jpg" alt="Justin Dietert" class="circle responsive-img img-marg">
                     </div>
                     <div class="col s12 m12 l4">
-                        <p class="flow-text"><span class="name">Justin Dietert</span> is a designer and developer with a background in graphic design.</p>
-                        <ul class="flow-text">
-                            <p>He was involved in all aspects and features of this site, but was <span class="name">primarily responsible for:</span></p>
-                            <li><i class="tiny mdi-av-my-library-books"></i> Site Layout & Design</li>
-                            <li><i class="tiny mdi-action-account-circle"></i> User Models & Controllers</li>
-                            <li><i class="tiny mdi-content-markunread"></i> Mandril API</li>
-                            <li><i class="tiny mdi-editor-insert-emoticon"></i> UI/UX</li>
-                            <li><i class="tiny mdi-image-palette"></i> Custom HTML/CSS</li>
-                            <li><i class="tiny mdi-action-view-quilt"></i> Materialize CSS Framework</li>
-                            <li><i class="tiny mdi-hardware-smartphone"></i> Mobile-Responsiveness</li>
-                            <li><i class="tiny mdi-maps-directions-walk"></i> Ninja Graphics</li>
+                        <p class="flow-text"><strong>Justin Dietert</strong> is a designer and developer with a background in fine arts and graphic design.</p>
+                        <p class="flow-text">He was involved in all aspects and features of this site, but was <strong>primarily responsible for:</strong></p>
+                        <ul class="flow-text responsibilities">
+                            <li>Site Layout &amp; UI/UX Design</li>
+                            <li>User Models &amp; Controllers (MVC&nbsp;Framework)</li>
+                            <li>Mandrill API</li>
+                            <li>Materialize CSS Framework</li>
+                            <li>SASS integration</li>
+                            <li>Custom HTML/CSS</li>
+                            <li>Mobile-Responsiveness</li>
+                            <li>Ninja Graphics</li>
                         </ul>
-                        <h5><a href="http://www.justindietert.com">Resume & Portfolio</a></h5>
+                        <p class="creator-button"><a href="http://www.justindietert.com" class="btn waves-effect waves-teal blue-grey lighten-5 more-info">More about Justin</a></p>
                     </div>
-                    <div class="col s6 offset-s3 m4 offset-m4 l2">
-                        <img src="img/jamie.jpg" alt="" class="circle responsive-img img-marg">
+                    <div class="col s6 offset-s3 m4 offset-m4 l2 jamie">
+                        <img src="img/jamie.jpg" alt="Jamie Haskell" class="circle responsive-img img-marg">
                     </div>
                     <div class="col s12 m12 l4">
-                        <p class="flow-text"><span class="name">Jamie Haskell</span> is a designer and developer with a background in mathematics.</p>
-                        <ul class="flow-text">
-                            <p>She was involved in all aspects and features of this site, but was <span class="name">primarily responsible for:</span></p>
-                            <li><i class="tiny mdi-image-grid-on"></i> Game Logic, Layout, & Design</li>
-                            <li><i class="tiny mdi-av-play-arrow"></i> Game Models & Controller</li>
-                            <li><i class="tiny mdi-social-person-add"></i> OAuth APIs</li>
-                            <li><i class="tiny mdi-image-camera"></i> Database Architecture</li>
-                            <li><i class="tiny mdi-editor-format-align-left"></i> Custom JavaScript/JQuery</li>
-                            <li><i class="tiny mdi-av-repeat"></i> AJAX</li>
-                            <li><i class="tiny mdi-action-swap-vert-circle"></i> LeaderBoard Functionality</li>
-                            <li><i class="tiny mdi-editor-format-list-numbered"></i> ListJS Library Implementation</li>
+                        <p class="flow-text"><strong>Jamie Haskell</strong> is a designer and developer with a background in mathematics and education.</p>
+                        <p class="flow-text">She was involved in all aspects and features of this site, but was <strong>primarily responsible for:</strong></p>
+                        <ul class="flow-text responsibilities">
+                            <li>Game Architecture</li>
+                            <li>Game Models &amp; Controller (MVC&nbsp;Framework)</li>
+                            <li>OAuth APIs</li>
+                            <li>Database Architecture</li>
+                            <li>Custom JavaScript/jQuery</li>
+                            <li>AJAX Requests</li>
+                            <li>Profile/Leader Board Backend</li>
+                            <li>ListJS Library Implementation</li>
                         </ul>
-                        <h5><a href="http://www.jamiehaskell.com">Resume & Portfolio</a></h5>
+                        <p class="creator-button"><a href="http://www.jamiehaskell.com" class="btn waves-effect waves-teal blue-grey lighten-5 more-info">More about Jamie</a></p>
                     </div>
                 </div>
             </div>
