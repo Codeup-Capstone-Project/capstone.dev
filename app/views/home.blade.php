@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="hero-tile-large-grid" aria-hidden="true">
+            <div class="hero-tile-large-grid hide-on-small-only" aria-hidden="true">
                 <div id="one-large" class="hero-tile-large valign-wrapper">
                     <p class="splash-tile-num blue-grey-text text-darken-3 valign">1</p>
                 </div>
@@ -102,7 +102,7 @@
                 </div>
             </div>
 
-            <div class="hero-tile-largest-grid" aria-hidden="true">
+            <div class="hero-tile-largest-grid hide-on-med-and-down" aria-hidden="true">
                 <div class="hero-tile-largest valign-wrapper">
                     <p class="splash-tile-num blue-grey-text text-darken-3 valign">1</p>
                 </div>
