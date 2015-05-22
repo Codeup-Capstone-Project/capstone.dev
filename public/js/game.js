@@ -20,6 +20,7 @@ $.ajaxSetup({
 
 		//====================== Begin Game =========================
 
+			var testArray = [6,3,5,0,7,8,11,15,12,14,13,1,2,4,9,10];
 			var gameSession;
 			var puzzleId;
 			var puzzleSize;		//determined by user game-level selection
@@ -185,7 +186,50 @@ $.ajaxSetup({
 				    initialBlockPositions[current] = initialBlockPositions[top];
 				    initialBlockPositions[top] = tmp;
 				}
+				//check if randomly generated array is solvable
+				isSolvable();
 	    	}
+
+	    	function isSolvable()
+	    	{
+	    		//check the number of inversions
+				console.log('testArray: ' + testArray);
+				totalInversions();
+				
+
+	    	}
+
+	    	//count the total # of inversions for the positions array
+	    	function totalInversions() 
+	    	{
+				var inversions = 0;
+				//count the number of inversions for each tile, except the last one or 0
+				for (var i = 0; i < totalBlocks - 1; i++) {
+				  	var tileNum = testArray[i];
+				  	if(tileNum != 0){
+				    	inversions += inversionsForEachTile(tileNum, i);
+				    }
+				}
+				console.log('total inversions:' + inversions);
+				return inversions;
+			}
+
+			//is called by totalInversions()
+			//counts the number of inversions for each tile
+			function inversionsForEachTile(tileNum, i) 
+			{
+				var inversions = 0;
+				var startingIndex = i + 1;
+				var lastIndex = totalBlocks - 1;
+
+				for (var t = startingIndex; t <= lastIndex; t++) {
+				    if(tileNum > testArray[t] && testArray[t] != 0){
+				    	inversions++;
+				    }
+				}
+				console.log('inversion for tile #' + tileNum + ': ' + inversions);
+				return inversions;
+			}
 
 	    	function postInitialData()
 	    	{
@@ -224,7 +268,8 @@ $.ajaxSetup({
 		    }
 
 
-	    	function startGame(){
+	    	function startGame()
+	    	{
 	    		//reset the gameFinished and time indices of the gameStats object
 	    		//create a new game session number and store in gameStats object
 	    		$.get('/play/game-session', function(response){
@@ -299,7 +344,8 @@ $.ajaxSetup({
 			}
 
 
-	    	function addEventListeners(movableBlock){
+	    	function addEventListeners(movableBlock)
+	    	{
 	    		$('.blocks[data-blocknum="'+ movableBlock +'"]').on('click', function(){
 	    			//call moves-counter
 	    			movesCounter();
@@ -325,7 +371,8 @@ $.ajaxSetup({
 	    	}
 
 
-	    	function removeEventListeners(){
+	    	function removeEventListeners()
+	    	{
 	    		//after each move, check against answer key to alert when player has won
 				if(newBlockPositions.toString() == answerKey.toString()){
 					$('.blocks').off();
@@ -346,7 +393,8 @@ $.ajaxSetup({
 	    		$.post('/play/stats', gameStats);
 	    	}
 
-	    	function endGame(won){
+	    	function endGame(won)
+	    	{
 	    		var time = $("#timer").text();
 	    		gameStats.gameFinished = won;
 	    		gameStats.time = time;
@@ -371,7 +419,8 @@ $.ajaxSetup({
 		var milliseconds = 0, seconds = 0, minutes = 0, hours = 0,
 		    t;
 
-		function add() {
+		function add() 
+		{
 			milliseconds++;
 			if (milliseconds >= 100) {
 			    milliseconds = 0;
@@ -390,6 +439,7 @@ $.ajaxSetup({
 
 		    timer();
 		}
+
 		function timer() {
 		    t = setTimeout(add, 10);
 		}
