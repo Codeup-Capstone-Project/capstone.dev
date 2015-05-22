@@ -11,7 +11,7 @@
 		});
 
 		// Resets the ranking numbers everytime the sorting options are clicked
-		function reRank() 
+		function reRank()
         {
             $('.ranking').each(function(index, value){
                 var newRanking = index + 1;
@@ -26,7 +26,7 @@
         	$(".sortx").removeClass('active');
         	$(this).addClass('active');
         });
-        
+
         $(".sort-moves").on('click', function()
         {
         	statsList.sort('listMoves', { order: "asc" });
