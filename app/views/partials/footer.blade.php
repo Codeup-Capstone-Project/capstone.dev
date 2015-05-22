@@ -16,7 +16,8 @@
                         <h5 class="blue-grey-text text-darken-1">Connect</h5>
                         <ul>
                             <li><a class="blue-grey-text text-darken-1" href="https://github.com/Codeup-Capstone-Project">GitHub</a></li>
-                            <li><a class="blue-grey-text text-darken-1" href="#">Email us</a></li>
+                            <li><a class="blue-grey-text text-darken-1" href="mailto:jmehaskell@gmail.com?subject=TyleNinja">Email Jamie</a></li>
+                            <li><a class="blue-grey-text text-darken-1" href="mailto:hello@justindietert.com?subject=TyleNinja">Email Justin</a></li>
                         </ul>
                     </div>
                 </div>

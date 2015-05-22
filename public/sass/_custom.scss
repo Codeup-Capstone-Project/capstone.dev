@@ -15,7 +15,8 @@ body, html {
     height: 100%;
 }
 
-.img-marg {
+.img-marg,
+.img-marg-game-board {
     margin-top: 2.5em;
 }
 
@@ -24,6 +25,20 @@ body, html {
         margin-top: 2em;
     }
 }
+
+@media #{$medium-only} {
+    .img-marg-game-board {
+        margin-top: 1.5em;
+    }
+}
+
+@media #{$small-and-down} {
+    .img-marg-game-board {
+        margin-top: 1em;
+    }
+}
+
+
 
 .no-marg {
     margin: 0;
@@ -51,6 +66,10 @@ body, html {
 
 .thin {
     font-weight: 200;
+}
+
+.light {
+    font-weight: 300;
 }
 
 .bold {
@@ -166,12 +185,21 @@ nav .nav-wrapper i {
     letter-spacing: 0.0625rem;
     margin-top: 2rem;
 }
-    .call:hover {
+    .call:hover,
+    .more-info:hover {
         color: #00897b;
     }
 
 .call.main,
 .go-home {
+    margin-top: 1rem;
+}
+
+.more-info {
+    color: #455a64;
+    font-weight: 700;
+    letter-spacing: 1px;
+    letter-spacing: 0.0625rem;
     margin-top: 1rem;
 }
 
@@ -218,7 +246,7 @@ section.hero {
 
 @media #{$medium-and-down} {
     section, section.hero {
-        padding-top: 34px;
+        padding-top: 45px;
     }
 }
 
@@ -252,6 +280,34 @@ section.hero {
     width: 100%;
 }
 
+@media #{$medium-and-down} {
+    .jamie {
+        margin-top: 3rem;
+    }
+}
+
+ul.responsibilities {
+    list-style-type: circle;
+
+    li {
+        list-style-type: inherit;
+    }
+}
+
+.creator-button {
+    text-align: left;
+}
+
+    @media #{$medium-and-down} {
+        .creator-button {
+            text-align: center;
+        }
+    }
+
+.caption {
+    font-weight: 400;
+}
+
 // Social Media Colors
 //-----------------------------------------------
 
@@ -267,6 +323,18 @@ section.hero {
 
 // Modals
 //-----------------------------------------------
+
+#tutorial-video.modal {
+    max-height: 75%;
+    width: 45%;
+}
+
+@media #{$medium-and-down} {
+    #tutorial-video.modal {
+        max-height: 90%;
+        width: 95%;
+    }
+}
 
 .modal.bottom-sheet {
     max-height: 80%;
@@ -360,7 +428,7 @@ li.custom {
     position: relative;
 }
 
-ranking {
+.ranking {
   margin-left: 0;
   padding-left: 0;
   font-size: 1.5rem;
@@ -369,6 +437,17 @@ ranking {
   left: 1rem;
   top: 1.5rem;
 }
+
+.play-same,
+.updated-stat {
+    text-align: right;
+}
+    @media #{$medium-and-down} {
+        .play-same,
+        .updated-stat {
+            text-align: left;
+        }
+    }
 
 @media #{$small-and-down} {
     #leaderModalContent.modal-content {
