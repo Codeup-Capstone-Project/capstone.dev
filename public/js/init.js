@@ -1,6 +1,8 @@
 (function($){
     $(function(){
 
+        $('.ninja-star').animate();
+
         $('.button-collapse').sideNav({
             edge: 'right'
         });
