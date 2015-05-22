@@ -11,7 +11,7 @@
 		});
 
 		// Resets the ranking numbers everytime the sorting options are clicked
-		function reRank() 
+		function reRank()
         {
             $('.ranking').each(function(index, value){
                 var newRanking = index + 1;
@@ -26,7 +26,7 @@
         	$(".sortx").removeClass('active');
         	$(this).addClass('active');
         });
-        
+
         $(".sort-moves").on('click', function()
         {
         	statsList.sort('listMoves', { order: "asc" });
@@ -159,12 +159,12 @@
 											<p class="grey-text text-darken-1">Finished in: <span class="listGameTime blue-grey-text">{{{ $stat->game_time }}}</span></p>
 											<p class="grey-text text-darken-1">With: <span class="listMoves blue-grey-text">{{{ $stat->moves }}} moves</span></p>
 										</div>
-										<div class="col s12 l4">
+										<div class="col s12 l4 updated-stat">
 											<p class="grey-text text-lighten-1 updated-at">{{{ $stat->updated_at }}}</p>
 										</div>
 									</div>
 									<div class="row pad-top">
-										<div class="col s12">
+										<div class="col s12 play-same">
 											<a class="btn" href="{{{ action('GameController@getGame', $stat->puzzle->id) }}}">Play Same Puzzle</a>
 										</div>
 									</div>
