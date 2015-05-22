@@ -193,9 +193,10 @@
                         <div class="card-panel blue-grey lighten-5 z-depth-2 img-marg-game-board">
                             <img src="/img/tile-board.png" alt="TyleNinja game board example" class="responsive-img">
                         </div>
+                        <p class="caption flow-text blue-grey-text text-darken-3">A solved 3x3 puzzle</p>
                     </div>
                     <div class="col s12 center">
-                        <a href="#" class="btn-large waves-effect waves-teal blue-grey lighten-5 call">Watch Tutorial</a>
+                        <a href="#tutorial-video" class="modal-trigger btn-large waves-effect waves-teal blue-grey lighten-5 call">Watch Tutorial</a>
                     </div>
                 </div>
             </div>
@@ -246,4 +247,16 @@
                 </div>
             </div>
         </section>
+
+        <!-- Video Modal -->
+        <div id="tutorial-video" class="modal">
+            <div class="modal-content">
+                <div class="video-container">
+                    <iframe src="https://player.vimeo.com/video/128605681?color=009688&title=0&byline=0&portrait=0" width="500" height="253" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="blue-grey-text text-darken-2 modal-action modal-close btn-flat">Close&nbsp;<i class="small mdi-navigation-cancel right"></i></a>
+            </div>
+        </div>
 @stop

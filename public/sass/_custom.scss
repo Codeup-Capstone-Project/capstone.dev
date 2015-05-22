@@ -294,8 +294,6 @@ ul.responsibilities {
     }
 }
 
-
-
 .creator-button {
     text-align: left;
 }
@@ -306,6 +304,9 @@ ul.responsibilities {
         }
     }
 
+.caption {
+    font-weight: 400;
+}
 
 // Social Media Colors
 //-----------------------------------------------
@@ -322,6 +323,18 @@ ul.responsibilities {
 
 // Modals
 //-----------------------------------------------
+
+#tutorial-video.modal {
+    max-height: 75%;
+    width: 45%;
+}
+
+@media #{$medium-and-down} {
+    #tutorial-video.modal {
+        max-height: 90%;
+        width: 95%;
+    }
+}
 
 .modal.bottom-sheet {
     max-height: 80%;
