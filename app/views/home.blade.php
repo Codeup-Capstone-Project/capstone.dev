@@ -234,7 +234,7 @@
                             <li><i class="tiny mdi-image-camera"></i> Database Architecture</li>
                             <li><i class="tiny mdi-editor-format-align-left"></i> Custom JavaScript/JQuery</li>
                             <li><i class="tiny mdi-av-repeat"></i> AJAX</li>
-                            <li><i class="tiny mdi-social-group"></i> LeaderBoard Functionality</li>
+                            <li><i class="tiny mdi-action-swap-vert-circle"></i> LeaderBoard Functionality</li>
                             <li><i class="tiny mdi-editor-format-list-numbered"></i> ListJS Library Implementation</li>
                         </ul>
                         <h5><a href="http://www.jamiehaskell.com">Resume & Portfolio</a></h5>
