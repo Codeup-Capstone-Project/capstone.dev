@@ -137,7 +137,7 @@
     <div id="delete-account" class="modal">
         <div class="modal-content">
             <h4 class="blue-grey-text text-darken-2">Delete Account</h4>
-            <p class="flow-text blue-grey-text">Are you sure?</p>
+            <p class="flow-text blue-grey-text"><span class="pink-text text-darken-2 normal">Are you sure?</span><br>All of your stats and leader board rankings will be lost.</p>
         </div>
         <div class="modal-footer">
             <a href="{{{ action('UsersController@getDestroy', Auth::user()->id) }}}" class="modal-action modal-close waves-effect waves-red btn-flat pink-text text-darken-3">Delete my account</a>
