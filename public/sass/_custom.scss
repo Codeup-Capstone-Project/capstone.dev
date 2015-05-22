@@ -356,6 +356,20 @@ section.hero {
     padding: 1rem 1rem 1rem 3rem;
 }
 
+li.custom {
+    position: relative;
+}
+
+ranking {
+  margin-left: 0;
+  padding-left: 0;
+  font-size: 1.5rem;
+  color: #90a4ae;
+  position: absolute;
+  left: 1rem;
+  top: 1.5rem;
+}
+
 @media #{$small-and-down} {
     #leaderModalContent.modal-content {
         padding-left: 10px;
@@ -442,13 +456,6 @@ input.search {
     font-weight: 500;
 }
 
-.userAvatar {
-    height: 50px;
-    width: 50px;
-    margin-top: 12.3px;
-    border-radius: 50%;
-}
-
 #statsList input {
     height: 36px;
 }
@@ -491,17 +498,17 @@ input.search {
     text-transform: uppercase;
 }
 
-.sort {
+.sortx {
     cursor: pointer;
     display: inline;
     color: #90a4ae;
 }
 
-.sort:hover {
+.sortx:hover, .sortx.active {
     color: teal;
 }
 
-.sort:focus {
+.sortx:focus {
     background: none;
 }
 
@@ -519,28 +526,18 @@ input.search {
     }
 }
 
-ol.custom {
-  list-style-type: none;
+li.custom {
+    position: relative;
+}
+
+ranking {
   margin-left: 0;
   padding-left: 0;
-}
-
-ol.custom > li {
-  counter-increment: customlistcounter;
-  position: relative;
-}
-
-ol.custom > li:before {
-  content: counter(customlistcounter) " ";
   font-size: 1.5rem;
   color: #90a4ae;
   position: absolute;
   left: 1rem;
   top: 1.5rem;
-}
-
-ol.custom:first-child {
-  counter-reset: customlistcounter;
 }
 
 // Hero Graphics
@@ -561,6 +558,11 @@ ol.custom:first-child {
     #main-splash .ninja {
         right: 30px;
     }
+}
+
+.ninja-star {
+    position: absolute;
+    z-index: 0;
 }
 
 #main-splash .ninja-star {

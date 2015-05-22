@@ -1,12 +1,42 @@
 {{-- <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script> --}}
 <script>
 	$(document).ready(function(){
+		//================== List.JS API Library ===================
 		var options = {
 		  valueNames: [ 'listGameTime', 'listMoves', 'listUsername', 'puzzleNumber' ]
 		};
 
-		var statsList = new List('statsList', options);
+		var statsList = new List('statsList', options).on('sortComplete', function(){
+			reRank();
+		});
+
+		// Resets the ranking numbers everytime the sorting options are clicked
+		function reRank() 
+        {
+            $('.ranking').each(function(index, value){
+                var newRanking = index + 1;
+                $(this).html(newRanking);
+            });
+        }
+
+        // Highlights the sorting option that is currently active
+        $(".sort-time").on('click', function()
+        {
+        	statsList.sort('listGameTime', { order: "asc" });
+        	$(".sortx").removeClass('active');
+        	$(this).addClass('active');
+        });
+        
+        $(".sort-moves").on('click', function()
+        {
+        	statsList.sort('listMoves', { order: "asc" });
+        	$(".sortx").removeClass('active');
+        	$(this).addClass('active');
+        });
+
 	});
+
+
 </script>
 
 <div id="statsList" class="row"> {{-- start main row --}}
@@ -22,18 +52,23 @@
 			</div>
 			<div class="col s12 m6">
 				<ul class="sort-buttons">
-					<li class="sort sort-time" data-sort="listGameTime">Sort by Time</li>
-					<li class="sort" data-sort="listMoves">Sort by Moves</li>
+					<li class="sortx sort-time active" >Sort by Time</li>
+					<li class="sortx sort-moves" >Sort by Moves</li>
 				</ul>
 			</div>
 		</div>
 
+		<?php $count = 0; ?>
+
 		<div class="row">
 			<div class="col s12">
-				<ol class="list collection white custom">  {{-- style="border:1px solid #ddd;" --}}
+				<ul class="list collection white">  {{-- style="border:1px solid #ddd;" --}}
 					@foreach($stats as $stat)
 							@if($stat->puzzle->size == $size)
-								<li class='collection-item leader-item'>
+								<li class='collection-item leader-item custom'>
+									<div class="ranking">
+											{{{ ++$count }}}
+									</div>
 									<div class="row no-marg-bot">
 										<div class="col s12 l4">
 											<img class="profile-avatar" src="{{{ $stat->user->profile_photo_url }}}">
@@ -56,7 +91,7 @@
 								</li>
 							@endif
 					@endforeach
-				</ol>
+				</ul>
 			</div>
 		</div>
 	</div> {{-- end main column --}}

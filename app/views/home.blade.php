@@ -200,19 +200,44 @@
             <div class="container">
                 <div class="row no-marg-bot pad-bot blue-grey-text text-darken-4">
                     <div class="col s12">
-                        <h3 class="center">The Creators</h3>
+                        <h3 class="center">The Creators:</h3>
+                        <h5 class="center"> ( <em>team J <sup>2</sup></em> )</h5>
                     </div>
                     <div class="col s6 offset-s3 m4 offset-m4 l2">
                         <img src="img/justin.jpg" alt="" class="circle responsive-img img-marg">
                     </div>
                     <div class="col s12 m12 l4">
-                        <p class="flow-text"><span class="name">Justin Dietert</span> lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aliquid dolores libero ullam aspernatur amet cum, iusto ratione repudiandae dolore doloribus! In ex earum ab.</p>
+                        <p class="flow-text"><span class="name">Justin Dietert</span> is a designer and developer with a background in graphic design.</p>
+                        <ul class="flow-text">
+                            <p>He was involved in all aspects and features of this site, but was <span class="name">primarily responsible for:</span></p>
+                            <li><i class="tiny mdi-av-my-library-books"></i> Site Layout & Design</li>
+                            <li><i class="tiny mdi-action-account-circle"></i> User Models & Controllers</li>
+                            <li><i class="tiny mdi-content-markunread"></i> Mandril API</li>
+                            <li><i class="tiny mdi-editor-insert-emoticon"></i> UI/UX</li>
+                            <li><i class="tiny mdi-image-palette"></i> Custom HTML/CSS</li>
+                            <li><i class="tiny mdi-action-view-quilt"></i> Materialize CSS Framework</li>
+                            <li><i class="tiny mdi-hardware-smartphone"></i> Mobile-Responsiveness</li>
+                            <li><i class="tiny mdi-maps-directions-walk"></i> Ninja Graphics</li>
+                        </ul>
+                        <h5><a href="http://www.justindietert.com">Resume & Portfolio</a></h5>
                     </div>
                     <div class="col s6 offset-s3 m4 offset-m4 l2">
                         <img src="img/jamie.jpg" alt="" class="circle responsive-img img-marg">
                     </div>
                     <div class="col s12 m12 l4">
-                        <p class="flow-text"><span class="name">Jamie Haskell</span> lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aliquid dolores libero ullam aspernatur amet cum, iusto ratione repudiandae dolore doloribus! In ex earum ab.</p>
+                        <p class="flow-text"><span class="name">Jamie Haskell</span> is a designer and developer with a background in mathematics.</p>
+                        <ul class="flow-text">
+                            <p>She was involved in all aspects and features of this site, but was <span class="name">primarily responsible for:</span></p>
+                            <li><i class="tiny mdi-image-grid-on"></i> Game Logic, Layout, & Design</li>
+                            <li><i class="tiny mdi-av-play-arrow"></i> Game Models & Controller</li>
+                            <li><i class="tiny mdi-social-person-add"></i> OAuth APIs</li>
+                            <li><i class="tiny mdi-image-camera"></i> Database Architecture</li>
+                            <li><i class="tiny mdi-editor-format-align-left"></i> Custom JavaScript/JQuery</li>
+                            <li><i class="tiny mdi-av-repeat"></i> AJAX</li>
+                            <li><i class="tiny mdi-action-swap-vert-circle"></i> LeaderBoard Functionality</li>
+                            <li><i class="tiny mdi-editor-format-list-numbered"></i> ListJS Library Implementation</li>
+                        </ul>
+                        <h5><a href="http://www.jamiehaskell.com">Resume & Portfolio</a></h5>
                     </div>
                 </div>
             </div>
