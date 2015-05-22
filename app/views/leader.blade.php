@@ -19,7 +19,7 @@
             });
         }
 
-        // Highlights the sorting option that is currently active
+        // WIP: Orders & highlights the sorting option that is currently active
         $(".sort-time").on('click', function()
         {
         	statsList.sort('listGameTime', { order: "asc" });
@@ -34,12 +34,92 @@
         	$(this).addClass('active');
         });
 
+     //    // Orders and highlights the sorting option that is currently active
+     //    $(".sort-time").on('click', function()
+     //    {
+     //    	//get the size of the leader board that is currently loaded and reload it
+     //    	var size = $("#statsList").data('size');
+     //    	$.get('/play/leaders/'+size, null, array(
+     //    		function(data){
+     //                $("#leaderModalContent").html(data);
+     //            }, sortTime())
+     //    	);
+     //    });
+
+     //    //sort according to best time
+    	// function sortTime(){
+     //    	statsList.sort('listGameTime', { order: "asc" });
+     //    	$(".sortx").removeClass('active');
+     //    	$("#byTime").addClass('active');
+     //    }
+        
+     //    $(".sort-moves").on('click', function()
+     //    {
+     //    	//get the size of the leader board that is currently loaded and reload it
+     //    	var size = $("#statsList").data('size');
+     //    	$.get('/play/leaders/'+size, null, function(data){
+     //                $("#leaderModalContent").html(data);
+     //                sortMoves();
+     //            });
+     //    });
+
+     //    //sort according to least moves
+     //    function sortMoves(){	
+     //    	statsList.sort('listMoves', { order: "asc" });
+     //    	$(".sortx").removeClass('active');
+     //    	$("#byMoves").addClass('active');
+     //    	alert("done");
+     //    }
+
+     // // Orders and highlights the sorting option that is currently active
+     //    $(".sort-time").on('click', function()
+     //    {
+     //    	//get the size of the leader board that is currently loaded and reload it
+     //    	var size = $("#statsList").data('size');
+     //    	$.ajax({
+     //    		url: '/play/leaders/'+size, 
+     //    		data: null, 
+     //    		type: "GET", 
+     //    		success: function(data)
+     //    		{
+     //                $("#leaderModalContent").html(data);
+     //            },
+     //            complete: function(){
+				 //        	statsList.sort('listGameTime', { order: "asc" });
+				 //        	$(".sortx").removeClass('active');
+				 //        	$("#byTime").addClass('active');
+				 //        	alert('done');
+				 //        }
+     //    	});
+     //    });
+        
+     //    $(".sort-moves").on('click', function()
+     //    {
+     //    	//get the size of the leader board that is currently loaded and reload it
+     //    	var size = $("#statsList").data('size');
+     //    	$.ajax({
+     //    		url: '/play/leaders/'+size, 
+     //    		data: null, 
+     //    		type: "GET", 
+     //    		success: function(data)
+     //    		{
+     //                $("#leaderModalContent").html(data);
+     //            },
+     //            complete: function(){	
+				 //        	statsList.sort('listMoves', { order: "asc" });
+				 //        	$(".sortx").removeClass('active');
+				 //        	$("#byMoves").addClass('active');
+				 //        	alert("done");
+				 //        }
+     //    	});
+     //    });
+
 	});
 
 
 </script>
 
-<div id="statsList" class="row"> {{-- start main row --}}
+<div id="statsList" class="row" data-size="{{{ $size }}}"> {{-- start main row --}}
 	<div class="col s12 m10 offset-m1 l8 offset-l2"> {{-- start main column --}}
 		<div class="row no-marg-bot">
 			<div class="col s12">
@@ -52,8 +132,8 @@
 			</div>
 			<div class="col s12 m6">
 				<ul class="sort-buttons">
-					<li class="sortx sort-time active" >Sort by Time</li>
-					<li class="sortx sort-moves" >Sort by Moves</li>
+					<li id="byTime" class="sortx sort-time active" >Sort by Time</li>
+					<li id="byMoves" class="sortx sort-moves" >Sort by Moves</li>
 				</ul>
 			</div>
 		</div>
