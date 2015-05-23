@@ -19,100 +19,22 @@
             });
         }
 
-        // WIP: Orders & highlights the sorting option that is currently active
+        // Orders & highlights the sorting option that is currently active
         $(".sort-time").on('click', function()
         {
-        	statsList.sort('listGameTime', { order: "asc" });
+        	statsList.search(); // Clears any search results prior to sorting
+            statsList.sort('listGameTime', { order: "asc" });
         	$(".sortx").removeClass('active');
         	$(this).addClass('active');
         });
 
         $(".sort-moves").on('click', function()
         {
-        	statsList.sort('listMoves', { order: "asc" });
+        	statsList.search(); // Clears any search results prior to sorting
+            statsList.sort('listMoves', { order: "asc" });
         	$(".sortx").removeClass('active');
         	$(this).addClass('active');
         });
-
-     //    // Orders and highlights the sorting option that is currently active
-     //    $(".sort-time").on('click', function()
-     //    {
-     //    	//get the size of the leader board that is currently loaded and reload it
-     //    	var size = $("#statsList").data('size');
-     //    	$.get('/play/leaders/'+size, null, array(
-     //    		function(data){
-     //                $("#leaderModalContent").html(data);
-     //            }, sortTime())
-     //    	);
-     //    });
-
-     //    //sort according to best time
-    	// function sortTime(){
-     //    	statsList.sort('listGameTime', { order: "asc" });
-     //    	$(".sortx").removeClass('active');
-     //    	$("#byTime").addClass('active');
-     //    }
-        
-     //    $(".sort-moves").on('click', function()
-     //    {
-     //    	//get the size of the leader board that is currently loaded and reload it
-     //    	var size = $("#statsList").data('size');
-     //    	$.get('/play/leaders/'+size, null, function(data){
-     //                $("#leaderModalContent").html(data);
-     //                sortMoves();
-     //            });
-     //    });
-
-     //    //sort according to least moves
-     //    function sortMoves(){	
-     //    	statsList.sort('listMoves', { order: "asc" });
-     //    	$(".sortx").removeClass('active');
-     //    	$("#byMoves").addClass('active');
-     //    	alert("done");
-     //    }
-
-     // // Orders and highlights the sorting option that is currently active
-     //    $(".sort-time").on('click', function()
-     //    {
-     //    	//get the size of the leader board that is currently loaded and reload it
-     //    	var size = $("#statsList").data('size');
-     //    	$.ajax({
-     //    		url: '/play/leaders/'+size, 
-     //    		data: null, 
-     //    		type: "GET", 
-     //    		success: function(data)
-     //    		{
-     //                $("#leaderModalContent").html(data);
-     //            },
-     //            complete: function(){
-				 //        	statsList.sort('listGameTime', { order: "asc" });
-				 //        	$(".sortx").removeClass('active');
-				 //        	$("#byTime").addClass('active');
-				 //        	alert('done');
-				 //        }
-     //    	});
-     //    });
-        
-     //    $(".sort-moves").on('click', function()
-     //    {
-     //    	//get the size of the leader board that is currently loaded and reload it
-     //    	var size = $("#statsList").data('size');
-     //    	$.ajax({
-     //    		url: '/play/leaders/'+size, 
-     //    		data: null, 
-     //    		type: "GET", 
-     //    		success: function(data)
-     //    		{
-     //                $("#leaderModalContent").html(data);
-     //            },
-     //            complete: function(){	
-				 //        	statsList.sort('listMoves', { order: "asc" });
-				 //        	$(".sortx").removeClass('active');
-				 //        	$("#byMoves").addClass('active');
-				 //        	alert("done");
-				 //        }
-     //    	});
-     //    });
 
 	});
 
