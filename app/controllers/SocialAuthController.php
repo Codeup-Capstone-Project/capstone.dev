@@ -91,6 +91,10 @@ class SocialAuthController extends BaseController {
 
             // check if user exists
             if ( $userExists ) {
+                if ($userExists->deleted_at != NULL) {
+                    $userExists->deleted_at = NULL; 
+                    $userExists->save();
+                } 
                 // login user
                 Auth::login( $userExists );
 
@@ -196,6 +200,10 @@ class SocialAuthController extends BaseController {
 
             // check if user exists
             if ( $userExists ) {
+                if ($userExists->deleted_at != NULL) {
+                    $userExists->deleted_at = NULL; 
+                    $userExists->save();
+                }
                 // login user
                 Auth::login( $userExists );
 

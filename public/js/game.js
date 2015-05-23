@@ -77,6 +77,7 @@ $.ajaxSetup({
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		cells = [];
 	    		initialBlockPositions = [];
+	    		answerKey = [];
 	    		randomPositionGenerator();
 	    		postInitialData();
 	    		$(".level, #chooseLevel, #easy").addClass('hidden');
@@ -93,6 +94,7 @@ $.ajaxSetup({
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		cells = [];
 	    		initialBlockPositions = [];
+	    		answerKey = [];
 	    		randomPositionGenerator();
 	    		postInitialData();
 	    		$(".level, #chooseLevel, #easy").addClass('hidden');
@@ -107,6 +109,7 @@ $.ajaxSetup({
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		cells = [];
 	    		initialBlockPositions = [1, 2, 3, 4, 0, 5, 7, 8, 6];
+	    		answerKey = [1, 2, 3, 4, 5, 6, 7, 8, 0];
 	    		gameStats.puzzle_id = 1;
 	    		$(".level, #chooseLevel, #easy").addClass('hidden');
 				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
@@ -184,6 +187,7 @@ $.ajaxSetup({
 	    		//remove 0 from front of answerKey and put it on the back
 	    		var zero = answerKey.shift();
 	    		answerKey.push(zero);
+	    		console.log(answerKey);
 
 	    		do {
 		    		//shuffle the array
@@ -412,8 +416,10 @@ $.ajaxSetup({
 
 	    	function removeEventListeners()
 	    	{
+	    		console.log(answerKey.toString());
+	    		console.log(newBlockPositions.toString());
 	    		//after each move, check against answer key to alert when player has won
-				if(newBlockPositions.toString() == answerKey.toString()){
+				if(newBlockPositions.toString() == answerKey.toString()) {
 					$('.blocks').off();
 					var won = true;
 					endGame(won);
