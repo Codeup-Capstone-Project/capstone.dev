@@ -19,17 +19,19 @@
             });
         }
 
-        // Highlights the sorting option that is currently active
+        // Orders & highlights the sorting option that is currently active
         $(".sort-time").on('click', function()
         {
-        	statsList.sort('listGameTime', { order: "asc" });
+        	statsList.search(); // Clears any search results prior to sorting
+            statsList.sort('listGameTime', { order: "asc" });
         	$(".sortx").removeClass('active');
         	$(this).addClass('active');
         });
 
         $(".sort-moves").on('click', function()
         {
-        	statsList.sort('listMoves', { order: "asc" });
+        	statsList.search(); // Clears any search results prior to sorting
+            statsList.sort('listMoves', { order: "asc" });
         	$(".sortx").removeClass('active');
         	$(this).addClass('active');
         });
@@ -39,7 +41,7 @@
 
 </script>
 
-<div id="statsList" class="row"> {{-- start main row --}}
+<div id="statsList" class="row" data-size="{{{ $size }}}"> {{-- start main row --}}
 	<div class="col s12 m10 offset-m1 l8 offset-l2"> {{-- start main column --}}
 		<div class="row no-marg-bot">
 			<div class="col s12">
@@ -52,8 +54,8 @@
 			</div>
 			<div class="col s12 m6">
 				<ul class="sort-buttons">
-					<li class="sortx sort-time active" >Sort by Time</li>
-					<li class="sortx sort-moves" >Sort by Moves</li>
+					<li id="byTime" class="sortx sort-time active" >Sort by Time</li>
+					<li id="byMoves" class="sortx sort-moves" >Sort by Moves</li>
 				</ul>
 			</div>
 		</div>
