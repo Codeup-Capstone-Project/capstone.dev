@@ -249,7 +249,10 @@ $.ajaxSetup({
 				    	inversions += inversionsForEachTile(tileNum, i);
 				    }
 				}
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 				return inversions;
 			}
 
@@ -266,7 +269,10 @@ $.ajaxSetup({
 				    	inversions++;
 				    }
 				}
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 				return inversions;
 			}
 
