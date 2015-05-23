@@ -190,8 +190,6 @@ $.ajaxSetup({
 					    initialBlockPositions[current] = initialBlockPositions[top];
 					    initialBlockPositions[top] = tmp;
 					}
-				console.log('initial block positions: ' + initialBlockPositions);
-				console.log('is solvable: ' + isSolvable());
 				//check if randomly generated array is solvable
 				} while(!isSolvable());
 	    	}
@@ -200,7 +198,6 @@ $.ajaxSetup({
 	    	{
 	    		//check the number of inversions in randomly generated array
 				var inversions = totalInversions();
-				console.log('inversion total: ' + inversions);
 				
 				//locate the empty cell
 				$.each(initialBlockPositions, function(index, value)
@@ -218,7 +215,6 @@ $.ajaxSetup({
 						}
 					}
 				}
-				console.log('row of empty cell: ' + rowOfEmptyCell);
 				
 				//odd sized puzzles must have an even # of inversions
 				if(puzzleSize % 2 != 0 && inversions % 2 == 0) {
@@ -247,7 +243,6 @@ $.ajaxSetup({
 				    	inversions += inversionsForEachTile(tileNum, i);
 				    }
 				}
-				console.log('total inversions:' + inversions);
 				return inversions;
 			}
 
@@ -264,7 +259,6 @@ $.ajaxSetup({
 				    	inversions++;
 				    }
 				}
-				console.log('inversion for tile #' + tileNum + ': ' + inversions);
 				return inversions;
 			}
 
