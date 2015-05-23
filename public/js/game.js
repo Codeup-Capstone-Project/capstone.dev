@@ -181,12 +181,8 @@ $.ajaxSetup({
 	    	{
 	    		//fill the array with an integer for every block
 	    		for (i = 0; i < totalBlocks; i++) {
-	    			initialBlockPositions[i] = i;
-	    			answerKey[i] = i;
+	    			initialBlockPositions[i] = i;	
 	    		}
-	    		//remove 0 from front of answerKey and put it on the back
-	    		var zero = answerKey.shift();
-	    		answerKey.push(zero);
 
 	    		do {
 		    		//shuffle the array
@@ -312,6 +308,7 @@ $.ajaxSetup({
 
 	    	function startGame()
 	    	{
+	    		createAnswerKey();
 	    		//reset the gameFinished and time indices of the gameStats object
 	    		//create a new game session number and store in gameStats object
 	    		$.get('/play/game-session', function(response){
@@ -320,6 +317,7 @@ $.ajaxSetup({
 	    			gameStats.gameFinished = false;
 	    			gameStats.time = '';
 	    		});
+	    		//reset moves counter
 	    		moves = 0;
 	    		$("#moves").text(moves);
 	    		//place blocks in their initial positions
@@ -332,6 +330,18 @@ $.ajaxSetup({
 	    		$("#newGame").addClass('hidden');
 	    		$("#quit").removeClass('hidden');
 	    		$("#reset").removeClass('hidden');
+	    	}
+
+	    	function createAnswerKey()
+	    	{
+	    		//reset any previous answer key
+	    		answerKey = [];
+	    		//fill the array with an integer for every block, starting with 1
+	    		for (i = 0; i < totalBlocks - 1; i++) {
+		    		answerKey[i] = i + 1;
+		    	}
+		    	//add a 0 on the back to represent the empty cell in the lower right corner
+	    		answerKey.push(0);
 	    	}
 
 	    	// Loop through cell-position array and assign its sets of coordinates to each block as they are generated
