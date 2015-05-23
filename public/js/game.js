@@ -20,7 +20,6 @@ $.ajaxSetup({
 
 		//====================== Begin Game =========================
 
-			var testArray = [6,3,5,0,7,8,11,15,12,14,13,1,2,4,9,10];
 			var gameSession;
 			var puzzleId;
 			var puzzleSize;		//determined by user game-level selection
@@ -147,6 +146,7 @@ $.ajaxSetup({
 	    		$(".hiya").addClass('hidden');
 	    		$(".again").removeClass('hidden');
 	    		clearTimeout(t);
+	    		gameStats.moves = moves;
 	    		var won = false;
 	    		endGame(won);
 	    	});
@@ -172,31 +172,68 @@ $.ajaxSetup({
 				cellDimension = blockWidth;
 	    	}
 
+	    	//generate a random array for puzzle block positions
+	    	//if not solvable, keep generating another array until it is
 	    	function randomPositionGenerator()
 	    	{
 	    		//fill the array with an integer for every block
 	    		for (i = 0; i < totalBlocks; i++) {
 	    			initialBlockPositions[i] = i;
 	    		}
-	    		//shuffle the array
-			  	var tmp, current, top = initialBlockPositions.length;
-			  	if(top) while(--top) {
-				    current = Math.floor(Math.random() * (top + 1));
-				    tmp = initialBlockPositions[current];
-				    initialBlockPositions[current] = initialBlockPositions[top];
-				    initialBlockPositions[top] = tmp;
-				}
+
+	    		do {
+		    		//shuffle the array
+				  	var tmp, current, top = initialBlockPositions.length;
+				  	if(top) while(--top) {
+					    current = Math.floor(Math.random() * (top + 1));
+					    tmp = initialBlockPositions[current];
+					    initialBlockPositions[current] = initialBlockPositions[top];
+					    initialBlockPositions[top] = tmp;
+					}
+				console.log('initial block positions: ' + initialBlockPositions);
+				console.log('is solvable: ' + isSolvable());
 				//check if randomly generated array is solvable
-				isSolvable();
+				} while(!isSolvable());
 	    	}
 
 	    	function isSolvable()
 	    	{
-	    		//check the number of inversions
-				console.log('testArray: ' + testArray);
-				totalInversions();
+	    		//check the number of inversions in randomly generated array
+				var inversions = totalInversions();
+				console.log('inversion total: ' + inversions);
 				
+				//locate the empty cell
+				$.each(initialBlockPositions, function(index, value)
+					{
+						if(value == 0){
+							emptyCell = index;
+						}
+					});
 
+				//determine the row where the empty cell is located
+				for(var n = 0; n < puzzleSize; n++) {
+					for(var r = 0; r < puzzleSize; r++) {
+						if (n * puzzleSize + r == emptyCell) {
+							var rowOfEmptyCell = n + 1;
+						}
+					}
+				}
+				console.log('row of empty cell: ' + rowOfEmptyCell);
+				
+				//odd sized puzzles must have an even # of inversions
+				if(puzzleSize % 2 != 0 && inversions % 2 == 0) {
+					return true;
+				//even sized puzzles must have an even # of inversions
+				//if the empty cell is on an even row
+				} else if(puzzleSize % 2 == 0 && inversions % 2 == 0 && rowOfEmptyCell % 2 == 0) {
+					return true;
+				//even sized puzzles must have an odd # of inversions
+				//if the empty cell is on an odd row
+				} else if(puzzleSize % 2 == 0 && inversions % 2 != 0 && rowOfEmptyCell % 2 != 0) {
+					return true;
+				} else {
+					return false;
+				}
 	    	}
 
 	    	//count the total # of inversions for the positions array
@@ -205,7 +242,7 @@ $.ajaxSetup({
 				var inversions = 0;
 				//count the number of inversions for each tile, except the last one or 0
 				for (var i = 0; i < totalBlocks - 1; i++) {
-				  	var tileNum = testArray[i];
+				  	var tileNum = initialBlockPositions[i];
 				  	if(tileNum != 0){
 				    	inversions += inversionsForEachTile(tileNum, i);
 				    }
@@ -223,7 +260,7 @@ $.ajaxSetup({
 				var lastIndex = totalBlocks - 1;
 
 				for (var t = startingIndex; t <= lastIndex; t++) {
-				    if(tileNum > testArray[t] && testArray[t] != 0){
+				    if(tileNum > initialBlockPositions[t] && initialBlockPositions[t] != 0){
 				    	inversions++;
 				    }
 				}
