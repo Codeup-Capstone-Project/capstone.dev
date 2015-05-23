@@ -8,6 +8,7 @@ html {
 
 body, html {
     height: 100%;
+    overflow-x: hidden;
     position: relative;
 }
 
@@ -250,10 +251,10 @@ section.hero {
     }
 }
 
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 640px) {
 
     section.hero {
-        padding-top: 15px;
+        padding-top: 0;
     }
     .plug {
         font-size: 2.92rem;
@@ -636,6 +637,14 @@ ranking {
 @media #{$medium-and-down} {
     #main-splash .ninja {
         right: 30px;
+        bottom: 15px;
+    }
+}
+
+@media #{$small-and-down} {
+    #main-splash .ninja {
+        right: -85px;
+        bottom: 15px;
     }
 }
 
@@ -713,6 +722,7 @@ ranking {
 @media #{$medium-and-down} {
     .hero-tile-large-grid {
         left: 55px;
+        bottom: 75px;
     }
 }
 
@@ -758,6 +768,7 @@ ranking {
 @media #{$medium-and-down} {
     .hero-tile-largest-grid {
         left: 500px;
+        bottom: 50px;
     }
 }
 
