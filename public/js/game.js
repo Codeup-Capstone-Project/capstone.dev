@@ -33,7 +33,7 @@ $.ajaxSetup({
 			var totalBlocks;
 			var initialBlockPositions = [];	//will be randomly generated
 			var newBlockPositions = [];		//will be a clone of initial positions that changes as user clicks blocks
-			var answerKey = [1,2,3,4,5,6,7,8,0];
+			var answerKey = [];
 
 			//object to POST necessary game data to database when game ends
 			var gameStats = {
@@ -179,7 +179,12 @@ $.ajaxSetup({
 	    		//fill the array with an integer for every block
 	    		for (i = 0; i < totalBlocks; i++) {
 	    			initialBlockPositions[i] = i;
+	    			answerKey[i] = i;
 	    		}
+	    		//remove 0 from front of answerKey and put it on the back
+	    		var zero = answerKey.shift();
+	    		answerKey.push(zero);
+	    		console.log('answer key: ' + answerKey);
 
 	    		do {
 		    		//shuffle the array
@@ -194,6 +199,7 @@ $.ajaxSetup({
 				console.log('is solvable: ' + isSolvable());
 				//check if randomly generated array is solvable
 				} while(!isSolvable());
+
 	    	}
 
 	    	function isSolvable()
