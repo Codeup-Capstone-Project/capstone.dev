@@ -187,7 +187,6 @@ $.ajaxSetup({
 	    		//remove 0 from front of answerKey and put it on the back
 	    		var zero = answerKey.shift();
 	    		answerKey.push(zero);
-	    		console.log(answerKey);
 
 	    		do {
 		    		//shuffle the array
@@ -416,8 +415,6 @@ $.ajaxSetup({
 
 	    	function removeEventListeners()
 	    	{
-	    		console.log(answerKey.toString());
-	    		console.log(newBlockPositions.toString());
 	    		//after each move, check against answer key to alert when player has won
 				if(newBlockPositions.toString() == answerKey.toString()) {
 					$('.blocks').off();
