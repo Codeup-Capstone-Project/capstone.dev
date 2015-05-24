@@ -12,7 +12,7 @@
                     <a href="{{{ action('GameController@getIndex') }}}" id="play-button" class="btn-large waves-effect waves-teal blue-grey lighten-5 call main">Start Playing!</a>
                 </div>
             </div>
-            <a class="floating-absolute-right btn-floating btn-large waves-effect waves-teal blue-grey lighten-5 hide-on-med-and-down" id="scroll-to-about">
+            <a class="scroll-to-about floating-absolute-right btn-floating btn-large waves-effect waves-teal blue-grey lighten-5 hide-on-med-and-down">
                 <i class="mdi-navigation-expand-more"></i>
             </a>
 
