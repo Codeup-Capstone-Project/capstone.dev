@@ -20,6 +20,11 @@ class HomeController extends BaseController {
 		return View::make('home');
 	}
 
+	public function showAbout()
+	{
+		return Redirect::to('/#about');
+	}
+
 	public function showLogo()
 	{
 		return View::make('logo');

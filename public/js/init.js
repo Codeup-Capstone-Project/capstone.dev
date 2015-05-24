@@ -7,7 +7,7 @@
             edge: 'right'
         });
 
-        $("#scroll-to-about").on("click",function(){
+        $(".scroll-to-about").on("click",function(){
             $("html, body").animate({
                 scrollTop: $("#about").offset().top
             },"slow")
