@@ -16,6 +16,7 @@ Route::get('login', 'HomeController@login');
 Route::post('login', 'HomeController@doLogin');
 Route::get('logout', 'HomeController@logout');
 Route::get('logo', 'HomeController@showLogo');
+Route::get('about', 'HomeController@showAbout');
 
 Route::get('loginfb', 'SocialAuthController@loginWithFacebook');
 Route::get('loginli', 'SocialAuthController@loginWithLinkedin');
