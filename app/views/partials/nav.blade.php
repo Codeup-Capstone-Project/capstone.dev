@@ -3,9 +3,12 @@
             @if(Auth::check())
                 <li class="user"><span class="username blue-grey-text text-darken-2">{{{ Auth::user()->username }}}</span></li>
                 <li class="divider"></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">Profile</a></li>
                 <li><a href="{{{ action('GameController@getIndex') }}}">Play</a></li>
             @else
+                <li><a href="#" class="scroll-to-about">About</a></li>
+                <li class="divider"></li>
                 <li><a href="{{{ action('UsersController@getCreate') }}}">Create account</a></li>
             @endif
 
@@ -32,9 +35,12 @@
                     @if(Auth::check())
                         <li class="user"><span>{{{ Auth::user()->username }}}</span></li>
                         <li class="divider"></li>
+                        <li><a href="/about">About</a></li>
                         <li><a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">Profile</a></li>
                         <li><a href="{{{ action('GameController@getIndex') }}}">Play</a></li>
                     @else
+                        <li><a href="#" class="scroll-to-about">About</a></li>
+                        <li class="divider"></li>
                         <li><a href="{{{ action('UsersController@getCreate') }}}">Create account</a></li>
                     @endif
 
