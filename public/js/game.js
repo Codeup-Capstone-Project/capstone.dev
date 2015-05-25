@@ -53,11 +53,9 @@ $.ajaxSetup({
 			//if the user came from leaderboard, load the specific position array
 			//of the game they clicked
 			if(arrayString) {
-				$(".blocks").remove();
 	    		puzzleSize = parseInt(sizeChoiceFromProfile);
 	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
-	    		cells = [];
 	    		positionArray = arrayString.split(',');
 	    		//loop through array and make sure all elements are numbers
 	    		$.each(positionArray, function(index, value){
@@ -65,60 +63,49 @@ $.ajaxSetup({
 	    		});
 	    		initialBlockPositions = positionArray;
 	    		gameStats.puzzle_id = parseInt(puzzleId);
-	    		$(".level, #chooseLevel, #easy").addClass('hidden');
-				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
+	    		readyMode();
 
 
 				//if the user came from profile, load the size they chose
 			} else if(sizeChoiceFromProfile == 3 || sizeChoiceFromProfile == 4 || sizeChoiceFromProfile == 5) {
-				$(".blocks").remove();
 	    		puzzleSize = parseInt(sizeChoiceFromProfile);
 	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
-	    		cells = [];
 	    		initialBlockPositions = [];
-	    		answerKey = [];
 	    		randomPositionGenerator();
 	    		postInitialData();
-	    		$(".level, #chooseLevel, #easy").addClass('hidden');
-				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
+	    		readyMode();
 			}
 
 	    //====================== Buttons =========================
 
 	    	// Level Selection Buttons that reset key variables
 	    	$(".level").on('click', function(){
-	    		$(".blocks").remove();
 	    		puzzleSize = $(this).data('value');
 	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
-	    		cells = [];
 	    		initialBlockPositions = [];
-	    		answerKey = [];
 	    		randomPositionGenerator();
 	    		postInitialData();
-	    		$(".level, #chooseLevel, #easy").addClass('hidden');
-				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
+	    		readyMode();
 	    	});
 
 	    	// Easy Level Button for Demo-day
 	    	$("#easy").on('click', function(){
-	    		$(".blocks").remove();
 	    		puzzleSize = $(this).data('value');
 	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
-	    		cells = [];
 	    		initialBlockPositions = [1, 2, 3, 4, 0, 5, 7, 8, 6];
 	    		answerKey = [1, 2, 3, 4, 5, 6, 7, 8, 0];
 	    		gameStats.puzzle_id = 1;
-	    		$(".level, #chooseLevel, #easy").addClass('hidden');
-				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
+	    		readyMode();
 	    	});
 
 
 	    	// Start game button
 	    	$("#start").on('click', function(){
 	    		$(".blocks").remove();
+	    		cells = [];
 	    		buildGameBoard();
 	    		timer();
 	    		startGame();
@@ -167,6 +154,12 @@ $.ajaxSetup({
 
 
 	    //====================== Game Logic Functions =========================
+
+	    	function readyMode()
+	    	{
+	    		$(".level, #chooseLevel, #easy").addClass('hidden');
+				$("#start, #cancel, .ready, #whenReady").removeClass('hidden');
+	    	}
 
 	    	function setBlockDimensions()
 	    	{
@@ -309,27 +302,17 @@ $.ajaxSetup({
 	    	function startGame()
 	    	{
 	    		createAnswerKey();
-	    		//reset the gameFinished and time indices of the gameStats object
-	    		//create a new game session number and store in gameStats object
-	    		$.get('/play/game-session', function(response){
-	    			gameSession = response;
-	    			gameStats.gameSession = gameSession;
-	    			gameStats.gameFinished = false;
-	    			gameStats.time = '';
-	    		});
-	    		//reset moves counter
-	    		moves = 0;
-	    		$("#moves").text(moves);
+	    		gameReset();
 	    		//place blocks in their initial positions
 	    		positionBlocks();
 	    		//create a clone of the initial positions array to track block movements
 	    		newBlockPositions = initialBlockPositions.slice(0);
 	    		gameStats.newBlockPositions = newBlockPositions;
 	    		identifyMovableBlocks();
-	    		$("#start").addClass('hidden');
-	    		$("#newGame").addClass('hidden');
-	    		$("#quit").removeClass('hidden');
-	    		$("#reset").removeClass('hidden');
+	    		$("#start, #newGame").addClass('hidden');
+	    		// $("#newGame").addClass('hidden');
+	    		$("#quit, #reset").removeClass('hidden');
+	    		// $("#reset").removeClass('hidden');
 	    	}
 
 	    	function createAnswerKey()
@@ -342,6 +325,22 @@ $.ajaxSetup({
 		    	}
 		    	//add a 0 on the back to represent the empty cell in the lower right corner
 	    		answerKey.push(0);
+	    	}
+
+	    	function gameReset()
+	    	{
+	    		//create a new game session number and store in gameStats object
+	    		$.get('/play/game-session', function(response){
+	    			gameSession = response;
+	    			gameStats.gameSession = gameSession;
+	    			//reset the gameFinished and time indices of the gameStats object
+	    			gameStats.gameFinished = false;
+	    			gameStats.time = '';
+	    		});
+
+	    		//reset moves counter
+	    		moves = 0;
+	    		$("#moves").text(moves);
 	    	}
 
 	    	// Loop through cell-position array and assign its sets of coordinates to each block as they are generated
@@ -429,8 +428,7 @@ $.ajaxSetup({
 				if(newBlockPositions.toString() == answerKey.toString()) {
 					$('.blocks').off();
 					var won = true;
-					endGame(won);
-					return;
+					return endGame(won);
 				}
 				$('.blocks').off();
 	    		identifyMovableBlocks();
