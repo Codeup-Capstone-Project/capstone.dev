@@ -55,10 +55,16 @@ class SocialAuthController extends BaseController {
 
         if ( !empty( $code ) ) {
 
-            // This was a callback request from linkedin, get the token
-            $token = $linkedinService->requestAccessToken( $code );
-            // Send a request with it. Please note that XML is the default format.
-            $result = json_decode($linkedinService->request('/people/~:(id,first-name,last-name,headline,member-url-resources,picture-urls::(original),location,public-profile-url,email-address)?format=json'), true);
+            try {
+                // This was a callback request from linkedin, get the token
+                $token = $linkedinService->requestAccessToken( $code );
+                // Send a request with it. Please note that XML is the default format.
+                $result = json_decode($linkedinService->request('/people/~:(id,first-name,last-name,headline,member-url-resources,picture-urls::(original),location,public-profile-url,email-address)?format=json'), true);
+
+            } catch (Exception $e) {
+                Log::error($e);
+                App::abort(500);
+            }
 
             // For testing: show some of the resultant data
             // echo 'Your linkedin first name is ' . $result['firstName'] . 
@@ -71,6 +77,8 @@ class SocialAuthController extends BaseController {
             //display whole array().
             // var_dump($result);
 
+            //if user does not have a Linkedin profile photo, use default
+            $photo = empty($result['pictureUrls']['values'][0]) ? "/img/ninja_avatar.jpg" : $result['pictureUrls']['values'][0];        
 
             // get data from input
             $user = [
@@ -78,7 +86,7 @@ class SocialAuthController extends BaseController {
                     'email'              => $result['emailAddress'],
                     'first_name'         => $result['firstName'],
                     'last_name'          => $result['lastName'],
-                    'profile_photo_url'  => $result['pictureUrls']['values'][0],
+                    'profile_photo_url'  => $photo,
                     'profile_url'        => $result['publicProfileUrl']
             ];
 
@@ -159,19 +167,29 @@ class SocialAuthController extends BaseController {
 	    // if code is provided get user data and sign in
 	    if ( !empty( $code ) ) {
 
-	        // This was a callback request from facebook, get the token
-	        $token = $fb->requestAccessToken( $code );
+            try {
+    	        // This was a callback request from facebook, get the token
+    	        $token = $fb->requestAccessToken( $code );
 
-	        // Send a request with it
-	        $result = json_decode( $fb->request( '/me' ), true );
+    	        // Send a request with it
+    	        $result = json_decode( $fb->request( '/me' ), true );
 
-	        // Request user's profile picture
-	        $picture = json_decode( $fb->request( '/me/picture?type=large&redirect=false' ), true );
+    	        // Request user's profile picture
+    	        $picture = json_decode( $fb->request( '/me/picture?type=large&redirect=false' ), true );
+
+            } catch (Exception $e) {
+                Log::error($e);
+                App::abort(500);
+            }
 
 	        //Var_dump
 	        //display whole array().
 	        // var_dump($result);
 	        // var_dump($picture);
+
+            //if user does not have a Facebook profile photo, use default
+            $photo = empty($picture['data']['url']) ? "/img/ninja_avatar.jpg" : $picture['data']['url'];
+
 
 	        // get data from input
 	        $user = [
@@ -179,7 +197,7 @@ class SocialAuthController extends BaseController {
 	                'email'		  		=> $result['email'],
 	                'first_name'  		=> $result['first_name'],
 	                'last_name'	  		=> $result['last_name'],
-	                'profile_photo_url' => $picture['data']['url'],
+	                'profile_photo_url' => $photo,
                     'profile_url'       => $result['link']
 	        ];
 
