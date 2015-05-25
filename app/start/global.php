@@ -49,15 +49,16 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+
+    if ($code == 500)
+    {
+        return Response::view('errors.autherror', array(), 500);
+    }
 });
 
 App::missing(function($exception)
 {
     return Response::view('errors.missing', array(), 404);
-});
-
-App::autherror(function($exception){
-    return Response::view('errors.autherror', array(), 500);
 });
 
 /*
