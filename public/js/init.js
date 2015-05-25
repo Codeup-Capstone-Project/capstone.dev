@@ -13,7 +13,7 @@
             },"slow")
         });
 
-        $("#about-side-nav").on('click', function{
+        $("#about-side-nav").on('click', function(){
             $.sideNav('hide');
         });
         
