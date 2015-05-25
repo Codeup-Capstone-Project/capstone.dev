@@ -38,6 +38,20 @@ body, html {
     }
 }
 
+#how-to-play {
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.0625rem;
+}
+
+.how-to {
+    color: #cfd8dc;
+    @include transition(color .3s);
+}
+
+.how-to:hover {
+    color: #80cbc4;
+}
 
 .no-marg {
     margin: 0;
