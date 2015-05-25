@@ -79,6 +79,8 @@ class SocialAuthController extends BaseController {
 
             //if user does not have a Linkedin profile photo, use default
             $photo = empty($result['pictureUrls']['values'][0]) ? "/img/ninja_avatar.jpg" : $result['pictureUrls']['values'][0];        
+            //if user does not have a public Linkedin profile url, use NULL
+            $profile = empty($result['publicProfileUrl']) ? NULL : $result['publicProfileUrl'];
 
             // get data from input
             $user = [
@@ -87,7 +89,7 @@ class SocialAuthController extends BaseController {
                     'first_name'         => $result['firstName'],
                     'last_name'          => $result['lastName'],
                     'profile_photo_url'  => $photo,
-                    'profile_url'        => $result['publicProfileUrl']
+                    'profile_url'        => $profile
             ];
 
             
@@ -189,7 +191,8 @@ class SocialAuthController extends BaseController {
 
             //if user does not have a Facebook profile photo, use default
             $photo = empty($picture['data']['url']) ? "/img/ninja_avatar.jpg" : $picture['data']['url'];
-
+            //if user does not have a public Profile profile url, use NULL
+            $profile = empty($result['link']) ? NULL : $result['link'];
 
 	        // get data from input
 	        $user = [
@@ -198,7 +201,7 @@ class SocialAuthController extends BaseController {
 	                'first_name'  		=> $result['first_name'],
 	                'last_name'	  		=> $result['last_name'],
 	                'profile_photo_url' => $photo,
-                    'profile_url'       => $result['link']
+                    'profile_url'       => $profile
 	        ];
 
 	        // For testing: show some resultant data
