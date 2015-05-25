@@ -14,7 +14,7 @@
         });
 
         $("#about-side-nav").on('click', function(){
-            $.sideNav('hide');
+            $("#about-side-nav").sideNav('hide');
         });
         
 
