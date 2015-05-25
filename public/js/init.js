@@ -13,6 +13,11 @@
             },"slow")
         });
 
+        $("#about-side-nav").on('click', function{
+            $.sideNav('hide');
+        });
+        
+
         $('.modal-trigger').leanModal();
 
     //==================== Leader Board Triggers on Profile Page =======================

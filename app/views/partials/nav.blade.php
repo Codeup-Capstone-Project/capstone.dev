@@ -35,7 +35,7 @@
                     @if(Auth::check())
                         <li class="user"><span>{{{ Auth::user()->username }}}</span></li>
                         <li class="divider"></li>
-                        <li><a href="/about">About</a></li>
+                        <li id="about-side-nav"><a href="/about">About</a></li>
                         <li><a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">Profile</a></li>
                         <li><a href="{{{ action('GameController@getIndex') }}}">Play</a></li>
                     @else
