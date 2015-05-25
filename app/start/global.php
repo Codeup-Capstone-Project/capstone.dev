@@ -56,6 +56,10 @@ App::missing(function($exception)
     return Response::view('errors.missing', array(), 404);
 });
 
+App::autherror(function($exception){
+    return Response::view('errors.autherror', array(), 500);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
