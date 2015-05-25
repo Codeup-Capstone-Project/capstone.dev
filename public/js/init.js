@@ -4,17 +4,14 @@
         $('.ninja-star').animate();
 
         $('.button-collapse').sideNav({
-            edge: 'right'
+            edge: 'right',
+            closeOnClick: true
         });
 
         $(".scroll-to-about").on("click",function(){
             $("html, body").animate({
                 scrollTop: $("#about").offset().top
             },"slow")
-        });
-
-        $("#about-side-nav").on('click', function(){
-            sideNav('hide');
         });
         
 
