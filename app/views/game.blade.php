@@ -42,6 +42,9 @@
 		    			</div>
 	    			</div>
 	    		</div>
+                <div id="how-to-play" class="center-align hide-on-small-only">
+                    <a href="{{{ action('HomeController@showHome') }}}#about" class="how-to">How to Play</a>
+                </div>
 			</div>
     		<div class="col s12 m7 l5">
     			<div class="card-panel blue-grey lighten-5 z-depth-2">
@@ -52,6 +55,9 @@
 	    			<div id='playSameGame' data-positions="{{{ $initialPositions }}}"></div>
 	    			<div id='puzzle_id' data-id="{{{ $id }}}"></div>
     			</div>
+                <div id="how-to-play" class="center-align hide-on-med-and-up">
+                    <a href="{{{ action('HomeController@showHome') }}}#about" class="how-to">How to Play</a>
+                </div>
     		</div>
     	</div>
     </div>
