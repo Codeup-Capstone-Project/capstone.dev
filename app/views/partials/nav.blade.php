@@ -7,7 +7,7 @@
                 <li><a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">Profile</a></li>
                 <li><a href="{{{ action('GameController@getIndex') }}}">Play</a></li>
             @else
-                <li><a href="#" class="scroll-to-about">About</a></li>
+                <li><a href="#about" class="scroll-to-about">About</a></li>
                 <li class="divider"></li>
                 <li><a href="{{{ action('UsersController@getCreate') }}}">Create account</a></li>
             @endif
