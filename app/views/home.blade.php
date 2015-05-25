@@ -224,7 +224,7 @@
                             <li>Mobile-Responsiveness</li>
                             <li>Ninja Graphics</li>
                         </ul>
-                        <p class="creator-button"><a href="http://www.justindietert.com" class="btn waves-effect waves-teal blue-grey lighten-5 more-info">More about Justin</a></p>
+                        <p class="creator-button"><a href="http://www.linkedin.com/in/justindietert" class="btn waves-effect waves-teal blue-grey lighten-5 more-info">More about Justin</a></p>
                     </div>
                     <div class="col s6 offset-s3 m4 offset-m4 l2 jamie">
                         <img src="img/jamie.jpg" alt="Jamie Haskell" class="circle responsive-img img-marg">
@@ -242,7 +242,7 @@
                             <li>Profile/Leader Board Backend</li>
                             <li>ListJS Library Implementation</li>
                         </ul>
-                        <p class="creator-button"><a href="http://www.jamiehaskell.com" class="btn waves-effect waves-teal blue-grey lighten-5 more-info">More about Jamie</a></p>
+                        <p class="creator-button"><a href="http://www.linkedin.com/in/haskellj" class="btn waves-effect waves-teal blue-grey lighten-5 more-info">More about Jamie</a></p>
                     </div>
                 </div>
             </div>
