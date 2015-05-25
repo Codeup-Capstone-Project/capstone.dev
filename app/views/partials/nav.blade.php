@@ -1,7 +1,7 @@
         <!-- Dropdown Structure -->
         <ul id="dropdown1" class="dropdown-content">
             @if(Auth::check())
-                <li class="user"><span class="username blue-grey-text text-darken-2">{{{ Auth::user()->username }}}</span></li>
+                <li class="user"><a class="blue-grey-text text-darken-2" href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">{{{ Auth::user()->username }}}</a></li>
                 <li class="divider"></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">Profile</a></li>
@@ -33,7 +33,7 @@
 
                 <ul id="nav-mobile" class="side-nav">
                     @if(Auth::check())
-                        <li class="user"><span>{{{ Auth::user()->username }}}</span></li>
+                        <li class="user"><a class="blue-grey-text text-darken-2" href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">{{{ Auth::user()->username }}}</a></li>
                         <li class="divider"></li>
                         <li id="about-side-nav"><a href="/about">About</a></li>
                         <li><a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}">Profile</a></li>
