@@ -4,7 +4,6 @@ html {
     font-family: "Roboto", "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 400;
     background-color: #37474f;
-    overflow-x: hidden;
 }
 
 body, html {
@@ -642,8 +641,10 @@ ranking {
 
 @media #{$small-and-down} {
     #main-splash .ninja {
-        right: -85px;
         bottom: 15px;
+        right: 15px;
+        width: 300px;
+        height: auto;
     }
 }
 
@@ -764,16 +765,9 @@ ranking {
     z-index: -3;
 }
 
-@media #{$medium-and-down} {
+@media only screen and (max-width: 1024px) {
     .hero-tile-largest-grid {
-        left: 500px;
-        bottom: 50px;
-    }
-}
-
-@media #{$small-and-down} {
-    .hero-tile-largest-grid {
-        left: 245px;
+        display: none;
     }
 }
 
