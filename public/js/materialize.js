@@ -5967,7 +5967,7 @@ Picker.extend( 'pickadate', DatePicker )
   $.fn.characterCounter = function(){
     return this.each(function(){
 
-      itHasLengthAttribute = $(this).attr('length') != undefined;
+      var itHasLengthAttribute = $(this).attr('length') != undefined;
 
       if(itHasLengthAttribute){
         $(this).on('input', updateCounter);
@@ -5992,7 +5992,7 @@ Picker.extend( 'pickadate', DatePicker )
   }
 
   function addCounterElement($input){
-    $counterElement = $('<span/>')
+    var $counterElement = $('<span/>')
                         .addClass('character-counter')
                         .css('float','right')
                         .css('font-size','12px')
@@ -6006,7 +6006,7 @@ Picker.extend( 'pickadate', DatePicker )
   }
 
   function addInputStyle(isValidLength, $input){
-    inputHasInvalidClass = $input.hasClass('invalid');
+    var inputHasInvalidClass = $input.hasClass('invalid');
     if (isValidLength && inputHasInvalidClass) {
       $input.removeClass('invalid');
     }
