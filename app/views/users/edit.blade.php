@@ -74,17 +74,18 @@
                                                                     <button type="submit" class="btn waves-effect create-button">Update</button>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col s12">
-                                                                    <a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}" class="btn waves-effect pink darken-3 create-button">Cancel</a>
-                                                                </div>
-                                                            </div>
-                                                        {{ Form::close() }}
-                                                    </div>
 
+                                                        {{ Form::close() }}
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <a href="{{{ action('UsersController@getShow', Auth::user()->username) }}}" class="btn waves-effect pink darken-3 create-button">Cancel</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
 
                                     </div>
                                 </div>
