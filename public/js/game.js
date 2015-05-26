@@ -18,6 +18,29 @@ $.ajaxSetup({
 			$("#whenReady").height(boardHeight);
 			$("#whenReady").width(boardWidth);
 
+			//if browser is resized, reconfigure gameboard dimensions
+			$(window).resize(function(){
+				//get current gameBoard width and set height to same
+			    boardWidth = $("#gameBoard").innerWidth();
+			    boardHeight = $("#gameBoard").innerHeight(boardWidth);
+			    //set placeholder images' dimensions
+				$("#chooseLevel").height(boardHeight[0].clientHeight);
+				$("#chooseLevel").width(boardWidth);
+				$("#whenReady").height(boardHeight[0].clientHeight);
+				$("#whenReady").width(boardWidth);
+				$(".blocks").remove();
+				//resize individual tiles
+				setBlockDimensions();
+				//recreate the gameBoard
+				buildGameBoard();
+				//if the game is in session, reset positioning-coordinates according to 
+				//new board dimensions and reidentify the movable blocks
+				if ($("#timer").text() != '00:00:00:00') {
+					positionBlocks();
+					identifyMovableBlocks();
+				}
+			});
+
 		//====================== Begin Game =========================
 
 			var gameSession;
@@ -54,7 +77,6 @@ $.ajaxSetup({
 			//of the game they clicked
 			if(arrayString) {
 	    		puzzleSize = parseInt(sizeChoiceFromProfile);
-	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		positionArray = arrayString.split(',');
 	    		//loop through array and make sure all elements are numbers
@@ -66,10 +88,9 @@ $.ajaxSetup({
 	    		readyMode();
 
 
-				//if the user came from profile, load the size they chose
+			//if the user came from profile, load the size they chose
 			} else if(sizeChoiceFromProfile == 3 || sizeChoiceFromProfile == 4 || sizeChoiceFromProfile == 5) {
 	    		puzzleSize = parseInt(sizeChoiceFromProfile);
-	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		initialBlockPositions = [];
 	    		randomPositionGenerator();
@@ -82,7 +103,6 @@ $.ajaxSetup({
 	    	// Level Selection Buttons that reset key variables
 	    	$(".level").on('click', function(){
 	    		puzzleSize = $(this).data('value');
-	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		initialBlockPositions = [];
 	    		randomPositionGenerator();
@@ -93,7 +113,6 @@ $.ajaxSetup({
 	    	// Easy Level Button for Demo-day
 	    	$("#easy").on('click', function(){
 	    		puzzleSize = $(this).data('value');
-	    		setBlockDimensions();
 	    		totalBlocks = puzzleSize * puzzleSize;
 	    		initialBlockPositions = [1, 2, 3, 4, 0, 5, 7, 8, 6];
 	    		answerKey = [1, 2, 3, 4, 5, 6, 7, 8, 0];
@@ -105,7 +124,7 @@ $.ajaxSetup({
 	    	// Start game button
 	    	$("#start").on('click', function(){
 	    		$(".blocks").remove();
-	    		cells = [];
+	    		setBlockDimensions();
 	    		buildGameBoard();
 	    		timer();
 	    		startGame();
@@ -178,7 +197,7 @@ $.ajaxSetup({
 	    		}
 
 	    		do {
-		    		//shuffle the array
+		    		//shuffle the array until its puzzle is solvable
 				  	var tmp, current, top = initialBlockPositions.length;
 				  	if(top) while(--top) {
 					    current = Math.floor(Math.random() * (top + 1));
@@ -281,13 +300,13 @@ $.ajaxSetup({
 	    	// Create gameboard grid of cells
 			function buildGameBoard()
 			{
+				cells = [];
 				cellX = 0;
 				cellY = 0;
 	    		// Loop for determining cell positions
 		    	for(var i = 0; i < totalBlocks; i++) {
 		    		//store coordinates of each cell
 		    		cells[i] = [cellX, cellY];
-		    		// $('#gameBoard').append("<div class='cells' style='top:"+cellY+";left:"+cellX+"'></div>");
 		    		//increase the x-coordinate based on the size of each cell
 		    		cellX += cellDimension + cellPadding;
 		    		//reset the x-coordinate and increase the y-coordinate after the last cell of each row is positioned
@@ -310,9 +329,7 @@ $.ajaxSetup({
 	    		gameStats.newBlockPositions = newBlockPositions;
 	    		identifyMovableBlocks();
 	    		$("#start, #newGame").addClass('hidden');
-	    		// $("#newGame").addClass('hidden');
 	    		$("#quit, #reset").removeClass('hidden');
-	    		// $("#reset").removeClass('hidden');
 	    	}
 
 	    	function createAnswerKey()
@@ -347,16 +364,25 @@ $.ajaxSetup({
 	    	function positionBlocks()
 	    	{
 	    		$.each(cells, function(index, coordinates) {
+					
+					//if game is already in progress, position blocks based on newBlockPositions array	
+	    			if($("#timer").text() != '00:00:00:00'){
+	    				//concurrently loop through block-positions-array and store their numeric value
+						var blockNumber = newBlockPositions[index];	
+	    			//if game has not begun, position blocks based on initialBlockPositions array
+	    			} else {
 						//concurrently loop through block-positions-array and store their numeric value
 						var blockNumber = initialBlockPositions[index];
-						//a block number of 0 indicates the initial empty cell's position
-						if(blockNumber == 0){
-						emptyCell = index;
-						} else{
-							//generate the div for each block using the coordinates from each element of the cell's array,
-							//attach their numeric value to them visually and via the data attribute
-							$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'><span class='flow-text'>"+blockNumber+"</span></div>");
-						}
+					}
+
+					//a block number of 0 indicates the initial empty cell's position
+					if(blockNumber == 0){
+					emptyCell = index;
+					} else{
+						//generate the div for each block using the coordinates from each element of the cell's array,
+						//attach their numeric value to them visually and via the data attribute
+						$('#gameBoard').append("<div class='blocks' data-blocknum='"+blockNumber+"' style='top:"+coordinates[1]+"px;left:"+coordinates[0]+"px;line-height:"+cellDimension+"px;'><span class='flow-text'>"+blockNumber+"</span></div>");
+					}
 				});
 				$(".blocks").innerWidth(cellDimension);
 				$(".blocks").innerHeight(cellDimension);
