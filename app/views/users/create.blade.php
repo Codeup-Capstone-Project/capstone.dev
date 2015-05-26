@@ -59,6 +59,11 @@
                             <button type="submit" class="btn waves-effect create-button">Create</button>
                         </div>
                       </div>
+                    <div class="row no-marg-bot">
+                        <div class="col s12">
+                            <a href="{{{ action('HomeController@login') }}}" class="btn waves-effect pink darken-3 create-button">Cancel</a>
+                        </div>
+                    </div>
                     {{ Form::close() }}
                 </div>
             </div>
