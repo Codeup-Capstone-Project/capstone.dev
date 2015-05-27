@@ -30,7 +30,7 @@
 			    			<h6 class="blue-grey-text text-darken-2" id="timer"><time>00:00:00:00</time></h6>
 		    			</div>
 						<div class="col s6 offset-s1 m7">
-			    			{{-- <button id='easy' class="btn-floating size-btn waves-effect waves-light teal lighten-1" type="submit" data-value='3'>Easy</button> --}}
+			    			<button id='easy' class="btn-floating size-btn waves-effect waves-light teal lighten-1" type="submit" data-value='3'>Easy</button>
 			    			<button id='3x3' class="btn-floating size-btn waves-effect waves-light level cyan darken-3" type="submit" data-value='3'>3x3</button>
 			    			<button id='4x4' class="btn-floating size-btn waves-effect waves-light level purple darken-3" type="submit" data-value='4'>4x4</button>
 			    			<button id='5x5' class="btn-floating size-btn waves-effect waves-light level pink darken-3" type="submit" data-value='5'>5x5</button>
