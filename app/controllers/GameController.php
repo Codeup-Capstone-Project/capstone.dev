@@ -62,13 +62,17 @@ class GameController extends BaseController {
 		//Note: the positions array is being serialized by mutator before insertion
 		//Note: finished_game is being cast to a boolean by mutator before insertion
 
+		$gameSession = Input::get('gameSession');
+
 		$stats = new Stat;
 		$stats->user_id = Auth::user()->id;
 		$stats->puzzle_id = Input::get('puzzle_id');
-		$stats->game_session = Input::get('gameSession');
+		// $stats->game_session = Input::get('gameSession');
+		$stats->game_session = $gameSession;
 		$stats->last_block_positions = Input::get('newBlockPositions');
 		$stats->moves = Input::get('moves');
-		$stats->game_time = Input::get('time');
+		// $stats->game_time = Input::get('time');
+		$stats->game_time = self::getGameTime($gameSession);
 		$stats->finished_game = Input::get('gameFinished');
 		$stats->save();
 	}
@@ -90,21 +94,40 @@ class GameController extends BaseController {
 	}
 
 	//called from any GET to '/play/game-session'
+	//called ONLY when a game is begun, so that each game's session # persists
+	//even if the game is restarted
 	public static function getGameSession()
-		{
-			//generate a randon 6 digit number
-			$session = rand(100000, 999999);
-			//then searches sessions column to see if that number exists
-			$query = Stat::where('game_session', '=', $session)->first();
-			//if not, return that number
-			if(!$query){
-				return $session;
-			//if it does, repeat
-			} else {
-				return self::getGameSession();
-			}
-			
+	{
+		//generate a randon 6 digit number
+		$session = rand(100000, 999999);
+		//then searches sessions column to see if that number exists
+		$query = Stat::where('game_session', '=', $session)->first();
+		//if not, return that number
+		if(!$query){
+			return $session;
+		//if it does, repeat
+		} else {
+			return self::getGameSession();
 		}
+		
+	}
+
+	public static function getGameTime($gameSession)
+	{
+		$gameStart = Stat::whereGameSession($gameSession)
+							->orderBy('created_at', 'asc')
+							->first();
+
+		if(empty($gameStart)){
+			return "00:00:00:00";
+		}
+		
+		$start = $gameStart->created_at;
+		$stop = Date();
+		$gameDuration = date_diff($stop, $start);
+		return date_format($gameDuration, "H:i:s");
+		
+	}
 }
 
 
