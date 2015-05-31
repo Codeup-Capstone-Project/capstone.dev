@@ -213,6 +213,11 @@ $.ajaxSetup({
 
 	    	function isSolvable()
 	    	{
+	    		//make sure puzzle is not already in a solved configuration
+	    		if(initialBlockPositions.toString() == answerKey.toString()){
+	    			return false;
+	    		}
+
 	    		//check the number of inversions in randomly generated array
 				var inversions = totalInversions();
 				
@@ -352,7 +357,7 @@ $.ajaxSetup({
 	    			gameStats.gameSession = gameSession;
 	    			//reset the gameFinished and time indices of the gameStats object
 	    			gameStats.gameFinished = false;
-	    			gameStats.time = '';
+	    			// gameStats.time = '';
 	    		});
 
 	    		//reset moves counter
@@ -471,9 +476,9 @@ $.ajaxSetup({
 
 	    	function endGame(won)
 	    	{
-	    		var time = $("#timer").text();
+	    		// var time = $("#timer").text();
 	    		gameStats.gameFinished = won;
-	    		gameStats.time = time;
+	    		// gameStats.time = time;
 	    		$('.blocks').off();
 	    		$("#quit").addClass('hidden');
 		    	$("#newGame").removeClass('hidden');
