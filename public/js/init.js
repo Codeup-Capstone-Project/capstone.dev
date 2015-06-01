@@ -1,7 +1,13 @@
 (function($){
     $(function(){
 
-        $('.ninja-star').animate();
+        $('.ninja-star').animate({"bottom": "130px", "left": "225px"}, "fast", moveBlock);
+
+        function moveBlock()
+        {
+            $(".hero-tile#five").css("margin-left", "1px")
+                                .css("margin-right", "30px");
+        }
 
         $('.button-collapse').sideNav({
             edge: 'right',
