@@ -12,7 +12,8 @@
 		"esensi/model": "0.3.*",
 		"artdarek/oauth-4-laravel": "dev-master",
 		"mandrill/mandrill": "1.0.*",
-		"guzzlehttp/guzzle": "~5.0"
+		"guzzlehttp/guzzle": "~5.0",
+		"vlucas/phpdotenv": "~2.1"
 	},
 	"require-dev": {
 		"barryvdh/laravel-debugbar": "1.8.*",
