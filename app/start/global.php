@@ -11,7 +11,7 @@
 |
 */
 
-$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv = new Dotenv\Dotenv(base_path());
 $dotenv->load();
 
 ClassLoader::addDirectories(array(
