@@ -15,6 +15,24 @@ $app = new Illuminate\Foundation\Application;
 
 /*
 |--------------------------------------------------------------------------
+| Detect The Application Environment
+|--------------------------------------------------------------------------
+|
+| Laravel takes a dead simple approach to your application environments
+| so you can just specify a machine name for the host that matches a
+| given environment, then we will automatically detect it for you.
+|
+*/
+$dotenv = new Dotenv\Dotenv(__DIR__.'/..');
+$dotenv->load();
+
+ $env = $app->detectEnvironment(function()
+{
+	return getenv('ENVIRONMENT');
+});
+
+/*
+|--------------------------------------------------------------------------
 | Bind Paths
 |--------------------------------------------------------------------------
 |
@@ -25,26 +43,6 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $app->bindInstallPaths(require __DIR__.'/paths.php');
-
-/*
-|--------------------------------------------------------------------------
-| Detect The Application Environment
-|--------------------------------------------------------------------------
-|
-| Laravel takes a dead simple approach to your application environments
-| so you can just specify a machine name for the host that matches a
-| given environment, then we will automatically detect it for you.
-|
-*/
-$dotenv = new Dotenv\Dotenv(base_path());
-$dotenv->load();
-
- $env = $app->detectEnvironment(function()
-{
-	return getenv('ENVIRONMENT');
-});
-
-
 
 /*
 |--------------------------------------------------------------------------
