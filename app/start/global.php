@@ -11,6 +11,9 @@
 |
 */
 
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
 ClassLoader::addDirectories(array(
 
 	app_path().'/commands',
