@@ -22,8 +22,8 @@ return array(
 		 * Facebook
 		 */
         'Facebook' => array(
-            'client_id'     => $_ENV['FACEBOOK_ID'],
-            'client_secret' => $_ENV['FACEBOOK_SECRET'],
+            'client_id'     => getenv('FACEBOOK_ID'),
+            'client_secret' => getenv('FACEBOOK_SECRET'),
             'scope'         => array('email'),
         ),		
 
@@ -31,8 +31,8 @@ return array(
 		 * Linkedin
 		 */
         'Linkedin' => array(
-            'client_id'     => $_ENV['LINKEDIN_ID'],
-            'client_secret' => $_ENV['LINKEDIN_SECRET'],
+            'client_id'     => getenv('LINKEDIN_ID'),
+            'client_secret' => getenv('LINKEDIN_SECRET'),
             'scope'         => array('r_emailaddress', 'r_basicprofile'),
         ),
 	)
